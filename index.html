@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>КурланПарк | Парк активного отдыха и семейных развлечений</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/reset.css">
+</head>
+<body>
+    <div class="top-bar">
+        <span class="badge-action">Акции</span>
+        <span>Скидки для групп до 30%, пенсионерам, многодетным и именинникам!</span>
+    </div>
+    <header>
+        <div class="header-container">
+            <a href="#">
+                <img src="https://lh3.googleusercontent.com/d/149MpcRfNDOLe98OkQXQpU9_DfYlLSalm" alt="КурланПарк Логотип" class="logo-img">
+            </a>
+            <nav>
+                <a href="#attractions">Развлечения</a>
+                <a href="#schedule">Режим работы</a>
+                <a href="#pricing-ticket">Цены</a>
+                <a href="#gallery">Галерея</a>
+                <a href="#kurlanchiki">Курланчики</a>
+                <a href="#discounts">Скидки</a>
+                <a href="#contacts">Контакты</a>
+            </nav>
+            <div class="header-contacts">
+                <div class="header-info-text">
+                    <div class="sub">10 минут от Димитровграда</div>
+                    <div class="main"><a href="tel:+79022151190">8 (902) 215-11-90</a></div>
+                </div>
+                <a href="tel:+79022151190" class="btn-header" style="background: #f59e0b; color: #0f172a;">Купить билет</a>
+            </div>
+        </div>
+    </header>
+    <section class="hero">
+        <video autoplay loop muted playsinline class="hero-video">
+            <source src="ae1.mov#t=8" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+            <div class="hero-tag">
+                ✦ 10 минут от Димитровграда
+            </div>
+            <h1>Яркие зимние приключения в <span>КурланПарке</span></h1>
+            <p>18 снежных горок с подъёмниками, сибирские хаски, северные олени, снегоходы и квадроциклы, турбо-банан, аниматоры, тир и тёплое кафе!</p>
+            <div class="hero-buttons">
+                <a href="#attractions" class="btn-primary">Выбрать развлечение</a>
+                <a href="#discounts" class="btn-secondary">Акции и скидки</a>
+            </div>
+        </div>
+    </section>
+    <section id="attractions" class="container">
+        <div class="section-header">
+            <span class="section-pill">Развлечения</span>
+            <h2>Всё для яркого зимнего отдыха</h2>
+            <p>Нажмите на карточку развлечения, чтобы сразу перейти к его подробному описанию ниже!</p>
+        </div>
+        <div class="cards-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 26px;">
+            <!-- Card 1: Снежные горки -->
+            <div class="attraction-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <div class="card-img-wrap">
+                        <img src="https://lh3.googleusercontent.com/d/1AixtkdAYDk5DaLbHGFGHlKwh5EOmFEIy" alt="Снежные горки">
+                        <span class="card-tag tag-blue">18 Горок + 4 подъемника</span>
+                    </div>
+                    <div class="card-body">
+                        <h3>Снежные горки и тюбинг</h3>
+                        <p>18 подготовленных скоростных трасс от детских до экстремальных. 650 удобных ватрушек и 4 бугельных подъемника для комфортного подъема</p>
+                    </div>
+                </div>
+                <div style="padding: 0 24px 24px 24px;">
+                    <a href="#block-slides" style="display: block; text-align: center; background: #e0f2fe; color: var(--kp-blue); font-weight: 800; font-size: 13.5px; padding: 12px 18px; border-radius: 12px; text-decoration: none; border: 1px solid #bae6fd; transition: all 0.2s;">Входит в билет 3 900 ₽ →</a>
+                </div>
+            </div>
+            <!-- Card 2: Турбобанан -->
+            <div class="attraction-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <div class="card-img-wrap">
+                        <img src="https://lh3.googleusercontent.com/d/1Vc4lOt2fLCIWrql-eaCc8ghonGmpn_1g" alt="Турбобанан">
+                        <span class="card-tag tag-amber">14 мест</span>
+                    </div>
+                    <div class="card-body">
+                        <h3>Турбобанан по зимнему лесу</h3>
+                        <p>Шумный и драйвовый коллективный аттракцион! 14 пассажиров мчат за мощным снегоходом по виражам сказочного заснеженного леса. Максимум смеха и брызг пушистого снега!</p>
+                    </div>
+                </div>
+                <div style="padding: 0 24px 24px 24px;">
+                    <a href="#block-banana" style="display: block; text-align: center; background: #fef3c7; color: #b45309; font-weight: 800; font-size: 13.5px; padding: 12px 18px; border-radius: 12px; text-decoration: none; border: 1px solid #fde68a; transition: all 0.2s;">за курланчики →</a>
+                </div>
+            </div>
+            <!-- Card 3: Северные олени -->
+            <div class="attraction-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <div class="card-img-wrap">
+                        <img src="https://lh3.googleusercontent.com/d/1oNq1AC1geaBlEb5jcrjO-DynerGw-hl1" alt="Северные олени">
+                        <span class="card-tag tag-blue">Сказочные сани</span>
+                    </div>
+                    <div class="card-body">
+                        <h3>Северные олени</h3>
+                        <p>Настоящие гости с Крайнего Севера! Катание в традиционных деревянных санях с опытным каюром, кормление тундровым ягелем прямо с ладошки и незабываемые памятные снимки.</p>
+                    </div>
+                </div>
+                <div style="padding: 0 24px 24px 24px;">
+                    <a href="#block-reindeer" style="display: block; text-align: center; background: #fef3c7; color: #b45309; font-weight: 800; font-size: 13.5px; padding: 12px 18px; border-radius: 12px; text-decoration: none; border: 1px solid #fde68a; transition: all 0.2s;">за курланчики →</a>
+                </div>
+            </div>
+            <!-- Card 4: Квадроциклы и снегоходы -->
+            <div class="attraction-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <div class="card-img-wrap">
+                        <img src="https://lh3.googleusercontent.com/d/1bOVaae4HEK1jAZ8461qdpwNM82x-b-oG" alt="Квадроциклы и снегоходы">
+                        <span class="card-tag tag-amber">120 л.с. Yamaha</span>
+                    </div>
+                    <div class="card-body">
+                        <h3>Квадроциклы и снегоходы</h3>
+                        <p>Покоряйте просторы белоснежных холмов Курлана на мощной вездеходной технике за рулем или пассажиром в сопровождении инструктора.</p>
+                    </div>
+                </div>
+                <div style="padding: 0 24px 24px 24px;">
+                    <a href="#block-tech" style="display: block; text-align: center; background: #fef3c7; color: #b45309; font-weight: 800; font-size: 13.5px; padding: 12px 18px; border-radius: 12px; text-decoration: none; border: 1px solid #fde68a; transition: all 0.2s;">от 500 ₽ / круг</a>
+                </div>
+            </div>
+            <!-- Card 5: Беседки и типи -->
+            <div class="attraction-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <div class="card-img-wrap">
+                        <img src="https://lh3.googleusercontent.com/d/148e0HFahvsEc4_8XHzrlo6PPj6cr4a_h" alt="Беседки и типи">
+                        <span class="card-tag tag-dark">Мангальные зоны</span>
+                    </div>
+                    <div class="card-body">
+                        <h3>Беседки и типи с мангалами</h3>
+                        <p>Расположитесь в одной из наших беседок или типи. Жарьте сочные шашлыки и отдыхайте своей компанией в тепле и уюте.</p>
+                    </div>
+                </div>
+                <div style="padding: 0 24px 24px 24px;">
+                    <a href="#block-gazebos" style="display: block; text-align: center; background: #f1f5f9; color: #0f172a; font-weight: 800; font-size: 13.5px; padding: 12px 18px; border-radius: 12px; text-decoration: none; border: 1px solid #cbd5e1; transition: all 0.2s;">Аренда от 4 000 ₽ / день</a>
+                </div>
+            </div>
+            <!-- Card 6: Аниматоры -->
+            <div class="attraction-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <div class="card-img-wrap">
+                        <img src="https://lh3.googleusercontent.com/d/1Ju6_e25T1908USoIi0i2TLsQiWakd2Gz" alt="Аниматоры">
+                        <span class="card-tag tag-green">Интерактив</span>
+                    </div>
+                    <div class="card-body">
+                        <h3>Аниматоры и праздничные шоу</h3>
+                        <p>Зажигательные ведущие, Дед Мороз, Снегурочка и сказочные персонажи! Веселые конкурсы, танцевальные батлы, хороводы и море улыбок для детей и взрослых.</p>
+                    </div>
+                </div>
+                <div style="padding: 0 24px 24px 24px;">
+                    <a href="#block-show" style="display: block; text-align: center; background: #dcfce7; color: #15803d; font-weight: 800; font-size: 13.5px; padding: 12px 18px; border-radius: 12px; text-decoration: none; border: 1px solid #bbf7d0; transition: all 0.2s;">Включено в программу</a>
+                </div>
+            </div>
+            <!-- Card 7: Призовой тир -->
+            <div class="attraction-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <div class="card-img-wrap">
+                        <img src="https://lh3.googleusercontent.com/d/1bOVaae4HEK1jAZ8461qdpwNM82x-b-oG" alt="Призовой тир">
+                        <span class="card-tag tag-amber">Призы за меткость</span>
+                    </div>
+                    <div class="card-body">
+                        <h3>Призовой стрелковый тир</h3>
+                        <p>Испытайте свою меткость в стрельбе из классического лука, пневматических винтовок и спортивных рогаток. Инструктор поможет каждому прицелиться и выиграть памятный приз!</p>
+                    </div>
+                </div>
+                <div style="padding: 0 24px 24px 24px;">
+                    <a href="#block-tir" style="display: block; text-align: center; background: #fef3c7; color: #b45309; font-weight: 800; font-size: 13.5px; padding: 12px 18px; border-radius: 12px; text-decoration: none; border: 1px solid #fde68a; transition: all 0.2s;">за курланчики →</a>
+                </div>
+            </div>
+            <!-- Card 8: Сибирские хаски -->
+            <div class="attraction-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <div class="card-img-wrap">
+                        <img src="https://lh3.googleusercontent.com/d/1lI70UmUZojiFjhrvdd1ihAenEy3SIfy1" alt="Сибирские хаски">
+                        <span class="card-tag tag-blue">Хаски-терапия</span>
+                    </div>
+                    <div class="card-body">
+                        <h3>Сибирские хаски</h3>
+                        <p>Ласковые пушистики обожают внимание, обнимашки и позитивные фотосессии. Катание в собачьей упряжке подарит море восторга и зарядит позитивом на всю неделю!</p>
+                    </div>
+                </div>
+                <div style="padding: 0 24px 24px 24px;">
+                    <a href="#block-husky" style="display: block; text-align: center; background: #fef3c7; color: #b45309; font-weight: 800; font-size: 13.5px; padding: 12px 18px; border-radius: 12px; text-decoration: none; border: 1px solid #fde68a; transition: all 0.2s;">за курланчики →</a>
+                </div>
+            </div>
+            <!-- Card 9: Тёплое кафе -->
+            <div class="attraction-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <div class="card-img-wrap">
+                        <img src="https://lh3.googleusercontent.com/d/19cwwqvCYABudIqFEmUBZHEoCGBVBHkgy" alt="Тёплое кафе">
+                        <span class="card-tag tag-green">Увеличено в 4 раза</span>
+                    </div>
+                    <div class="card-body">
+                        <h3>Большое тёплое кафе</h3>
+                        <p>Просторный зал, где можно согреться, посушить варежки и сытно поесть: горячий чай, свежая выпечка, шашлык и много чего еще. Принимаем оплату курланчиками!</p>
+                    </div>
+                </div>
+                <div style="padding: 0 24px 24px 24px;">
+                    <a href="#block-cafe" style="display: block; text-align: center; background: #fef3c7; color: #b45309; font-weight: 800; font-size: 13.5px; padding: 12px 18px; border-radius: 12px; text-decoration: none; border: 1px solid #fde68a; transition: all 0.2s;">Меню →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="block-slides" class="detailed-section">
+        <div class="detailed-container">
+            <span class="section-pill">Подробная информация</span>
+            <h2>18 Снежных горок и 4 Канатные дороги</h2>
+            <p>Бешеная скорость, дух захватывает, а адреналин зашкаливает! В «КурланПарке» вас ждут 18 специально подготовленных снежных горок — от детских и семейных до по-настоящему экстремальных. Главная гордость парка — легендарная горка <strong>«Ракета»</strong>: скорость спуска развивает до 80 км/ч, а длина трассы составляет 350 метров! 15 секунд захватывающего спуска кажутся целой вечностью.</p>
+            <p>Вам больше не нужно подниматься пешком в гору с ватрушкой — на территории работают <strong>4 бугельных подъемника</strong>, которые комфортно поднимут вас на вершину. А благодаря нашему парку из <strong>650 тюбингов</strong>, ватрушек гарантированно хватит каждому гостю</p>
+        </div>
+    </section>
+    <section id="block-husky" class="detailed-section">
+        <div class="detailed-container">
+            <span class="section-pill">Хаски-терапия</span>
+            <h2>Сибирские Хаски и Катание</h2>
+            <p>Ласковые и энергичные пушистики хаски — настоящие любимчики наших гостей. Они искренне обожают внимание, обнимашки и общение с людьми. В «КурланПарке» вы сможете не только погладить эти мягкие пушистые облака и подарить им вкусняшку, но и прокатиться с ветерком в упряжке по заснеженному лесу!</p>
+            <p>Хаски-терапия мгновенно снимает накопившийся стресс, заряжает искренним позитивом и оставляет самые милые памятные снимки для всей вашей семьи.</p>
+        </div>
+    </section>
+    <section id="block-reindeer" class="detailed-section">
+        <div class="detailed-container">
+            <span class="section-pill">Сказочные персонажи</span>
+            <h2>Настоящие Северные Олени</h2>
+            <p>Посланники с далёкого севера и верные помощники Деда Мороза ждут вас в нашем парке! Могучие благородные олени в сопровождении опытного каюра прокатят в сказочных деревянных санях всех желающих.</p>
+            <p>Олени с удовольствием дадут себя погладить, сфотографируются с вами для соцсетей и с аппетитом покушают ягель прямо из ваших рук. И обязательно загадайте желание, держась за рог — доказано, что желания, загаданные в «КурланПарке», всегда сбываются!</p>
+        </div>
+    </section>
+    <section id="block-tech" class="detailed-section">
+        <div class="detailed-container">
+            <span class="section-pill">Драйв и Скорость</span>
+            <h2>Снегоходы и Мощные Квадроциклы</h2>
+            <p>Белоснежные просторы Курланских холмов, морозный свежий воздух и 120 лошадиных сил под капотом снегохода! Вы можете обуздать снежную стихию самостоятельно за рулём или отправиться в захватывающий маршрут пассажиром вместе с нашим инструктором.</p>
+            <p>Для любителей внедорожного драйва заготовлены мощные квадроциклы, готовые преодолевать любые снежные виражи и дарить максимум эмоций.</p>
+        </div>
+    </section>
+    <section id="block-cafe" class="detailed-section">
+        <div class="detailed-container">
+            <span class="section-pill">Уют и Угощения</span>
+            <h2>Огромное Тёплое Кафе</h2>
+            <p>В новом сезоне мы не только обновили интерьер нашего кафе, но и увеличили его площадь ровно в 4 раза — теперь места гарантированно хватит всем компаниям и школьным группам!</p>
+            <p>Здесь вы сможете сытно перекусить горячей свежей выпечкой, согреться чаем или кофе, посушить варежки и потратить бонусные «курланчики». Мы также организуем комплексное питание для праздников и абсолютно не возражаем, если вы приносите свои любимые домашние угощения с собой!</p>
+        </div>
+    </section>
+    <section id="block-gazebos" class="detailed-section">
+        <div class="detailed-container">
+            <span class="section-pill">Мангальные зоны</span>
+            <h2>Уютные Беседки и большие Шатры</h2>
+            <p>Что может быть лучше, чем собраться большой дружной компанией, пожарить сочные шашлыки на мангале под заснеженными вековыми елями и поиграть в снежки?</p>
+            <p>Для ваших семейных праздников, корпоративов и дней рождения в «КурланПарке» заготовлены комфортные отапливаемые беседки и вместительные шатры с персональными мангальными зонами и дровяной печью для обогрева.</p>
+        </div>
+    </section>
+    <section id="block-banana" class="detailed-section">
+        <div class="detailed-container">
+            <span class="section-pill">Локация 3</span>
+            <h2>Путешествие на 7-метровом Турбо-Банане</h2>
+            <p>Самый шумный и объединяющий аттракцион программы! 14 пассажиров размещаются в два ряда на мягком зимнем банане и отправляются в сопровождении мощного снегохода на виражи сказочного заснеженного леса.</p>
+            <p>Это абсолютно безопасно, но вызывает невероятный шквал смеха, визга и искренней детской радости!</p>
+        </div>
+    </section>
+    <section id="block-show" class="detailed-section">
+        <div class="detailed-container">
+            <span class="section-pill">Кульминация</span>
+            <h2>Шоу Деда Мороза, Снегурочки и Гринча</h2>
+            <p>Авторская интерактивная программа с участием любимых персонажей: добрый Дед Мороз, красавица Снегурочка и забавный проказник Гринч, который попытается украсть праздник!</p>
+            <p>Школьников ждут современные танцевальные батлы, командные эстафеты и торжественное вручение ценных новогодних сертификатов в парк.</p>
+        </div>
+    </section>
+    <section id="block-tir" class="detailed-section">
+        <div class="detailed-container">
+            <span class="section-pill">Локация 2</span>
+            <h2>Призовой Стрелковый Тир</h2>
+            <p>Специально оборудованный безопасный стрелковый комплекс для школьников. Ребята смогут попробовать себя в стрельбе из традиционного лука, пневматической винтовки и спортивной рогатки.</p>
+            <p>Наш опытный инструктор покажет правильную стойку, научит целиться и сделает так, чтобы каждый школьник добился метких попаданий и получил памятный приз.</p>
+        </div>
+    </section>
+    <section id="schedule" class="container" style="padding-top: 50px; padding-bottom: 50px;">
+        <div class="section-header" style="margin-bottom: 36px;">
+            <span class="section-pill">Режим работы</span>
+            <h2>График работы и как добраться</h2>
+            <p>Актуальные часы работы в декабре и праздничные январские дни</p>
+        </div>
+
+        <div style="background: #ffffff; border-radius: 28px; border: 1px solid var(--kp-border); box-shadow: 0 15px 40px -10px rgba(0, 131, 202, 0.12); padding: 40px 32px; max-width: 1100px; margin: 0 auto;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 36px; position: relative;">
+                
+                <!-- Верх-Лево: Январские каникулы (перемещено снизу) -->
+                <div style="display: flex; flex-direction: column; justify-content: space-between; gap: 14px; background: linear-gradient(135deg, #eef8ff 0%, #ffffff 100%); border-radius: 20px; padding: 26px 24px; border: 1px solid #dbeafe;">
+                    <div>
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                            <span style="font-size: 24px;">❄️</span>
+                            <div style="font-size: 18px; font-weight: 800; color: #0f172a;">Январские каникулы</div>
+                        </div>
+                        <div style="font-size: 15px; color: #334155; line-height: 1.6;">
+                            <strong style="color: var(--kp-blue); font-size: 16px;">1 января</strong> мы открыты для всех желающих с <b>12:00 до 20:00</b></strong><br><br>
+                            <strong style="color: var(--kp-blue); font-size: 16px;">Со 2 по 10 января</strong> <b>c 10:00 до 20:00</b> <br>мы открыты для всех желающих.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Верх-Право: Школьные ёлки в декабре (перемещено слева) -->
+                <div style="display: flex; flex-direction: column; justify-content: space-between; gap: 20px; background: linear-gradient(135deg, #eef8ff 0%, #ffffff 100%); border-radius: 20px; padding: 26px 24px; border: 1px solid #dbeafe;">
+                    <div>
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                            <span style="font-size: 24px;">🎄</span>
+                            <div style="font-size: 18px; font-weight: 800; color: #0f172a;">Школьные ёлки в декабре</div>
+                        </div>
+                        <div style="font-size: 15px; color: #334155; line-height: 1.6;">
+                            <strong style="color: var(--kp-blue); font-size: 16px;">С 19 по 30 декабря</strong> Парк работает исключительно <br><strong style="color: #0f172a;">для организованных школьных групп</strong>.
+                        </div>
+                    </div>
+
+                    <a href="#attractions" style="display: block; text-align: center; background: #ffffff; color: var(--kp-blue); font-weight: 800; font-size: 14px; padding: 13px 20px; border-radius: 14px; text-decoration: none; border: 1.5px solid var(--kp-blue); box-shadow: 0 4px 12px rgba(0, 131, 202, 0.08); transition: all 0.2s;">
+                        Узнать о программе →
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- Разделительная линия -->
+            <div style="height: 1px; background: #e2e8f0; margin: 34px 0;"></div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 36px;">
+                
+                <!-- Низ-Лево: Локация и Навигатор (перемещено сверху справа) -->
+                <div style="display: flex; flex-direction: column; justify-content: space-between; gap: 20px; background: #ffffff; border-radius: 20px; padding: 24px; border: 1px solid var(--kp-border);">
+                    <div>
+                        <div style="display: inline-flex; align-items: center; gap: 8px; font-size: 17px; font-weight: 800; color: #0f172a;">
+                            <span>📍 10 км от города</span>
+                            <span style="color: var(--kp-blue);">Димитровград</span>
+                        </div>
+                        <p style="font-size: 13.5px; color: var(--kp-muted); margin: 6px 0 14px 0; line-height: 1.5;">
+                            Именно здесь находится единственный и неповторимый <strong style="color: var(--kp-blue);">Курланпарк</strong>
+                        </p>
+                        
+                        <div style="font-size: 14px; font-weight: 700; color: #334155; margin-bottom: 8px;">
+                            Навигатор проложит путь:
+                        </div>
+                    </div>
+
+                    <div>
+                        <a href="https://yandex.ru/maps/org/kurlanpark/228138679872/?ll=49.726426%2C54.275355&z=16" target="_blank" rel="noopener" style="display: block; text-align: center; background: #ffffff; color: #0f172a; font-weight: 800; font-size: 14px; padding: 13px 20px; border-radius: 14px; text-decoration: none; border: 2px solid var(--kp-blue); box-shadow: 0 4px 12px rgba(0, 131, 202, 0.08); transition: all 0.2s;">
+                            🗺️ Открыть в Яндекс Картах
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Низ-Право: Автобусные туры (остается на месте) -->
+                <div style="display: flex; flex-direction: column; justify-content: space-between; gap: 18px; background: #ffffff; border-radius: 20px; padding: 24px; border: 1px solid var(--kp-border);">
+                    <div>
+                        <div style="font-size: 16px; font-weight: 800; color: #0f172a;">Автобусные туры</div>
+                        <div style="font-size: 14px; font-weight: 700; color: var(--kp-blue); margin-top: 2px;">из ТОЛЬЯТТИ и УЛЬЯНОВСКА</div>
+                        <div style="font-size: 13.5px; color: var(--kp-muted); margin-top: 6px;">по субботам и в праздничные дни</div>
+                    </div>
+
+                    <a href="#pricing-ticket" style="display: block; text-align: center; background: #fef3c7; color: #b45309; font-weight: 800; font-size: 14px; padding: 13px 20px; border-radius: 14px; text-decoration: none; border: 1px solid #fde68a; transition: all 0.2s;">
+                        Узнать цены билетов →
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section id="pricing-ticket" style="padding: 60px 20px 30px 20px;">
+        <div style="background: linear-gradient(145deg, #0083ca 0%, #006096 100%); border-radius: 28px; padding: 48px 36px; color: #ffffff; max-width: 1180px; margin: 0 auto; box-shadow: 0 20px 45px -10px rgba(0, 131, 202, 0.35); border: 1px solid rgba(255, 255, 255, 0.15);">
+            
+            <!-- Main Hero Price Card (Главный акцент) -->
+            <div style="background: rgba(15, 23, 42, 0.25); backdrop-filter: blur(12px); border: 2px solid rgba(255, 255, 255, 0.28); border-radius: 24px; padding: 36px 24px; text-align: center; margin-bottom: 34px; box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);">
+                <div style="display: inline-block; background: #f59e0b; color: #0f172a; padding: 5px 16px; border-radius: 9999px; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 12px;">
+                    Единый входной билет на целый день
+                </div>
+                <div style="font-size: clamp(52px, 8vw, 76px); font-weight: 900; color: #fde047; line-height: 1; text-shadow: 0 4px 20px rgba(0,0,0,0.25); margin: 6px 0 10px 0;">
+                    3 900 ₽
+                </div>
+                <div style="font-size: clamp(16px, 2.2vw, 19px); font-weight: 700; color: #ffffff; letter-spacing: 0.2px;">
+                    Тариф «Безлимит» — катайтесь сколько угодно без доплат!
+                </div>
+            </div>
+
+            <!-- Subtitle for Included Benefits -->
+            <div style="text-align: center; margin-bottom: 22px;">
+                <div style="display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: #e0f2fe;">
+                    <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #38bdf8;"></span>
+                    В эту стоимость уже включено всё необходимое:
+                </div>
+            </div>
+
+            <!-- Included Features Grid (5 прозрачных карточек) -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 36px;">
+                
+                <!-- Item 1: 39 курланчиков -->
+                <div style="background: rgba(255, 255, 255, 0.12); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.22); border-radius: 20px; padding: 22px 16px; text-align: center;">
+                    <div style="font-size: 28px; margin-bottom: 6px;">🪙</div>
+                    <div style="font-size: 18px; font-weight: 800; color: #fde047; margin-bottom: 4px;">39 курланчиков</div>
+                    <div style="font-size: 12.5px; color: #f1f5f9; line-height: 1.4;">Бонусная валюта на угощения в кафе и развлечения</div>
+                </div>
+
+                <!-- Item 2: Тюбинг -->
+                <div style="background: rgba(255, 255, 255, 0.12); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.22); border-radius: 20px; padding: 22px 16px; text-align: center;">
+                    <div style="font-size: 28px; margin-bottom: 6px;">🍩</div>
+                    <div style="font-size: 18px; font-weight: 800; color: #ffffff; margin-bottom: 4px;">Тюбинг</div>
+                    <div style="font-size: 12.5px; color: #f1f5f9; line-height: 1.4;">Множество различных ватрушек на любой вкус. Хватит каждому</div>
+                </div>
+
+                <!-- Item 3: 18 горок и 4 подъёмника -->
+                <div style="background: rgba(255, 255, 255, 0.12); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.22); border-radius: 20px; padding: 22px 16px; text-align: center;">
+                    <div style="font-size: 28px; margin-bottom: 6px;">🛷</div>
+                    <div style="font-size: 18px; font-weight: 800; color: #ffffff; margin-bottom: 4px;">18 горок и 4 подъёмника</div>
+                    <div style="font-size: 12.5px; color: #f1f5f9; line-height: 1.4;">Полный безлимит на спуски и комфортные канатные дороги</div>
+                </div>
+
+                <!-- Item 4: Мангальные зоны -->
+                <div style="background: rgba(255, 255, 255, 0.12); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.22); border-radius: 20px; padding: 22px 16px; text-align: center;">
+                    <div style="font-size: 28px; margin-bottom: 6px;">🔥</div>
+                    <div style="font-size: 18px; font-weight: 800; color: #fde047; margin-bottom: 4px;">Мангальные зоны</div>
+                    <div style="font-size: 12.5px; color: #f1f5f9; line-height: 1.4;">Бесплатное пользование мангалами и решетками</div>
+                </div>
+
+                <!-- Item 5: Инструктаж и забота -->
+                <div style="background: rgba(255, 255, 255, 0.12); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.22); border-radius: 20px; padding: 22px 16px; text-align: center;">
+                    <div style="font-size: 28px; margin-bottom: 6px;">🤝</div>
+                    <div style="font-size: 18px; font-weight: 800; color: #38bdf8; margin-bottom: 4px;">Инструктаж и забота</div>
+                    <div style="font-size: 12.5px; color: #f1f5f9; line-height: 1.4;">Помощь, внимание и подсказки инструкторов на старте и финише</div>
+                </div>
+
+            </div>
+
+            <!-- White Inner Action Box -->
+            <div style="background: #ffffff; border-radius: 22px; padding: 34px 24px; color: #0f172a; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
+                <h3 style="font-size: 23px; font-weight: 900; margin-bottom: 10px; color: #0f172a;">Проведите яркий зимний день в КурланПарке</h3>
+                <p style="font-size: 14.5px; color: #64748b; max-width: 660px; margin: 0 auto 22px auto; line-height: 1.6;">
+                    Ждем вас всей семьей и дружескими компаниями! Приезжайте за драйвом, горками и чистым лесным воздухом.
+                </p>
+                <a href="tel:+79991234567" style="display: inline-block; background: #f59e0b; color: #0f172a; text-decoration: none; padding: 16px 42px; border-radius: 16px; font-size: 16px; font-weight: 900; box-shadow: 0 8px 20px rgba(245, 158, 11, 0.35); transition: all 0.2s;">
+                    Купить билет
+                </a>
+            </div>
+
+        </div>
+    </section>
+    <section id="gallery" class="container" style="padding-top: 50px; padding-bottom: 70px;">
+        <div class="section-header" style="margin-bottom: 30px;">
+            <span class="section-pill">Фотогалерея</span>
+            <h2>Несколько фото предыдущих сезонов</h2>
+            <p>Яркие моменты, эмоции гостей и праздничная атмосфера парка</p>
+        </div>
+        <div id="slider-touch-area" style="position: relative; max-width: 860px; margin: 0 auto; border-radius: 24px; overflow: hidden; box-shadow: 0 16px 40px -10px rgba(0,0,0,0.22); background: #0f172a; aspect-ratio: 4/3; max-height: 580px; touch-action: pan-y;">
+            <div id="full-slider-track" style="width: 100%; height: 100%; position: relative; user-select: none;">
+                <div class="photo-slide active" style="position: absolute; inset: 0; opacity: 1; transition: opacity 0.4s ease;">
+                    <img src="https://lh3.googleusercontent.com/d/1AixtkdAYDk5DaLbHGFGHlKwh5EOmFEIy" alt="КурланПарк фото 1" draggable="false" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                </div>
+                <div class="photo-slide" style="position: absolute; inset: 0; opacity: 0; transition: opacity 0.4s ease; pointer-events: none;">
+                    <img src="https://lh3.googleusercontent.com/d/1Ju6_e25T1908USoIi0i2TLsQiWakd2Gz" alt="КурланПарк фото 2" draggable="false" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                </div>
+                <div class="photo-slide" style="position: absolute; inset: 0; opacity: 0; transition: opacity 0.4s ease; pointer-events: none;">
+                    <img src="https://lh3.googleusercontent.com/d/1oNq1AC1geaBlEb5jcrjO-DynerGw-hl1" alt="КурланПарк фото 3" draggable="false" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                </div>
+                <div class="photo-slide" style="position: absolute; inset: 0; opacity: 0; transition: opacity 0.4s ease; pointer-events: none;">
+                    <img src="https://lh3.googleusercontent.com/d/1bOVaae4HEK1jAZ8461qdpwNM82x-b-oG" alt="КурланПарк фото 4" draggable="false" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                </div>
+                <div class="photo-slide" style="position: absolute; inset: 0; opacity: 0; transition: opacity 0.4s ease; pointer-events: none;">
+                    <img src="https://lh3.googleusercontent.com/d/19cwwqvCYABudIqFEmUBZHEoCGBVBHkgy" alt="КурланПарк фото 5" draggable="false" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                </div>
+                <div class="photo-slide" style="position: absolute; inset: 0; opacity: 0; transition: opacity 0.4s ease; pointer-events: none;">
+                    <img src="https://lh3.googleusercontent.com/d/148e0HFahvsEc4_8XHzrlo6PPj6cr4a_h" alt="КурланПарк фото 6" draggable="false" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                </div>
+                <div class="photo-slide" style="position: absolute; inset: 0; opacity: 0; transition: opacity 0.4s ease; pointer-events: none;">
+                    <img src="https://lh3.googleusercontent.com/d/1Vc4lOt2fLCIWrql-eaCc8ghonGmpn_1g" alt="КурланПарк фото 7" draggable="false" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                </div>
+                <div class="photo-slide" style="position: absolute; inset: 0; opacity: 0; transition: opacity 0.4s ease; pointer-events: none;">
+                    <img src="https://lh3.googleusercontent.com/d/1lI70UmUZojiFjhrvdd1ihAenEy3SIfy1" alt="КурланПарк фото 8" draggable="false" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                </div>
+            </div>
+            <button type="button" onclick="changeSlide(-1)" aria-label="Предыдущее фото" style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; background: rgba(0, 0, 0, 0.45); border: 2px solid rgba(255, 255, 255, 0.7); border-radius: 50%; color: #ffffff; font-size: 24px; font-weight: 300; display: flex; align-items: center; justify-content: center; cursor: pointer; backdrop-filter: blur(4px); transition: all 0.2s; z-index: 10;">
+                &#10094;
+            </button>
+            <button type="button" onclick="changeSlide(1)" aria-label="Следующее фото" style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; background: rgba(0, 0, 0, 0.45); border: 2px solid rgba(255, 255, 255, 0.7); border-radius: 50%; color: #ffffff; font-size: 24px; font-weight: 300; display: flex; align-items: center; justify-content: center; cursor: pointer; backdrop-filter: blur(4px); transition: all 0.2s; z-index: 10;">
+                &#10095;
+            </button>
+            <div style="position: absolute; bottom: 16px; right: 20px; background: rgba(0,0,0,0.55); color: #ffffff; padding: 4px 12px; border-radius: 9999px; font-size: 12px; font-weight: 700; backdrop-filter: blur(4px); z-index: 10;">
+                <span id="slide-num">1</span> / 8
+            </div>
+        </div>
+    </section>
+    <section id="kurlanchiki" class="kurlan-section">
+        <div class="kurlan-grid">
+            <div class="kurlan-info">
+                <span class="section-pill">Официальная валюта парка</span>
+                <h2>Что такое <span>Kурланчики</span>?</h2>
+                <p style="margin-bottom: 18px;">За каждые 100 рублей в чеке вы получаете 1 kурланчик в качестве бонуса-кэшбэка при покупке входного билета (в билет за 3 900 ₽ уже включено 39 курланчиков!).</p>
+                
+                <!-- Кнопка "Как потратить курланчики" -->
+                <a href="#menu-modal" onclick="openMenuModal(event)" style="display: inline-flex; align-items: center; gap: 8px; background: #0083ca; color: #ffffff; text-decoration: none; padding: 12px 24px; border-radius: 12px; font-weight: 800; font-size: 14px; box-shadow: 0 4px 15px rgba(0, 131, 202, 0.25); transition: all 0.2s;">
+                    <span>🍽️ Как потратить курланчики</span>
+                    <span>→</span>
+                </a>
+            </div>
+            <div class="kurlan-cards">
+                <div class="kurlan-box">
+                    <div class="icon">🎟️</div>
+                    <h4>Кэшбэк с билетов</h4>
+                    <p>Начисляются автоматически при покупке билетов в парк.</p>
+                </div>
+                <div class="kurlan-box">
+                    <div class="icon">🍩</div>
+                    <h4>Развлечения & Еда</h4>
+                    <p>Оплачивайте ими катание на банане, тир или горячую выпечку в кафе.</p>
+                </div>
+                <div class="kurlan-box">
+                    <div class="icon">🧲</div>
+                    <h4>Магнит на память</h4>
+                    <p>Имеют магнитную основу — вешайте на холодильник до следующего визита!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div id="menu-modal" style="display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(8px); z-index: 9999; align-items: center; justify-content: center; padding: 20px;">
+        <div style="background: #ffffff; border-radius: 24px; max-width: 600px; width: 100%; padding: 30px; position: relative; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); text-align: center;">
+            <button type="button" onclick="closeMenuModal()" style="position: absolute; top: 18px; right: 18px; background: #f1f5f9; border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 18px; font-weight: bold; cursor: pointer; color: #475569; display: flex; align-items: center; justify-content: center;">✕</button>
+            
+            <h3 style="font-size: 22px; font-weight: 900; color: #0f172a; margin-bottom: 6px;">Прайс-лист и меню кафе</h3>
+            <p style="font-size: 13.5px; color: #64748b; margin-bottom: 20px;">Оплачивайте позиции из меню бонусными курланчиками</p>
+            
+            <!-- Заглушка фотографии меню -->
+            <div style="border-radius: 18px; overflow: hidden; background: linear-gradient(135deg, #0284c7, #0f172a); aspect-ratio: 4/3; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #ffffff; padding: 24px; border: 2px dashed rgba(255,255,255,0.4);">
+                <div style="font-size: 48px; margin-bottom: 12px;">📋</div>
+                <div style="font-size: 18px; font-weight: 800; margin-bottom: 6px;">[Заглушка фото: Меню кафе и расценки]</div>
+                <p style="font-size: 13px; opacity: 0.85; max-width: 360px;">Здесь будет размещена актуальная фотография меню со стоимостью блюд и напитков в рублях и курланчиках</p>
+            </div>
+            
+            <button type="button" onclick="closeMenuModal()" style="margin-top: 20px; background: #0083ca; color: #ffffff; border: none; padding: 12px 32px; border-radius: 12px; font-weight: 800; font-size: 14px; cursor: pointer;">Понятно</button>
+        </div>
+    </div>
+    <div id="menu-modal" style="display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(8px); z-index: 9999; align-items: center; justify-content: center; padding: 20px;">
+        <div style="background: #ffffff; border-radius: 24px; max-width: 600px; width: 100%; padding: 30px; position: relative; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); text-align: center;">
+            <button type="button" onclick="closeMenuModal()" style="position: absolute; top: 18px; right: 18px; background: #f1f5f9; border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 18px; font-weight: bold; cursor: pointer; color: #475569; display: flex; align-items: center; justify-content: center;">✕</button>
+            <h3 style="font-size: 22px; font-weight: 900; color: #0f172a; margin-bottom: 6px;">Прайс-лист и меню кафе</h3>
+            <p style="font-size: 13.5px; color: #64748b; margin-bottom: 20px;">Оплачивайте позиции из меню бонусными курланчиками</p>
+            <!-- Заглушка фотографии меню -->
+            <div style="border-radius: 18px; overflow: hidden; background: linear-gradient(135deg, #0284c7, #0f172a); aspect-ratio: 4/3; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #ffffff; padding: 24px; border: 2px dashed rgba(255,255,255,0.4);">
+                <div style="font-size: 48px; margin-bottom: 12px;">📋</div>
+                <div style="font-size: 18px; font-weight: 800; margin-bottom: 6px;">[Заглушка фото: Меню кафе и расценки]</div>
+                <p style="font-size: 13px; opacity: 0.85; max-width: 360px;">Здесь будет размещена актуальная фотография меню со стоимостью блюд и напитков в рублях и курланчиках</p>
+            </div>
+            <button type="button" onclick="closeMenuModal()" style="margin-top: 20px; background: #0083ca; color: #ffffff; border: none; padding: 12px 32px; border-radius: 12px; font-weight: 800; font-size: 14px; cursor: pointer;">Понятно</button>
+        </div>
+    </div>
+    <div id="discounts" style="padding: 0 20px;">
+        <div class="discounts-banner">
+            <span class="badge-action">Выгодный отдых</span>
+            <h2 style="margin-top: 10px;">Скидки для групп, именинников и семей</h2>
+            <p>В Курланпарке действует тариф «Безлимит». Каждая следующая покупка билета выгоднее предыдущей!</p>
+
+            <div class="discounts-grid">
+                <div class="disc-item">
+                    <h4>Групповые скидки</h4>
+                    <p>От 10 чел — 10% <br> От 20 чел — 20%<br> От 30 чел — 30%</p>
+                </div>
+                <div class="disc-item">
+                    <h4>Именинникам — БЕСПЛАТНО</h4>
+                    <p>Бесплатный вход 5 дней до и 5 дней после дня рождения!</p>
+                </div>
+                <div class="disc-item">
+                    <h4>Детям до 3 лет</h4>
+                    <p>Вход абсолютно бесплатный в любой день сезона.</p>
+                </div>
+                <div class="disc-item">
+                    <h4>Социальные скидки</h4>
+                    <p>Многодетным, пенсионерам, участникам СВО и инвалидам.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Наверх">
+    <span class="arrow-up">&#8593;</span>
+    </button>
+    <footer id="contacts">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <img src="img/kurlan.png" alt="КурланПарк" class="footer-logo">
+                <p class="footer-col-p">Официальная новогодняя программа для школьников от Парка активного отдыха «КурланПарк» (Ульяновская область, 10 минут от г. Димитровграда).</p>
+            </div>
+            <div class="footer-col footer-contacts">
+                <h4>Бронирование дат</h4>
+                <p>📞 Телефон: <strong style="color:#fff;">8 (902) 215-11-90</strong></p>
+                <p>💬 <a href="https://vk.ru/kurlanpark">VK</a> <a href="https://max.ru/u/f9LHodD0cOKRptvxc7l4sVA-uCkMzwAs51ICsz29DarOvbH1M97HZJHK6Vc">/ Max</a><br><img src="img/maps.png" alt="карты" height="20px"><a href="https://yandex.ru/maps/?ll=49.715126%2C54.272762&mode=routes&rtext=~54.278810%2C49.726176&rtt=auto&ruri=~ymapsbm1%3A%2F%2Forg%3Foid%3D228138679872&z=15"> Как добраться</a></p>
+                <p>⏰ Период проведения: 19–30 декабря</p>
+            </div>
+        </div>
+        <div class="footer__menu">
+        <div class="footer__line"></div>
+            <ul class="footer__list">
+                <li><a class="footer__list-link" href="https://yandex.ru/maps/org/kurlanpark/228138679872/reviews/?ll=49.726426%2C54.275355&z=10">Отзывы о программе</a></li>
+                <li><a class="footer__list-link" href="rules/newrules.pdf" target="_blank" rel="noopener noreferrer">Правила</a></li>
+                <li><a class="footer__list-link footer__privacy" href="rules/privacy.html" target="_blank" rel="noopener noreferrer">Политика конфиденциальности</a></li>
+                <li><a class="footer__list-link footer__legal" href="rules/legal.pdf" target="_blank" rel="noopener noreferrer">Юридическое лицо</a></li>
+            </ul>
+        <div class="footer__line"></div>
+        </div>
+        <div class="footer-bottom">
+            © 2026 КурланПарк. Новогодние Ёлки для школьных групп. Все права защищены.
+        </div>
+    </footer>
+    <script src="js/index.js"></script>
+</body>
+</html>

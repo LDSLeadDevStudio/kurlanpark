@@ -70,3 +70,151 @@ if (touchArea) {
         }
     }
 }
+const btnMenu = document.getElementById('btnmenu');
+const menu = document.getElementById('menu');
+const closeBtn = menu ? menu.querySelector('.modal-close') : null;
+
+if (btnMenu && menu) {
+  btnMenu.addEventListener('click', (event) => {
+    event.preventDefault();
+    openModal();
+  });
+}
+
+if (closeBtn && menu) {
+  closeBtn.addEventListener('click', () => {
+    closeModal();
+  });
+}
+
+// Закрытие по клику вне окна
+if (menu) {
+  menu.addEventListener('click', (e) => {
+    if (e.target === menu) {
+      closeModal();
+    }
+  });
+
+  // Закрытие по Esc
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menu.classList.contains('active')) {
+      closeModal();
+    }
+  });
+}
+
+function openModal() {
+  if (!menu) return;
+  menu.classList.add('active');
+  menu.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden'; // Блокируем скролл страницы
+
+  // Для доступности: фокус на кнопке закрытия при открытии
+  const focusEl = menu.querySelector('.modal-close');
+  if (focusEl) focusEl.focus();
+}
+
+function closeModal() {
+  if (!menu) return;
+  menu.classList.remove('active');
+  menu.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = ''; // Возвращаем скролл
+}
+
+
+
+const btnKurlan = document.getElementById('btn-kurlan');
+const modalKurlan = document.getElementById('modal-kurlan');
+const closeBtnKurlan = modalKurlan ? modalKurlan.querySelector('.modal-close') : null;
+
+if (btnKurlan && modalKurlan) {
+  btnKurlan.addEventListener('click', (event) => {
+    event.preventDefault();
+    openModalKurlan();
+  });
+}
+
+if (closeBtnKurlan && modalKurlan) {
+  closeBtnKurlan.addEventListener('click', () => {
+    closeModalKurlan();
+  });
+}
+
+if (modalKurlan) {
+  modalKurlan.addEventListener('click', (e) => {
+    if (e.target === modalKurlan) {
+      closeModalKurlan();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modalKurlan.classList.contains('active')) {
+      closeModalKurlan();
+    }
+  });
+}
+
+function openModalKurlan() {
+  if (!modalKurlan) return;
+  modalKurlan.classList.add('active');
+  modalKurlan.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+
+  const focusEl = modalKurlan.querySelector('.modal-close');
+  if (focusEl) focusEl.focus();
+}
+
+function closeModalKurlan() {
+  if (!modalKurlan) return;
+  modalKurlan.classList.remove('active');
+  modalKurlan.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+const btnKurlans = document.getElementById('btnkurlans');
+const modalKurlans = document.getElementById('modal-kurlan');
+const closeBtnKurlans = modalKurlan ? modalKurlan.querySelector('.modal-close') : null;
+
+if (btnKurlans && modalKurlans) {
+  btnKurlan.addEventListener('click', (event) => {
+    event.preventDefault();
+    openModalKurlan();
+  });
+}
+
+if (closeBtnKurlan && modalKurlans) {
+  closeBtnKurlan.addEventListener('click', () => {
+    closeModalKurlan();
+  });
+}
+
+if (modalKurlans) {
+  modalKurlan.addEventListener('click', (e) => {
+    if (e.target === modalKurlans) {
+      closeModalKurlans();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modalKurlans.classList.contains('active')) {
+      closeModalKurlan();
+    }
+  });
+}
+
+function openModalKurlan() {
+  if (!modalKurlan) return;
+  modalKurlan.classList.add('active');
+  modalKurlan.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+
+  const focusEl = modalKurlan.querySelector('.modal-close');
+  if (focusEl) focusEl.focus();
+}
+
+function closeModalKurlan() {
+  if (!modalKurlan) return;
+  modalKurlan.classList.remove('active');
+  modalKurlan.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}

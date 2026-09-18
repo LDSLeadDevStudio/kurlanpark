@@ -395,10 +395,10 @@ nav a:hover { color: var(--kp-blue); }
     border-radius: 16px;
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
-.disc-item h4 {
+.disc-item h3 {
     color: var(--kp-amber);
-    font-size: 16px;
-    font-weight: 700;
+    font-size:20px;
+    font-weight:1000;
     margin-bottom: 4px;
 }
 .disc-item p { font-size: 13px; color: #e2e8f0; }

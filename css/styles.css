@@ -570,7 +570,9 @@ footer {
   cursor: pointer;
   color: #333;
 }
-
+.card-tag{
+    display:none;
+}
 /* Опционально: если добавишь картинку */
 .modal-image {
   max-width: 100%;
@@ -584,4 +586,7 @@ footer {
 
 #modal-kurlan h3 {
   color: #e8941a;
+}
+.card-tag{
+    display:none;
 }

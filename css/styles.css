@@ -83,7 +83,7 @@ nav a:hover { color: var(--kp-blue); }
     transform: scale(1.03);
 }
 .main a{    
-    font-size:21px;
+    font-size:12px;
     color:#000;
     text-decoration: none;
 }

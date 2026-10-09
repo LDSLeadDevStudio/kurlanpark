@@ -45,50 +45,52 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// document.addEventListener('DOMContentLoaded', () => {
-//   const slides = document.querySelectorAll('.photo-slide');
-//   let currentSlide = 0;
+document.addEventListener('DOMContentLoaded', () => {
+  const slides = document.querySelectorAll('.photo-slide');
+  let currentIndex = 0;
 
-//   function updateSlide(direction) {
-//     const totalSlides = slides.length;
+  function switchSlide(direction) {
+    const total = slides.length;
 
-//     // Вычисляем новый индекс с зацикливанием
-//     currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+    // Вычисляем новый индекс (зацикливание)
+    currentIndex = (currentIndex + direction + total) % total;
 
-//     slides.forEach((slide, index) => {
-//       slide.classList.toggle('active', index === currentSlide);
-//       slide.style.opacity = index === currentSlide ? '1' : '0';
-//       slide.style.pointerEvents = index === currentSlide ? 'auto' : 'none';
-//     });
-//   }
+    slides.forEach((slide, index) => {
+      // Просто показываем нужный, остальные скрываем
+      slide.classList.toggle('active', index === currentIndex);
+      slide.style.opacity = index === currentIndex ? '1' : '0';
+      slide.style.pointerEvents = index === currentIndex ? 'auto' : 'none';
+    });
+  }
 
-  // Функция для кнопок в HTML
+  // Функция для кнопок в HTML (onclick="changeSlide(-1/1)")
   window.changeSlide = function(direction) {
-    updateSlide(direction);
+    switchSlide(direction);
   };
 
-  // Логика свайпов (можно оставить, она не зависит от счётчика)
+  // Свайпы на мобильных (без номеров, просто переключение)
   const sliderArea = document.getElementById('slider-touch-area');
   if (sliderArea) {
-    let touchStartX = 0;
-    let touchEndX = 0;
+    let startX = 0;
+    let endX = 0;
 
     sliderArea.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
+      startX = e.changedTouches[0].screenX;
     }, { passive: true });
 
     sliderArea.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].screenX;
+      endX = e.changedTouches[0].screenX;
       handleSwipe();
     }, { passive: true });
 
     function handleSwipe() {
-      const swipeThreshold = 50;
-      if (touchEndX < touchStartX - swipeThreshold) {
-        updateSlide(1); // свайп влево = следующий слайд
+      const threshold = 50; // минимальная дистанция свайпа
+
+      if (endX < startX - threshold) {
+        switchSlide(1); // влево → следующий
       }
-      if (touchEndX > touchStartX + swipeThreshold) {
-        updateSlide(-1); // свайп вправо = предыдущий слайд
+      if (endX > startX + threshold) {
+        switchSlide(-1); // вправо → предыдущий
       }
     }
   }

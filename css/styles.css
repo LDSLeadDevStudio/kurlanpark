@@ -724,15 +724,12 @@ footer {
   }
 }
 /* Общие стили */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f6f8;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-}
+
+
+
+
+
+
 
 /* Кнопка открытия */
 .open-btn {

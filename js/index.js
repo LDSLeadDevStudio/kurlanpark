@@ -95,3 +95,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+    // Показываем/скрываем кнопку при скролле
+    window.addEventListener('scroll', () => {
+        const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // Порог появления: показываем, если прокрутили больше 300px
+        if (scrollPosition > 300) {
+            scrollTopBtn.classList.add('visible');
+        } else {
+            scrollTopBtn.classList.remove('visible');
+        }
+    });
+
+    // Плавная прокрутка наверх при клике
+    scrollTopBtn.addEventListener('click', (e) => {
+        e.preventDefault(); // Отменяем стандартный прыжок к якорю #top
+        
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth' // Плавная анимация
+        });
+    });
+});

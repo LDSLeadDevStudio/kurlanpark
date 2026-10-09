@@ -1,11 +1,11 @@
-// --- ГЛОБАЛЬНЫЕ ФУНКЦИИ (должны быть видны везде, даже для onclick в HTML) ---
-
+// --- ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ (только если реально нужны везде) ---
 let currentSlide = 0;
-const slides = document.querySelectorAll('.photo-slide');
-const numIndicator = document.getElementById('slide-num');
 
-// Эта функция теперь доступна глобально, чтобы работала кнопка в HTML
+// --- ФУНКЦИИ СЛАЙДЕРА (глобальные, чтобы работали onclick в HTML) ---
 function changeSlide(direction) {
+    const slides = document.querySelectorAll('.photo-slide');
+    const numIndicator = document.getElementById('slide-num');
+
     if (!slides || slides.length === 0) return;
 
     // Скрываем текущий
@@ -34,10 +34,9 @@ function scrollGallery(offset) {
     }
 }
 
-// --- ЛОГИКА ВНУТРИ ЗАГРУЗКИ СТРАНИЦЫ ---
+// --- ЛОГИКА ПРИ ЗАГРУЗКЕ СТРАНИЦЫ ---
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // 1. Логика свайпов (работает только после загрузки)
+    // 1. Свайпы для слайдера
     const touchArea = document.getElementById('slider-touch-area');
     if (touchArea) {
         let startX = 0;
@@ -50,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         touchArea.addEventListener('touchend', (e) => {
             endX = e.changedTouches.screenX;
-            
+
             if (endX < startX - threshold) {
                 changeSlide(1); // Вправо свайп -> следующий слайд
             } else if (endX > startX + threshold) {
@@ -63,8 +62,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function initModal(modalId, triggerId, closeSelector = '.modal-close') {
         const modal = document.getElementById(modalId);
         const trigger = document.getElementById(triggerId);
-        
-        if (!modal) return;
+
+        if (!modal) {
+            console.warn(`Модальное окно с id="\${modalId}" не найдено.`);
+            return;
+        }
 
         const closeBtn = modal.querySelector(closeSelector);
 
@@ -103,36 +105,44 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Инициализация окон (проверь ID в своем HTML!)
-    // Если у тебя окно меню имеет id="menu", раскомментируй строку ниже:
+    // 3. Инициализация модальных окон (раскомментируй нужные строки под свой HTML)
     // initModal('menu', 'btnmenu', '.modal-close');
-    
-    // Если у тебя новое окно имеет id="modal-menu", раскомментируй эту:
     // initModal('modal-menu', 'btn-open-menu', '.modal-close');
-});
 
+    // 4. Альтернатива: если хочешь оставить прямые обработчики на кнопках (без initModal)
+    const openBtn = document.getElementById('openModalBtn');
+    const closeBtn = document.getElementById('closeModalBtn');
+    const modal = document.getElementById('modal');
 
-const openBtn = document.getElementById('openModalBtn');
-const closeBtn = document.getElementById('closeModalBtn');
-const modal = document.getElementById('modal');
+    if (openBtn && closeBtn && modal) {
+        openBtn.addEventListener('click', () => {
+            modal.classList.add('active');
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        });
 
-// Открытие
-openBtn.addEventListener('click', () => {
-    modal.classList.add('active');
-    modal.setAttribute('aria-hidden', 'false');
-    console.log('Модалка открыта');
-});
+        closeBtn.addEventListener('click', () => {
+            modal.classList.remove('active');
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        });
 
-// Закрытие по крестику
-closeBtn.addEventListener('click', () => {
-    modal.classList.remove('active');
-    modal.setAttribute('aria-hidden', 'true');
-});
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+                modal.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            }
+        });
 
-// Закрытие по клику вне окна
-window.addEventListener('click', (e) => {
-    if (e.target === modal) {
-        modal.classList.remove('active');
-        modal.setAttribute('aria-hidden', 'true');
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                modal.classList.remove('active');
+                modal.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            }
+        });
+    } else if (openBtn || closeBtn || modal) {
+        console.warn('Не все элементы модального окна найдены. Проверь ID в HTML.');
     }
 });

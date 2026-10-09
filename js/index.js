@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // 2. Закрытие по крестику
   if (closeBtn && modal) {
     closeBtn.addEventListener('click', () => {
-      console.log('Клик по крестику — закрываем модалку');
       modal.classList.remove('active');
     });
   } else {
@@ -33,7 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (modal) {
     modal.addEventListener('click', (e) => {
       if (e.target === modal) {
-        console.log('Клик по фону — закрываем модалку');
         modal.classList.remove('active');
       }
     });
@@ -42,7 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // 4. Закрытие по Esc
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
-      console.log('Нажат Esc — закрываем модалку');
       modal.classList.remove('active');
     }
   });

@@ -673,6 +673,50 @@
             © 2026. Парк семейного отдыха "Курланпарк"
         </div>
     </footer>
+	<!-- Кнопка для открытия модального окна -->
+<button id="openModalBtn" class="open-btn">Открыть меню за курланчики</button>
+
+<!-- Модальное окно -->
+<div id="modal" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Меню за курланчики</h2>
+            <span id="closeModalBtn" class="close-btn">&times;</span>
+        </div>
+        
+        <p class="modal-subtitle">Оплачивайте курланчиками угощения, развлечения, сувениры и услуги парка</p>
+
+        <div class="grid-container">
+            <!-- Меню кафе -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="icon">☕</span>
+                    <h3>Меню кафе</h3>
+                </div>
+                <ul class="list-items">
+                    <li><span>Горячий чай</span><span class="price">1 ку</span></li>
+                    <li><span>Ягодный морс</span><span class="price">2 ку</span></li>
+                    <li><span>Бутылка воды</span><span class="price">2 ку</span></li>
+                    <li><span>Томатный напиток</span><span class="price">2 ку</span></li>
+                    <li><span>Отвар шиповника</span><span class="price">3 ку</span></li>
+                    <li><span>Глинтвейн б/а</span><span class="price">5 ку</span></li>
+                    <li><span>Два пончика</span><span class="price">2 ку</span></li>
+                    <li><span>Чебурек с мясом</span><span class="price">5 ку</span></li>
+                    <li><span>Горячий суп</span><span class="price">5 ку</span></li>
+                </ul>
+            </div>
+
+            <!-- Сувениры -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="icon">🎁</span>
+                    <h3>Сувениры</h3>
+                </div>
+                <ul class="list-items">
+                    <li><span>Магнитик-фоторамка</span><span class="price">5 ку</span></li>
+                    <li><span>Силиконовый браслет</span><span class="price">5 ку</span></li>
+                    <li><span>Авторучка kurlanparker</span><span></li>
+				</ul>
     <div id="menu" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="modal-window">
         <button type="button" class="modal-close">&times;</button>

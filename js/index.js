@@ -169,6 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const modal = document.getElementById('modal');
   const openBtn = document.getElementById('openModalBtn');
   const closeBtn = document.getElementById('closeBtn');
+
   // 1. Открытие модального окна
   if (openBtn && modal) {
     openBtn.addEventListener('click', (e) => {
@@ -177,13 +178,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 2. Функция закрытия — она вызывается из HTML: onclick="closeModal()"
-  window.closeModal = function() {
-    if (modal) {
+  // 2. Закрытие по кнопке (крестику)
+  if (closeBtn && modal) {
+    closeBtn.addEventListener('click', () => {
       modal.classList.remove('active');
-      // Опционально: можно убрать фокус, если он был на крестике
-    }
-  };
+    });
+  } else if (closeBtn) {
+    console.warn('Кнопка закрытия найдена, но элемент modal не найден — проверьте ID в HTML.');
+  } else if (modal) {
+    console.warn('Элемент modal найден, но кнопка closeBtn не найдена — проверьте id="closeBtn" в HTML.');
+  }
 
   // 3. Закрытие по клику на фон (за пределами контента)
   if (modal) {

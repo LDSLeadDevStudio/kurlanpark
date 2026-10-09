@@ -110,3 +110,29 @@ document.addEventListener('DOMContentLoaded', () => {
     // Если у тебя новое окно имеет id="modal-menu", раскомментируй эту:
     // initModal('modal-menu', 'btn-open-menu', '.modal-close');
 });
+
+
+const openBtn = document.getElementById('openModalBtn');
+const closeBtn = document.getElementById('closeModalBtn');
+const modal = document.getElementById('modal');
+
+// Открытие
+openBtn.addEventListener('click', () => {
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    console.log('Модалка открыта');
+});
+
+// Закрытие по крестику
+closeBtn.addEventListener('click', () => {
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+});
+
+// Закрытие по клику вне окна
+window.addEventListener('click', (e) => {
+    if (e.target === modal) {
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+    }
+});

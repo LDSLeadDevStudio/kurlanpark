@@ -45,7 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-
 document.addEventListener('DOMContentLoaded', () => {
   const slides = document.querySelectorAll('.photo-slide');
   let currentSlide = 0;
@@ -56,7 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Вычисляем новый индекс с зацикливанием
     currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
 
-    // Обновляем классы и стили только для слайдов
     slides.forEach((slide, index) => {
       slide.classList.toggle('active', index === currentSlide);
       slide.style.opacity = index === currentSlide ? '1' : '0';
@@ -64,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Функция для кнопок
+  // Функция для кнопок в HTML
   window.changeSlide = function(direction) {
     updateSlide(direction);
   };
@@ -76,21 +74,21 @@ document.addEventListener('DOMContentLoaded', () => {
     let touchEndX = 0;
 
     sliderArea.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches.screenX;
+      touchStartX = e.changedTouches[0].screenX;
     }, { passive: true });
 
     sliderArea.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches.screenX;
+      touchEndX = e.changedTouches[0].screenX;
       handleSwipe();
     }, { passive: true });
 
     function handleSwipe() {
       const swipeThreshold = 50;
       if (touchEndX < touchStartX - swipeThreshold) {
-        updateSlide(1);
+        updateSlide(1); // свайп влево = следующий слайд
       }
       if (touchEndX > touchStartX + swipeThreshold) {
-        updateSlide(-1);
+        updateSlide(-1); // свайп вправо = предыдущий слайд
       }
     }
   }

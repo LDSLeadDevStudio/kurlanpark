@@ -123,115 +123,115 @@ function closeModal() {
 
 
 
-const btnKurlan = document.getElementById('btn-kurlan');
-const modalKurlan = document.getElementById('modal-kurlan');
-const closeBtnKurlan = modalKurlan ? modalKurlan.querySelector('.modal-close') : null;
+// const btnKurlan = document.getElementById('btn-kurlan');
+// const modalKurlan = document.getElementById('modal-kurlan');
+// const closeBtnKurlan = modalKurlan ? modalKurlan.querySelector('.modal-close') : null;
 
-if (btnKurlan && modalKurlan) {
-  btnKurlan.addEventListener('click', (event) => {
-    event.preventDefault();
-    openModalKurlan();
-  });
-}
+// if (btnKurlan && modalKurlan) {
+//   btnKurlan.addEventListener('click', (event) => {
+//     event.preventDefault();
+//     openModalKurlan();
+//   });
+// }
 
-if (closeBtnKurlan && modalKurlan) {
-  closeBtnKurlan.addEventListener('click', () => {
-    closeModalKurlan();
-  });
-}
+// if (closeBtnKurlan && modalKurlan) {
+//   closeBtnKurlan.addEventListener('click', () => {
+//     closeModalKurlan();
+//   });
+// }
 
-if (modalKurlan) {
-  modalKurlan.addEventListener('click', (e) => {
-    if (e.target === modalKurlan) {
-      closeModalKurlan();
-    }
-  });
+// if (modalKurlan) {
+//   modalKurlan.addEventListener('click', (e) => {
+//     if (e.target === modalKurlan) {
+//       closeModalKurlan();
+//     }
+//   });
 
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modalKurlan.classList.contains('active')) {
-      closeModalKurlan();
-    }
-  });
-}
+//   document.addEventListener('keydown', (e) => {
+//     if (e.key === 'Escape' && modalKurlan.classList.contains('active')) {
+//       closeModalKurlan();
+//     }
+//   });
+// }
 
-function openModalKurlan() {
-  if (!modalKurlan) return;
-  modalKurlan.classList.add('active');
-  modalKurlan.setAttribute('aria-hidden', 'false');
-  document.body.style.overflow = 'hidden';
+// function openModalKurlan() {
+//   if (!modalKurlan) return;
+//   modalKurlan.classList.add('active');
+//   modalKurlan.setAttribute('aria-hidden', 'false');
+//   document.body.style.overflow = 'hidden';
 
-  const focusEl = modalKurlan.querySelector('.modal-close');
-  if (focusEl) focusEl.focus();
-}
+//   const focusEl = modalKurlan.querySelector('.modal-close');
+//   if (focusEl) focusEl.focus();
+// }
 
-function closeModalKurlan() {
-  if (!modalKurlan) return;
-  modalKurlan.classList.remove('active');
-  modalKurlan.setAttribute('aria-hidden', 'true');
-  document.body.style.overflow = '';
-}
+// function closeModalKurlan() {
+//   if (!modalKurlan) return;
+//   modalKurlan.classList.remove('active');
+//   modalKurlan.setAttribute('aria-hidden', 'true');
+//   document.body.style.overflow = '';
+// }
 
-const btnKurlans = document.getElementById('btnkurlans');
-const modalKurlans = document.getElementById('modal-kurlan');
-const closeBtnKurlans = modalKurlan ? modalKurlan.querySelector('.modal-close') : null;
+// const btnKurlans = document.getElementById('btnkurlans');
+// const modalKurlans = document.getElementById('modal-kurlan');
+// const closeBtnKurlans = modalKurlan ? modalKurlan.querySelector('.modal-close') : null;
 
-if (btnKurlans && modalKurlans) {
-  btnKurlan.addEventListener('click', (event) => {
-    event.preventDefault();
-    openModalKurlan();
-  });
-}
+// if (btnKurlans && modalKurlans) {
+//   btnKurlan.addEventListener('click', (event) => {
+//     event.preventDefault();
+//     openModalKurlan();
+//   });
+// }
 
-if (closeBtnKurlan && modalKurlans) {
-  closeBtnKurlan.addEventListener('click', () => {
-    closeModalKurlan();
-  });
-}
+// if (closeBtnKurlan && modalKurlans) {
+//   closeBtnKurlan.addEventListener('click', () => {
+//     closeModalKurlan();
+//   });
+// }
 
-if (modalKurlans) {
-  modalKurlan.addEventListener('click', (e) => {
-    if (e.target === modalKurlans) {
-      closeModalKurlans();
-    }
-  });
+// if (modalKurlans) {
+//   modalKurlan.addEventListener('click', (e) => {
+//     if (e.target === modalKurlans) {
+//       closeModalKurlans();
+//     }
+//   });
 
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modalKurlans.classList.contains('active')) {
-      closeModalKurlan();
-    }
-  });
-}
+//   document.addEventListener('keydown', (e) => {
+//     if (e.key === 'Escape' && modalKurlans.classList.contains('active')) {
+//       closeModalKurlan();
+//     }
+//   });
+// }
 
-function openModalKurlan() {
-  if (!modalKurlan) return;
-  modalKurlan.classList.add('active');
-  modalKurlan.setAttribute('aria-hidden', 'false');
-  document.body.style.overflow = 'hidden';
+// function openModalKurlan() {
+//   if (!modalKurlan) return;
+//   modalKurlan.classList.add('active');
+//   modalKurlan.setAttribute('aria-hidden', 'false');
+//   document.body.style.overflow = 'hidden';
 
-  const focusEl = modalKurlan.querySelector('.modal-close');
-  if (focusEl) focusEl.focus();
-}
+//   const focusEl = modalKurlan.querySelector('.modal-close');
+//   if (focusEl) focusEl.focus();
+// }
 
-function closeModalKurlan() {
-  if (!modalKurlan) return;
-  modalKurlan.classList.remove('active');
-  modalKurlan.setAttribute('aria-hidden', 'true');
-  document.body.style.overflow = '';
-}
-        const modal = document.getElementById('modal');
-        const btn = document.getElementById('openModalBtn');
-        const closeBtn = document.getElementById('closeModalBtn');
+// function closeModalKurlan() {
+//   if (!modalKurlan) return;
+//   modalKurlan.classList.remove('active');
+//   modalKurlan.setAttribute('aria-hidden', 'true');
+//   document.body.style.overflow = '';
+// }
+//         const modal = document.getElementById('modal');
+//         const btn = document.getElementById('openModalBtn');
+//         const closeBtn = document.getElementById('closeModalBtn');
 
-        btn.onclick = function() {
-            modal.style.display = 'flex';
-        }
+//         btn.onclick = function() {
+//             modal.style.display = 'flex';
+//         }
 
-        closeBtn.onclick = function() {
-            modal.style.display = 'none';
-        }
+//         closeBtn.onclick = function() {
+//             modal.style.display = 'none';
+//         }
 
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = 'none';
-            }
-        }
+//         window.onclick = function(event) {
+//             if (event.target == modal) {
+//                 modal.style.display = 'none';
+//             }
+//         }

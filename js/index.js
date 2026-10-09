@@ -168,7 +168,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const modal = document.getElementById('modal');
   const openBtn = document.getElementById('openModalBtn');
-
+  const closeBtn = document.getElementById('closeBtn');
   // 1. Открытие модального окна
   if (openBtn && modal) {
     openBtn.addEventListener('click', (e) => {

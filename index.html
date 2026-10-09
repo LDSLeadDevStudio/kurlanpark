@@ -1052,6 +1052,24 @@
         </div>
     </div>
 <script src="js/index.js"></script>
+ <script>
+        const modal = document.getElementById('modalOverlay');
 
+        function openModal() {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
 </body>
 </html>

@@ -1022,3 +1022,133 @@ footer {
     from { opacity: 0; transform: translateY(-20px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+
+
+/* Настройка сетки */
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr; /* 1 колонка по умолчанию (для телефонов) */
+    gap: 20px;
+    padding: 0 20px 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Карточки */
+.card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    min-height: 0; /* Критически важно для предотвращения обрезания контента */
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.card-header .icon {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.card-header h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+}
+
+/* Список товаров */
+.list-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1; /* Растягивает список, чтобы все карточки были одной высоты */
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.list-items li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px dashed #eee;
+    font-size: 14px;
+    color: #555;
+    width: 100%;
+}
+
+.list-items li:last-child {
+    border-bottom: none;
+}
+
+.price {
+    background: #e0f2fe;
+    color: #1e40af;
+    padding: 4px 8px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+/* Блок бонусов (синяя панель) */
+.bonuses-card {
+    background: #2b6cb0;
+    color: #fff;
+    grid-column: 1 / -1; /* На мобильных занимает всю ширину */
+    text-align: center;
+}
+
+.bonuses-card .card-header h3,
+.bonuses-card h4 {
+    color: #fff;
+}
+
+.bonuses-card h4 {
+    margin: 0 0 15px 0;
+    font-size: 16px;
+}
+
+.bonuses-card .list-items li {
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    color: #e2e8f0;
+    justify-content: center;
+}
+
+.bonuses-card .price {
+    background: rgba(255,255,255,0.2);
+    color: #fff;
+}
+
+/* Адаптив для планшетов */
+@media (min-width: 768px) {
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .bonuses-card {
+        grid-row: 1 / span 3; /* Тянется по высоте */
+        text-align: left;
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+    
+    .bonuses-card h4 {
+        text-align: left;
+    }
+}
+
+/* Адаптив для ПК (как на макете) */
+@media (min-width: 1024px) {
+    .grid-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

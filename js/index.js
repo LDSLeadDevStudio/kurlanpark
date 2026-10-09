@@ -1,27 +1,46 @@
-// --- ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ (только если реально нужны везде) ---
+// --- ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ ---
 let currentSlide = 0;
 
-// --- ФУНКЦИИ СЛАЙДЕРА (глобальные, чтобы работали onclick в HTML) ---
+// --- ГЛОБАЛЬНЫЕ ФУНКЦИИ (для onclick в HTML) ---
+
+// Эта функция нужна, чтобы работал onclick="openMenuModal()" в HTML
+function openMenuModal() {
+    const modal = document.getElementById('menu'); // проверь ID модального окна в HTML
+    if (!modal) {
+        console.error('Модальное окно с id="menu" не найдено. Проверь HTML.');
+        return;
+    }
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+}
+
+// Функция для закрытия (если тоже вызывается из HTML)
+function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (!modal) return;
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+}
+
+// Слайдер (для onclick в HTML)
 function changeSlide(direction) {
     const slides = document.querySelectorAll('.photo-slide');
     const numIndicator = document.getElementById('slide-num');
 
     if (!slides || slides.length === 0) return;
 
-    // Скрываем текущий
     slides[currentSlide].style.opacity = '0';
     slides[currentSlide].style.pointerEvents = 'none';
     slides[currentSlide].classList.remove('active');
 
-    // Считаем новый индекс
     currentSlide = (currentSlide + direction + slides.length) % slides.length;
 
-    // Показываем новый
     slides[currentSlide].style.opacity = '1';
     slides[currentSlide].style.pointerEvents = 'auto';
     slides[currentSlide].classList.add('active');
 
-    // Обновляем цифры
     if (numIndicator) {
         numIndicator.textContent = currentSlide + 1;
     }
@@ -49,16 +68,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         touchArea.addEventListener('touchend', (e) => {
             endX = e.changedTouches.screenX;
-
             if (endX < startX - threshold) {
-                changeSlide(1); // Вправо свайп -> следующий слайд
+                changeSlide(1);
             } else if (endX > startX + threshold) {
-                changeSlide(-1); // Влево свайп -> предыдущий слайд
+                changeSlide(-1);
             }
         }, { passive: true });
     }
 
-    // 2. Универсальная функция для модальных окон
+    // 2. Универсальная инициализация модальных окон
     function initModal(modalId, triggerId, closeSelector = '.modal-close') {
         const modal = document.getElementById(modalId);
         const trigger = document.getElementById(triggerId);
@@ -105,11 +123,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 3. Инициализация модальных окон (раскомментируй нужные строки под свой HTML)
+    // Раскомментируй строки ниже под свои ID в HTML
     // initModal('menu', 'btnmenu', '.modal-close');
     // initModal('modal-menu', 'btn-open-menu', '.modal-close');
 
-    // 4. Альтернатива: если хочешь оставить прямые обработчики на кнопках (без initModal)
+    // 3. Если у тебя есть отдельное окно с id="modal" и кнопками openModalBtn/closeModalBtn
     const openBtn = document.getElementById('openModalBtn');
     const closeBtn = document.getElementById('closeModalBtn');
     const modal = document.getElementById('modal');

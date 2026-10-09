@@ -671,10 +671,11 @@
         </div>
     </footer>
 	<!-- Кнопка для открытия модального окна -->
+<!-- Кнопка -->
 <button id="openModalBtn" class="open-btn">Открыть меню за курланчики</button>
 
-<!-- Модальное окно -->
-<div id="modal" class="modal-overlay">
+<!-- Модальное окно (единственное, без дублей) -->
+<div id="modal" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="modal-content">
         <div class="modal-header">
             <h2>Меню за курланчики</h2>
@@ -712,16 +713,14 @@
                 <ul class="list-items">
                     <li><span>Магнитик-фоторамка</span><span class="price">5 ку</span></li>
                     <li><span>Силиконовый браслет</span><span class="price">5 ку</span></li>
-                    <li><span>Авторучка kurlanparker</span><span></li>
-				</ul>
-    <div id="menu" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true">
-    <div class="modal-window">
-        <button type="button" class="modal-close">&times;</button>
-        <h3>Меню скоро появится</h3>
-        <p>Мы готовим обновлённую структуру и улучшенные сценарии работы.</p>
+                    <li><span>Авторучка kurlanparker</span></li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
-    <img src="img/menu.jpeg" alt="меню" id="menu" style="display:none">
-    <script src="js/index.js"></script>
+
+<script src="js/index.js"></script>
+
 </body>
 </html>

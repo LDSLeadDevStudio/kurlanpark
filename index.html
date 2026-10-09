@@ -896,7 +896,7 @@
 	    <h2>Меню за курланчики</h2>
 	    
 	    <!-- Крестик (вынесен отдельно, чтобы не ломать сетку) -->
-	    <span class="close-btn" onclick="closeModal()">&times;</span>
+	    <span class="close-btn" id="closeBtn" onclick="closeModal()">&times;</span>
 	</div>
         <p class="modal-subtitle">Оплачивайте курланчиками угощения, развлечения, сувениры и услуги парка</p>
 
@@ -1007,7 +1007,7 @@
 <script>
     const modal = document.getElementById('modal');
     const btn = document.getElementById('openModalBtn');
-
+	const close = docoument.getElementById('closeBtn');
     btn.onclick = function() { modal.classList.add('active'); }
     function closeModal() { modal.classList.remove('active'); }
     window.onclick = function(event) {

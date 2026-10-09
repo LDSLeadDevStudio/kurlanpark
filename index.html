@@ -9,22 +9,29 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/reset.css">
-	<style>
-    /* --- СТИЛИ ТОЛЬКО ДЛЯ МОДАЛЬНОГО ОКНА (Изолированные) --- */
-    #modal.active {
-        visibility: visible;
-        opacity: 1;
-        transition: opacity 0.3s ease;
+<style>
+    /* --- БАЗОВЫЕ СТИЛИ МОДАЛЬНОГО ОКНА --- */
+    #modal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.5);
+        backdrop-filter: blur(4px);
     }
+    #modal.active { display: flex; justify-content: center; align-items: center; }
 
     .modal-content {
-        max-width: 900px;
+        max-width: 1100px;
         width: 90%;
-        max-height: 90vh; /* Чтобы окно не было выше экрана */
-        overflow-y: auto;  /* Прокрутка внутри окна, если не влезает */
+        max-height: 90vh;
+        overflow-y: auto;
         background: #fff;
-        border-radius: 20px;
-        box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        border-radius: 24px;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.15);
         position: relative;
     }
 
@@ -32,28 +39,19 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 20px;
+        padding: 25px;
         border-bottom: 1px solid #eee;
     }
-
-    .modal-header h2 {
-        margin: 0;
-        font-size: 24px;
-        color: #333;
-    }
-
+    .modal-header h2 { margin: 0; font-size: 28px; color: #1f2937; font-weight: 700; }
     .close-btn {
-        font-size: 30px;
-        cursor: pointer;
-        color: #999;
-        line-height: 1;
-        padding: 5px;
+        font-size: 32px; cursor: pointer; color: #9ca3af; line-height: 1; padding: 5px;
+        transition: color 0.2s;
     }
     .close-btn:hover { color: #333; }
 
     .modal-subtitle {
-        padding: 10px 20px;
-        color: #666;
+        padding: 0 25px 20px;
+        color: #6b7280;
         font-size: 14px;
         margin: 0;
     }
@@ -61,98 +59,146 @@
     /* --- СЕТКА (GRID) --- */
     .grid-container {
         display: grid;
-        grid-template-columns: 1fr; /* 1 колонка по умолчанию */
+        grid-template-columns: repeat(3, 1fr); /* 3 колонки по умолчанию */
         gap: 20px;
         padding: 20px;
         width: 100%;
         box-sizing: border-box;
     }
 
-    /* Карточки */
-    .card {
+    /* --- КАРТОЧКИ КАТЕГОРИЙ --- */
+    .category-card {
         background: #fff;
-        border-radius: 16px;
+        border-radius: 20px;
         padding: 20px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         display: flex;
         flex-direction: column;
-        min-height: 0; /* Критично для сетки! */
+        min-height: 0;
     }
 
     .card-header {
         display: flex;
         align-items: center;
-        margin-bottom: 15px;
+        margin-bottom: 20px;
     }
-    .card-header .icon { font-size: 24px; margin-right: 10px; }
-    .card-header h3 { margin: 0; font-size: 18px; color: #333; }
+    .icon-circle {
+        width: 40px; height: 40px;
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 20px;
+        margin-right: 15px;
+        flex-shrink: 0;
+    }
+    .category-card h3 {
+        margin: 0; font-size: 20px; color: #d97706; font-weight: 600;
+    }
 
     /* Список товаров */
-    .list-items {
+    .item-list {
         list-style: none;
         padding: 0;
         margin: 0;
-        flex-grow: 1; /* Растягивает список, чтобы карточки были одной высоты */
+        flex-grow: 1;
         display: flex;
         flex-direction: column;
         min-height: 0;
     }
-    .list-items li {
+    .item-list li {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 8px 0;
-        border-bottom: 1px dashed #eee;
-        font-size: 14px;
-        color: #555;
-        width: 100%;
+        padding: 12px 0;
+        border-bottom: 1px dashed #e5e7eb;
+        font-size: 15px;
+        color: #374151;
     }
-    .list-items li:last-child { border-bottom: none; }
-    .price {
+    .item-list li:last-child { border-bottom: none; }
+    
+    /* Цена в "пузырьке" */
+    .price-tag {
         background: #e0f2fe;
         color: #1e40af;
-        padding: 4px 8px;
-        border-radius: 20px;
+        padding: 6px 12px;
+        border-radius: 50px;
         font-weight: 600;
         font-size: 13px;
         white-space: nowrap;
+        min-width: 60px;
+        text-align: center;
     }
 
-    /* Блок "Бонусы" (Синяя панель) */
+    /* --- БЛОК БОНУСЫ (СПРАВА) --- */
     .bonuses-card {
         background: #2b6cb0;
         color: #fff;
-        grid-column: 1 / -1; /* На мобильных: во всю ширину */
-        text-align: center;
-        padding: 30px 20px;
+        border-radius: 20px;
+        padding: 25px;
+        grid-column: span 1; /* Занимает 1 колонку */
+        grid-row: span 4;    /* Тянет высоту на 4 строки (чтобы быть самым высоким) */
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
     }
-    .bonuses-card .card-header h3, 
-    .bonuses-card h4 { color: #fff; }
-    .bonuses-card h4 { margin: 0 0 20px 0; font-size: 18px; }
-    .bonuses-card .list-items li {
-        border-bottom: 1px solid rgba(255,255,255,0.2);
-        color: #e2e8f0;
-        justify-content: center;
+
+    .bonuses-header {
+        margin-bottom: 25px;
     }
-    .bonuses-card .price {
+    .badge {
+        background: #fbbf24; color: #1e293b;
+        padding: 4px 12px; border-radius: 20px;
+        font-size: 12px; font-weight: 700; text-transform: uppercase;
+        margin-bottom: 10px;
+        display: inline-block;
+    }
+    .bonuses-card h3 {
+        margin: 0; color: #fff; font-size: 22px; font-weight: 700;
+    }
+
+    .bonuses-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        flex-grow: 1;
+    }
+    .bonus-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 12px;
+        background: rgba(255,255,255,0.1);
+        border-radius: 12px;
+    }
+    .bonus-amount {
         background: rgba(255,255,255,0.2);
+        color: #fff;
+        padding: 6px 12px;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 14px;
+        min-width: 60px;
+        text-align: center;
+        flex-shrink: 0;
+    }
+    .bonus-desc {
+        font-size: 14px;
+        line-height: 1.4;
         color: #fff;
     }
 
-    /* --- АДАПТИВНОСТЬ (Планшеты и ПК) --- */
-    @media (min-width: 768px) {
+    /* --- АДАПТИВНОСТЬ --- */
+    @media (min-width: 768px) and (max-width: 1023px) {
         .grid-container { grid-template-columns: repeat(2, 1fr); }
-        
-        /* На планшете бонусы тянут высоту на 3 строки */
-        .bonuses-card {
-            grid-row: 1 / span 3; 
-            text-align: left;
-            padding: 30px;
-        }
+        .bonuses-card { grid-row: span 3; } /* На планшете бонусы чуть ниже */
     }
-
-    @media (min-width: 1024px) {
-        .grid-container { grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 767px) {
+        .grid-container { grid-template-columns: 1fr; }
+        .bonuses-card {
+            grid-column: 1 / -1; /* На мобильном во всю ширину */
+            grid-row: auto;      /* Высота по контенту */
+            margin-top: 20px;
+        }
+        .category-card { margin-bottom: 20px; }
     }
 </style>
 </head>
@@ -817,8 +863,7 @@
         </div>
     </footer>
 	<!-- Кнопка для открытия модального окна -->
-<!-- Кнопка для открытия (пример) -->
-<button id="openModalBtn" style="padding: 15px 30px; background: #2b6cb0; color: white; border: none; border-radius: 50px; cursor: pointer; font-size: 16px;">
+<button id="openModalBtn" style="padding: 15px 30px; background: #2b6cb0; color: white; border: none; border-radius: 50px; cursor: pointer; font-size: 16px; box-shadow: 0 4px 12px rgba(43, 108, 176, 0.3);">
     Открыть меню Курланчиков
 </button>
 
@@ -831,278 +876,109 @@
         </div>
         <p class="modal-subtitle">Оплачивайте курланчиками угощения, развлечения, сувениры и услуги парка</p>
 
-        <!-- СЕТКА ТОВАРОВ -->
+        <!-- СЕТКА: 3 колонки для ПК, 2 для планшета, 1 для телефона -->
         <div class="grid-container">
             
-            <!-- 1. БЛОК БОНУСЫ (Синий) -->
-            <div class="bonuses-card card">
+            <!-- 1. МЕНЮ КАФЕ (Слева сверху) -->
+            <div class="category-card">
                 <div class="card-header">
-                    <span class="icon">⭐</span>
-                    <h3>Бонусы</h3>
-                </div>
-                <h4>Как заработать курланчики</h4>
-                <ul class="list-items">
-                    <li><span>Отзыв в Яндекс</span> <span class="price">+2 ку</span></li>
-                    <li><span>Отзыв в Гугл</span> <span class="price">+2 ку</span></li>
-                    <li><span>Сторис с отметкой @kurlanpark</span> <span class="price">+3 ку</span></li>
-                    <li><span>Пост в ВК</span> <span class="price">+5 ку</span></li>
-                    <li><span>Пост в Инстаграм</span> <span class="price">+5 ку</span></li>
-                </ul>
-            </div>
-
-            <!-- 2. МЕНЮ КАФЕ -->
-            <div class="card">
-                <div class="card-header">
-                    <span class="icon">☕</span>
+                    <div class="icon-circle" style="background: #fff8e1; color: #d97706;">🍵</div>
                     <h3>Меню кафе</h3>
                 </div>
-                <ul class="list-items">
-                    <li><span>Горячий чай</span> <span class="price">1 ку</span></li>
-                    <li><span>Ягодный морс</span> <span class="price">2 ку</span></li>
-                    <li><span>Бутылка воды</span> <span class="price">2 ку</span></li>
-                    <li><span>Томатный напиток</span> <span class="price">2 ку</span></li>
-                    <li><span>Отвар шиповника</span> <span class="price">2 ку</span></li>
-                    <li><span>Глинтвейн б/а</span> <span class="price">5 ку</span></li>
-                    <li><span>Два пончика</span> <span class="price">2 ку</span></li>
-                    <li><span>Чебурек с мясом</span> <span class="price">4 ку</span></li>
-                    <li><span>Горячий суп</span> <span class="price">5 ку</span></li>
+                <ul class="item-list">
+                    <li><span>Горячий чай</span> <span class="price-tag">1 ку</span></li>
+                    <li><span>Ягодный морс</span> <span class="price-tag">2 ку</span></li>
+                    <li><span>Бутылка воды</span> <span class="price-tag">2 ку</span></li>
+                    <li><span>Томатный напиток</span> <span class="price-tag">2 ку</span></li>
+                    <li><span>Отвар шиповника</span> <span class="price-tag">3 ку</span></li>
+                    <li><span>Глинтвейн б/а</span> <span class="price-tag">5 ку</span></li>
+                    <li><span>Два пончика</span> <span class="price-tag">2 ку</span></li>
+                    <li><span>Чебурек с мясом</span> <span class="price-tag">5 ку</span></li>
+                    <li><span>Горячий суп</span> <span class="price-tag">5 ку</span></li>
                 </ul>
             </div>
 
-            <!-- 3. СУВЕНИРЫ -->
-            <div class="card">
+            <!-- 2. СУВЕНИРЫ (Слева снизу) -->
+            <div class="category-card">
                 <div class="card-header">
-                    <span class="icon">🎁</span>
+                    <div class="icon-circle" style="background: #e0f2fe; color: #3b82f6;">🎁</div>
                     <h3>Сувениры</h3>
                 </div>
-                <ul class="list-items">
-                    <li><span>Магнитик-фоторамка</span> <span class="price">5 ку</span></li>
-                    <li><span>Силиконовый браслет</span> <span class="price">5 ку</span></li>
-                    <li><span>Авторучка</span> <span class="price">1 ку</span></li>
-                    <li><span>Брелок-подставка</span> <span class="price">15 ку</span></li>
-                    <li><span>Подарочный пакет</span> <span class="price">20 ку</span></li>
-                    <li><span>Мёд курланских пчёл</span> <span class="price">25 ку</span></li>
-                    <li><span>Банка варенья</span> <span class="price">25 ку</span></li>
-                    <li><span>Фирменная термокружка</span> <span class="price">50 ку</span></li>
+                <ul class="item-list">
+                    <li><span>Магнитик-фоторамка</span> <span class="price-tag">5 ку</span></li>
+                    <li><span>Силиконовый браслет</span> <span class="price-tag">5 ку</span></li>
+                    <li><span>Авторучка kurlanparker</span> <span class="price-tag">5 ку</span></li>
+                    <li><span>Брелок-подставка</span> <span class="price-tag">15 ку</span></li>
+                    <li><span>Подарочный пакет чая</span> <span class="price-tag">20 ку</span></li>
+                    <li><span>Мёд курланских пчёл</span> <span class="price-tag">25 ку</span></li>
+                    <li><span>Банка варенья</span> <span class="price-tag">25 ку</span></li>
+                    <li><span>Фирменная термокружка</span> <span class="price-tag">50 ку</span></li>
                 </ul>
             </div>
 
-            <!-- 4. РАЗВЛЕЧЕНИЯ -->
-            <div class="card">
+            <!-- 3. РАЗВЛЕЧЕНИЯ (Центр) -->
+            <div class="category-card">
                 <div class="card-header">
-                    <span class="icon">🎪</span>
+                    <div class="icon-circle" style="background: #fef3c7; color: #d97706;">🎪</div>
                     <h3>Развлечения</h3>
                 </div>
-                <ul class="list-items">
-                    <li><span>Поездка на банане</span> <span class="price">5 ку</span></li>
-                    <li><span>Стрельба в тире</span> <span class="price">5 ку</span></li>
-                    <li><span>Фото с хаски</span> <span class="price">1 ку</span></li>
-                    <li><span>Фото с оленем</span> <span class="price">1 ку</span></li>
-                    <li><span>Фото с оленем</span> <span class="price">1 ку</span></li>
-                    <li><span>Покормить оленя</span> <span class="price">5 ку</span></li>
-                    <li><span>Покататься на оленях</span> <span class="price">10 ку</span></li>
+                <ul class="item-list">
+                    <li><span>Поездка на банане</span> <span class="price-tag">5 ку</span></li>
+                    <li><span>Стрельба в тире</span> <span class="price-tag">5 ку</span></li>
+                    <li><span>Фото с хаски</span> <span class="price-tag">1 ку</span></li>
+                    <li><span>Фото с оленем</span> <span class="price-tag">1 ку</span></li>
+                    <li><span>Покормить оленя</span> <span class="price-tag">2 ку</span></li>
+                    <li><span>Покататься на оленях</span> <span class="price-tag">10 ку</span></li>
                 </ul>
             </div>
 
-            <!-- 5. ДОПЫ (Услуги) -->
-            <div class="card">
+            <!-- 4. ДОПЫ (Центр снизу) -->
+            <div class="category-card">
                 <div class="card-header">
-                    <span class="icon">📦</span>
+                    <div class="icon-circle" style="background: #ecfdf5; color: #10b981;">✨</div>
                     <h3>Допы</h3>
                 </div>
-                <ul class="list-items">
-                    <li><span>Предсказание</span> <span class="price">1 ку</span></li>
-                    <li><span>Погреть еду</span> <span class="price">1 ку</span></li>
-                    <li><span>Камера хранения</span> <span class="price">1 ку</span></li>
-                    <li><span>Лотерея</span> <span class="price">5 ку</span></li>
+                <ul class="item-list">
+                    <li><span>Предсказание</span> <span class="price-tag">1 ку</span></li>
+                    <li><span>Погреть еду</span> <span class="price-tag">1 ку</span></li>
+                    <li><span>Камера хранения</span> <span class="price-tag">1 ку</span></li>
+                    <li><span>Лотерея</span> <span class="price-tag">5 ку</span></li>
                 </ul>
+            </div>
+
+            <!-- 5. БОНУСЫ (Справа - самый высокий блок) -->
+            <div class="bonuses-card">
+                <div class="bonuses-header">
+                    <span class="badge">БОНУСЫ</span>
+                    <h3>Как заработать курланчики</h3>
+                </div>
+                <div class="bonuses-list">
+                    <div class="bonus-item">
+                        <span class="bonus-amount">+2 ку</span>
+                        <span class="bonus-desc">Отзыв в Яндекс</span>
+                    </div>
+                    <div class="bonus-item">
+                        <span class="bonus-amount">+2 ку</span>
+                        <span class="bonus-desc">Отзыв в Гугл</span>
+                    </div>
+                    <div class="bonus-item">
+                        <span class="bonus-amount">+3 ку</span>
+                        <span class="bonus-desc">Сторис с отметкой @kurlanpark</span>
+                    </div>
+                    <div class="bonus-item">
+                        <span class="bonus-amount">+5 ку</span>
+                        <span class="bonus-desc">Пост в ВК</span>
+                    </div>
+                    <div class="bonus-item">
+                        <span class="bonus-amount">+5 ку</span>
+                        <span class="bonus-desc">Пост в Инстаграм</span>
+                    </div>
+                </div>
             </div>
 
         </div>
     </div>
 </div>
-
-<style>
-    /* --- СТИЛИ ТОЛЬКО ДЛЯ МОДАЛЬНОГО ОКНА (Изолированные) --- */
-    #modal {
-        display: none; /* Скрыто по умолчанию */
-        position: fixed;
-        z-index: 9999;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0,0,0,0.5);
-        backdrop-filter: blur(4px);
-    }
-
-    #modal.active {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .modal-content {
-        max-width: 900px;
-        width: 90%;
-        max-height: 90vh; /* Чтобы окно не было выше экрана */
-        overflow-y: auto;  /* Прокрутка внутри окна, если не влезает */
-        background: #fff;
-        border-radius: 20px;
-        box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-        position: relative;
-    }
-
-    .modal-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px;
-        border-bottom: 1px solid #eee;
-    }
-
-    .modal-header h2 {
-        margin: 0;
-        font-size: 24px;
-        color: #333;
-    }
-
-    .close-btn {
-        font-size: 30px;
-        cursor: pointer;
-        color: #999;
-        line-height: 1;
-        padding: 5px;
-    }
-    .close-btn:hover { color: #333; }
-
-    .modal-subtitle {
-        padding: 10px 20px;
-        color: #666;
-        font-size: 14px;
-        margin: 0;
-    }
-
-    /* --- СЕТКА (GRID) --- */
-    .grid-container {
-        display: grid;
-        grid-template-columns: 1fr; /* 1 колонка по умолчанию */
-        gap: 20px;
-        padding: 20px;
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    /* Карточки */
-    .card {
-        background: #fff;
-        border-radius: 16px;
-        padding: 20px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        display: flex;
-        flex-direction: column;
-        min-height: 0; /* Критично для сетки! */
-    }
-
-    .card-header {
-        display: flex;
-        align-items: center;
-        margin-bottom: 15px;
-    }
-    .card-header .icon { font-size: 24px; margin-right: 10px; }
-    .card-header h3 { margin: 0; font-size: 18px; color: #333; }
-
-    /* Список товаров */
-    .list-items {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        flex-grow: 1; /* Растягивает список, чтобы карточки были одной высоты */
-        display: flex;
-        flex-direction: column;
-        min-height: 0;
-    }
-    .list-items li {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 8px 0;
-        border-bottom: 1px dashed #eee;
-        font-size: 14px;
-        color: #555;
-        width: 100%;
-    }
-    .list-items li:last-child { border-bottom: none; }
-    .price {
-        background: #e0f2fe;
-        color: #1e40af;
-        padding: 4px 8px;
-        border-radius: 20px;
-        font-weight: 600;
-        font-size: 13px;
-        white-space: nowrap;
-    }
-
-    /* Блок "Бонусы" (Синяя панель) */
-    .bonuses-card {
-        background: #2b6cb0;
-        color: #fff;
-        grid-column: 1 / -1; /* На мобильных: во всю ширину */
-        text-align: center;
-        padding: 30px 20px;
-    }
-    .bonuses-card .card-header h3, 
-    .bonuses-card h4 { color: #fff; }
-    .bonuses-card h4 { margin: 0 0 20px 0; font-size: 18px; }
-    .bonuses-card .list-items li {
-        border-bottom: 1px solid rgba(255,255,255,0.2);
-        color: #e2e8f0;
-        justify-content: center;
-    }
-    .bonuses-card .price {
-        background: rgba(255,255,255,0.2);
-        color: #fff;
-    }
-
-    /* --- АДАПТИВНОСТЬ (Планшеты и ПК) --- */
-    @media (min-width: 768px) {
-        .grid-container { grid-template-columns: repeat(2, 1fr); }
-        
-        /* На планшете бонусы тянут высоту на 3 строки */
-        .bonuses-card {
-            grid-row: 1 / span 3; 
-            text-align: left;
-            padding: 30px;
-        }
-    }
-
-    @media (min-width: 1024px) {
-        .grid-container { grid-template-columns: repeat(3, 1fr); }
-    }
-</style>
-
-<script>
-    // Скрипт для открытия/закрытия модального окна
-    const modal = document.getElementById('modal');
-    const btn = document.getElementById('openModalBtn');
-
-    // Открыть
-    btn.onclick = function() {
-        modal.classList.add('active');
-    }
-
-    // Закрыть крестиком
-    function closeModal() {
-        modal.classList.remove('active');
-    }
-
-    // Закрыть по клику вне окна
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.classList.remove('active');
-        }
-    }
-</script>
 <script src="js/index.js"></script>
 
 </body>

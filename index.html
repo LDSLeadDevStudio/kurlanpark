@@ -10,257 +10,220 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/reset.css">
 	<style>
-        /* --- Кнопка вызова --- */
-        .trigger-btn {
-            padding: 12px 24px;
-            background-color: #2b6cb0;
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-size: 16px;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(43, 108, 176, 0.3);
-            transition: transform 0.2s, background-color 0.2s;
-        }
-        .trigger-btn:hover {
-            background-color: #1e40af;
-            transform: translateY(-2px);
-        }
+    /* --- БАЗОВЫЕ СТИЛИ МОДАЛЬНОГО ОКНА --- */
+    #modal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.5);
+        backdrop-filter: blur(4px);
+    }
+    #modal.active { display: flex; justify-content: center; align-items: center; }
 
-        /* --- Оверлей (затемнение фона) --- */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(4px);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-        .modal-overlay.active {
-            display: flex;
-        }
+    .modal-content {
+        max-width: 1200px;
+        width: 90%;
+        max-height: 95vh;
+        overflow-y: auto; /* Прокрутка всего окна, если не влезает */
+        background: #fff;
+        border-radius: 24px;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        position: relative;
+    }
 
-        /* --- САМО МОДАЛЬНОЕ ОКНО --- */
-        .modal-window {
-            background-color: #ffffff;
-            width: 1000px; /* Фиксированная ширина под макет */
-            max-height: 90vh;
-            border-radius: 24px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 25px;
+        border-bottom: 1px solid #eee;
+    }
+    .modal-header h2 { margin: 0; font-size: 28px; color: #1f2937; font-weight: 700; }
+    .close-btn {
+        font-size: 32px; cursor: pointer; color: #9ca3af; line-height: 1; padding: 5px;
+        transition: color 0.2s;
+    }
+    .close-btn:hover { color: #333; }
 
-        /* --- Шапка окна --- */
-        .modal-header {
-            padding: 20px 24px;
-            border-bottom: 1px solid #e5e7eb;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #fff;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-        .modal-title {
-            margin: 0;
-            font-size: 24px;
-            font-weight: 700;
-            color: #111827;
-        }
-        .modal-subtitle {
-            color: #6b7280;
-            font-size: 14px;
-            margin: 0;
-            position: absolute;
-            top: 50%;
-            right: 24px;
-            transform: translateY(-50%);
-            white-space: nowrap;
-        }
-        .close-btn {
-            background: none;
-            border: none;
-            font-size: 28px;
-            color: #9ca3af;
-            cursor: pointer;
-            line-height: 1;
-        }
-        .close-btn:hover { color: #333; }
+    .modal-subtitle {
+        padding: 0 25px 20px;
+        color: #6b7280;
+        font-size: 14px;
+        margin: 0;
+    }
 
-        /* --- ОСНОВНАЯ СЕТКА (70% / 30%) --- */
+    /* --- ГЛАВНАЯ СЕТКА (2 КОЛОНКИ) --- */
+    .main-grid {
+        display: grid;
+        /* 2/3 ширины для контента, 1/3 для бонусов */
+        grid-template-columns: 2fr 1fr; 
+        gap: 20px;
+        padding: 20px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Левая сторона (карточки) */
+    .left-side {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Внутри левой части тоже сетка 2 колонки */
+        gap: 20px;
+        width: 100%;
+    }
+
+    /* Правая сторона (Бонусы) */
+    .right-side {
+        width: 100%;
+        display: flex;
+        align-items: stretch; /* Растягивает карточку бонусов по высоте */
+    }
+
+    /* --- КАРТОЧКИ КАТЕГОРИЙ (ЛЕВО) --- */
+    .category-card {
+        background: #fff;
+        border-radius: 20px;
+        padding: 20px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        display: flex;
+        flex-direction: column;
+        min-height: 0; /* Важно для скролла внутри карточки */
+    }
+
+    .card-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    .icon-circle {
+        width: 40px; height: 40px;
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 20px;
+        margin-right: 15px;
+        flex-shrink: 0;
+    }
+    .category-card h3 {
+        margin: 0; font-size: 20px; color: #d97706; font-weight: 600;
+    }
+
+    /* Список товаров */
+    .item-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+        overflow-y: auto; /* Скролл внутри карточки, если товаров много */
+    }
+    .item-list li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 0;
+        border-bottom: 1px dashed #e5e7eb;
+        font-size: 15px;
+        color: #374151;
+    }
+    .item-list li:last-child { border-bottom: none; }
+    
+    .price-tag {
+        background: #e0f2fe;
+        color: #1e40af;
+        padding: 6px 12px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 13px;
+        white-space: nowrap;
+        min-width: 60px;
+        text-align: center;
+    }
+
+    /* --- БЛОК БОНУСЫ (ПРАВО) --- */
+    .bonuses-card {
+        background: #2b6cb0;
+        color: #fff;
+        border-radius: 20px;
+        padding: 25px;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+        height: 100%; /* Растягиваем на всю высоту родителя */
+    }
+
+    .bonuses-header {
+        margin-bottom: 25px;
+    }
+    .badge {
+        background: #fbbf24; color: #1e293b;
+        padding: 4px 12px; border-radius: 20px;
+        font-size: 12px; font-weight: 700; text-transform: uppercase;
+        margin-bottom: 10px;
+        display: inline-block;
+    }
+    .bonuses-card h3 {
+        margin: 0; color: #fff; font-size: 22px; font-weight: 700;
+    }
+
+    .bonuses-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        flex-grow: 1;
+    }
+    .bonus-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 12px;
+        background: rgba(255,255,255,0.1);
+        border-radius: 12px;
+    }
+    .bonus-amount {
+        background: rgba(255,255,255,0.2);
+        color: #fff;
+        padding: 6px 12px;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 14px;
+        min-width: 60px;
+        text-align: center;
+        flex-shrink: 0;
+    }
+    .bonus-desc {
+        font-size: 14px;
+        line-height: 1.4;
+        color: #fff;
+    }
+
+    /* --- АДАПТИВНОСТЬ --- */
+    @media (max-width: 1023px) {
         .main-grid {
-            display: grid;
-            /* 70% на контент слева, 30% на бонусы справа */
-            grid-template-columns: 70% 30%; 
-            gap: 24px; /* Отступ между колонками */
-            padding: 24px;
-            flex: 1;
-            min-height: 0; /* Важно для скролла внутри модалки */
+            grid-template-columns: 1fr; /* Одна колонка на планшете */
         }
-
-        /* --- ЛЕВАЯ КОЛОНКА (Контент) --- */
-        .left-content {
-            display: grid;
-            /* Две строки: первая для Кафе+Сувениры, вторая для Развлечения+Допы */
-            grid-template-rows: 1fr 1fr; 
-            gap: 24px; /* Отступ между строками */
-            height: 100%;
+        .left-side {
+            grid-template-columns: 1fr; /* Карточки друг под другом */
         }
-
-        /* --- Карточки товаров --- */
-        .product-card {
-            background: #ffffff;
-            border: 1px solid #e5e7eb;
-            border-radius: 16px;
+        .right-side {
+            width: 100%;
+            margin-top: 20px;
+        }
+    }
+    @media (max-width: 767px) {
+        .modal-content {
+            max-height: 95vh;
+            border-radius: 0; /* На мобильном можно убрать скругления по углам экрана */
+        }
+        .modal-header {
             padding: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            display: flex;
-            flex-direction: column;
-            height: 100%; /* Растягиваем на всю высоту ячейки */
         }
-        
-        .card-top {
-            display: flex;
-            align-items: center;
-            margin-bottom: 16px;
-        }
-        .card-icon-box {
-            width: 36px;
-            height: 36px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            flex-shrink: 0;
-            margin-right: 12px;
-        }
-        .card-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: #111827;
-            margin: 0;
-        }
-
-        .item-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            flex: 1; /* Занимает все свободное место */
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        .item-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 8px 0;
-            border-bottom: 1px dashed #f3f4f6;
-        }
-        .item-row:last-child { border-bottom: none; }
-        .item-name {
-            font-size: 14px;
-            color: #374151;
-        }
-        .price-tag {
-            background: #e0e7ff;
-            color: #4f46e5;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            white-space: nowrap;
-        }
-
-        /* --- ПРАВАЯ КОЛОНКА (Бонусы) --- */
-        .right-column {
-            background: #3b82f6;
-            border-radius: 16px;
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-
-        .bonus-header {
-            margin-bottom: 20px;
-        }
-        .bonus-badge {
-            background: rgba(255,255,255,0.2);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-            display: inline-block;
-        }
-        .bonus-title {
-            color: white;
-            font-size: 20px;
-            font-weight: 700;
-            margin: 0;
-        }
-
-        .bonus-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            flex: 1;
-        }
-        .bonus-item {
-            background: rgba(255,255,255,0.15);
-            padding: 12px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .bonus-amount {
-            background: rgba(255,255,255,0.2);
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-weight: 700;
-            font-size: 14px;
-            min-width: 60px;
-            text-align: center;
-        }
-        .bonus-desc {
-            color: white;
-            font-size: 13px;
-        }
-
-        /* --- АДАПТИВНОСТЬ (МОБИЛЬНЫЕ) --- */
-        @media (max-width: 1000px) {
-            .modal-window {
-                width: 90%;
-                height: 90vh;
-                border-radius: 0;
-            }
-            .main-grid {
-                grid-template-columns: 1fr; /* Одна колонка */
-                padding: 15px;
-            }
-            .left-content {
-                grid-template-rows: auto auto; /* Карточки по высоте контента */
-            }
-            .right-column {
-                border-radius: 0;
-                border-top: 1px solid rgba(255,255,255,0.1);
-                margin-top: 15px;
-            }
-        }
-    </style>
+    }
+</style>
 </head>
 <body>
     <div class="top-bar">
@@ -924,107 +887,96 @@
     </footer>
 	<!-- Кнопка для открытия (пример) -->
 
- <button class="trigger-btn" onclick="openModal()">Открыть меню курланчиков</button>
+<button id="openModalBtn" style="padding: 15px 30px; background: #2b6cb0; color: white; border: none; border-radius: 50px; cursor: pointer; font-size: 16px; box-shadow: 0 4px 12px rgba(43, 108, 176, 0.3);">
+    Открыть меню Курланчиков
+</button>
 
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="modal-window">
-            <div class="modal-header">
-                <h2 class="modal-title">Меню за курланчики</h2>
-                <p class="modal-subtitle">Оплачивайте курланчиками угощения, развлечения, сувениры и услуги парка</p>
-                <button class="close-btn" onclick="closeModal()">&times;</button>
-            </div>
+<!-- МОДАЛЬНОЕ ОКНО -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Меню за курланчики</h2>
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+        </div>
+        <p class="modal-subtitle">Оплачивайте курланчиками угощения, развлечения, сувениры и услуги парка</p>
 
-            <div class="main-grid">
-                
-                <!-- ЛЕВАЯ КОЛОНКА (70%) -->
-                <div class="left-content">
-                    
-                    <!-- ВЕРХНИЙ РЯД: Кафе + Сувениры -->
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; height: 100%;">
-                        
-                        <!-- Карточка Меню кафе -->
-                        <div class="product-card">
-                            <div class="card-top">
-                                <div class="card-icon-box" style="background: #fef2e2; color: #d97706;">☕</div>
-                                <h3 class="card-title">Меню кафе</h3>
-                            </div>
-                            <ul class="item-list">
-                                <li class="item-row"><span class="item-name">Горячий чай</span><span class="price-tag">1 ку</span></li>
-                                <li class="item-row"><span class="item-name">Ягодный морс</span><span class="price-tag">2 ку</span></li>
-                                <li class="item-row"><span class="item-name">Бутылка воды</span><span class="price-tag">2 ку</span></li>
-                                <li class="item-row"><span class="item-name">Томатный напиток</span><span class="price-tag">2 ку</span></li>
-                                <li class="item-row"><span class="item-name">Отвар шиповника</span><span class="price-tag">3 ку</span></li>
-                                <li class="item-row"><span class="item-name">Глинтвейн б/а</span><span class="price-tag">5 ку</span></li>
-                                <li class="item-row"><span class="item-name">Два пончика</span><span class="price-tag">2 ку</span></li>
-                                <li class="item-row"><span class="item-name">Чебурек с мясом</span><span class="price-tag">5 ку</span></li>
-                                <li class="item-row"><span class="item-name">Горячий суп</span><span class="price-tag">5 ку</span></li>
-                            </ul>
-                        </div>
-
-                        <!-- Карточка Сувениры -->
-                        <div class="product-card">
-                            <div class="card-top">
-                                <div class="card-icon-box" style="background: #ecfdf5; color: #10b981;">🎁</div>
-                                <h3 class="card-title">Сувениры</h3>
-                            </div>
-                            <ul class="item-list">
-                                <li class="item-row"><span class="item-name">Магнитик-фоторамка</span><span class="price-tag">5 ку</span></li>
-                                <li class="item-row"><span class="item-name">Силиконовый браслет</span><span class="price-tag">5 ку</span></li>
-                                <li class="item-row"><span class="item-name">Авторучка kurlanparker</span><span class="price-tag">5 ку</span></li>
-                                <li class="item-row"><span class="item-name">Брелок-подставка</span><span class="price-tag">15 ку</span></li>
-                                <li class="item-row"><span class="item-name">Подарочный пакет чая</span><span class="price-tag">20 ку</span></li>
-                                <li class="item-row"><span class="item-name">Мёд курланских пчёл</span><span class="price-tag">25 ку</span></li>
-                                <li class="item-row"><span class="item-name">Банка варенья</span><span class="price-tag">25 ку</span></li>
-                                <li class="item-row"><span class="item-name">Фирменная термокружка</span><span class="price-tag">50 ку</span></li>
-                            </ul>
-                        </div>
-
+        <!-- ГЛАВНАЯ СЕТКА: Левая часть (контент) + Правая часть (Бонусы) -->
+        <div class="main-grid">
+            
+            <!-- ЛЕВАЯ КОЛОНКА: Все категории товаров -->
+            <div class="left-side">
+                <div class="category-card">
+                    <div class="card-header">
+                        <div class="icon-circle" style="background: #fff8e1; color: #d97706;">🍵</div>
+                        <h3>Меню кафе</h3>
                     </div>
-
-                    <!-- НИЖНИЙ РЯД: Развлечения + Допы -->
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; height: 100%;">
-
-                        <!-- Карточка Развлечения -->
-                        <div class="product-card">
-                            <div class="card-top">
-                                <div class="card-icon-box" style="background: #fef3c7; color: #d97706;">🦌</div>
-                                <h3 class="card-title">Развлечения</h3>
-                            </div>
-                            <ul class="item-list">
-                                <li class="item-row"><span class="item-name">Поездка на банане</span><span class="price-tag">5 ку</span></li>
-                                <li class="item-row"><span class="item-name">Стрельба в тире</span><span class="price-tag">5 ку</span></li>
-                                <li class="item-row"><span class="item-name">Фото с хаски</span><span class="price-tag">1 ку</span></li>
-                                <li class="item-row"><span class="item-name">Фото с оленем</span><span class="price-tag">1 ку</span></li>
-                                <li class="item-row"><span class="item-name">Покормить оленя</span><span class="price-tag">2 ку</span></li>
-                                <li class="item-row"><span class="item-name">Покататься на оленях</span><span class="price-tag">10 ку</span></li>
-                            </ul>
-                        </div>
-
-                        <!-- Карточка Допы -->
-                        <div class="product-card">
-                            <div class="card-top">
-                                <div class="card-icon-box" style="background: #fef9c3; color: #f59e0b;">✨</div>
-                                <h3 class="card-title">Допы</h3>
-                            </div>
-                            <ul class="item-list">
-                                <li class="item-row"><span class="item-name">Предсказание</span><span class="price-tag">1 ку</span></li>
-                                <li class="item-row"><span class="item-name">Погреть еду</span><span class="price-tag">1 ку</span></li>
-                                <li class="item-row"><span class="item-name">Камера хранения</span><span class="price-tag">1 ку</span></li>
-                                <li class="item-row"><span class="item-name">Лотерея</span><span class="price-tag">5 ку</span></li>
-                            </ul>
-                        </div>
-
-                    </div>
-
+                    <ul class="item-list">
+                        <li><span>Горячий чай</span> <span class="price-tag">1 ку</span></li>
+                        <li><span>Ягодный морс</span> <span class="price-tag">2 ку</span></li>
+                        <li><span>Бутылка воды</span> <span class="price-tag">2 ку</span></li>
+                        <li><span>Томатный напиток</span> <span class="price-tag">2 ку</span></li>
+                        <li><span>Отвар шиповника</span> <span class="price-tag">3 ку</span></li>
+                        <li><span>Глинтвейн б/а</span> <span class="price-tag">5 ку</span></li>
+                        <li><span>Два пончика</span> <span class="price-tag">2 ку</span></li>
+                        <li><span>Чебурек с мясом</span> <span class="price-tag">5 ку</span></li>
+                        <li><span>Горячий суп</span> <span class="price-tag">5 ку</span></li>
+                    </ul>
                 </div>
 
-                <!-- ПРАВАЯ КОЛОНКА (30%) - Бонусы -->
-                <div class="right-column">
-                    <div class="bonus-header">
-                        <span class="bonus-badge">Бонусы</span>
-                        <h2 class="bonus-title">Как заработать курланчики</h2>
+                <div class="category-card">
+                    <div class="card-header">
+                        <div class="icon-circle" style="background: #e0f2fe; color: #3b82f6;">🎁</div>
+                        <h3>Сувениры</h3>
                     </div>
-                    <div class="bonus-list">
+                    <ul class="item-list">
+                        <li><span>Магнитик-фоторамка</span> <span class="price-tag">5 ку</span></li>
+                        <li><span>Силиконовый браслет</span> <span class="price-tag">5 ку</span></li>
+                        <li><span>Авторучка kurlanparker</span> <span class="price-tag">5 ку</span></li>
+                        <li><span>Брелок-подставка</span> <span class="price-tag">15 ку</span></li>
+                        <li><span>Подарочный пакет чая</span> <span class="price-tag">20 ку</span></li>
+                        <li><span>Мёд курланских пчёл</span> <span class="price-tag">25 ку</span></li>
+                        <li><span>Банка варенья</span> <span class="price-tag">25 ку</span></li>
+                        <li><span>Фирменная термокружка</span> <span class="price-tag">50 ку</span></li>
+                    </ul>
+                </div>
+
+                <div class="category-card">
+                    <div class="card-header">
+                        <div class="icon-circle" style="background: #fef3c7; color: #d97706;">🎪</div>
+                        <h3>Развлечения</h3>
+                    </div>
+                    <ul class="item-list">
+                        <li><span>Поездка на банане</span> <span class="price-tag">5 ку</span></li>
+                        <li><span>Стрельба в тире</span> <span class="price-tag">5 ку</span></li>
+                        <li><span>Фото с хаски</span> <span class="price-tag">1 ку</span></li>
+                        <li><span>Фото с оленем</span> <span class="price-tag">1 ку</span></li>
+                        <li><span>Покормить оленя</span> <span class="price-tag">2 ку</span></li>
+                        <li><span>Покататься на оленях</span> <span class="price-tag">10 ку</span></li>
+                    </ul>
+                </div>
+
+                <div class="category-card">
+                    <div class="card-header">
+                        <div class="icon-circle" style="background: #ecfdf5; color: #10b981;">✨</div>
+                        <h3>Допы</h3>
+                    </div>
+                    <ul class="item-list">
+                        <li><span>Предсказание</span> <span class="price-tag">1 ку</span></li>
+                        <li><span>Погреть еду</span> <span class="price-tag">1 ку</span></li>
+                        <li><span>Камера хранения</span> <span class="price-tag">1 ку</span></li>
+                        <li><span>Лотерея</span> <span class="price-tag">5 ку</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ПРАВАЯ КОЛОНКА: Блок "Бонусы" (Растянут на всю высоту) -->
+            <div class="right-side">
+                <div class="bonuses-card">
+                    <div class="bonuses-header">
+                        <span class="badge">БОНУСЫ</span>
+                        <h3>Как заработать курланчики</h3>
+                    </div>
+                    <div class="bonuses-list">
                         <div class="bonus-item">
                             <span class="bonus-amount">+2 ку</span>
                             <span class="bonus-desc">Отзыв в Яндекс</span>
@@ -1047,29 +999,21 @@
                         </div>
                     </div>
                 </div>
-
             </div>
+
         </div>
     </div>
+</div>
+<script>
+    const modal = document.getElementById('modal');
+    const btn = document.getElementById('openModalBtn');
+
+    btn.onclick = function() { modal.classList.add('active'); }
+    function closeModal() { modal.classList.remove('active'); }
+    window.onclick = function(event) {
+        if (event.target == modal) { modal.classList.remove('active'); }
+    }
+</script>
 <script src="js/index.js"></script>
- <script>
-        const modal = document.getElementById('modalOverlay');
-
-        function openModal() {
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            modal.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                closeModal();
-            }
-        }
-    </script>
 </body>
 </html>

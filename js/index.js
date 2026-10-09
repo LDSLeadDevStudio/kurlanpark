@@ -218,3 +218,20 @@ function closeModalKurlan() {
   modalKurlan.setAttribute('aria-hidden', 'true');
   document.body.style.overflow = '';
 }
+        const modal = document.getElementById('modal');
+        const btn = document.getElementById('openModalBtn');
+        const closeBtn = document.getElementById('closeModalBtn');
+
+        btn.onclick = function() {
+            modal.style.display = 'flex';
+        }
+
+        closeBtn.onclick = function() {
+            modal.style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }

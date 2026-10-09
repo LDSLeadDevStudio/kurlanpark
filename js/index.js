@@ -164,3 +164,40 @@ document.addEventListener('DOMContentLoaded', () => {
         console.warn('Не все элементы модального окна найдены. Проверь ID в HTML.');
     }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const modal = document.getElementById('modal');
+  const openBtn = document.getElementById('openModalBtn');
+
+  // 1. Открытие модального окна
+  if (openBtn && modal) {
+    openBtn.addEventListener('click', (e) => {
+      e.preventDefault(); // Отменяем переход по якорю #menu
+      modal.classList.add('active');
+    });
+  }
+
+  // 2. Функция закрытия — она вызывается из HTML: onclick="closeModal()"
+  window.closeModal = function() {
+    if (modal) {
+      modal.classList.remove('active');
+      // Опционально: можно убрать фокус, если он был на крестике
+    }
+  };
+
+  // 3. Закрытие по клику на фон (за пределами контента)
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) { // Кликнули именно по затемнённому фону
+        modal.classList.remove('active');
+      }
+    });
+  }
+
+  // 4. Закрытие по Esc
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
+      modal.classList.remove('active');
+    }
+  });
+});

@@ -1,41 +1,43 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // --- 1. СЛАЙДЕР (ИСПРАВЛЕННАЯ ЛОГИКА) ---
+// --- ГЛОБАЛЬНЫЕ ФУНКЦИИ (должны быть видны везде, даже для onclick в HTML) ---
+
+let currentSlide = 0;
+const slides = document.querySelectorAll('.photo-slide');
+const numIndicator = document.getElementById('slide-num');
+
+// Эта функция теперь доступна глобально, чтобы работала кнопка в HTML
+function changeSlide(direction) {
+    if (!slides || slides.length === 0) return;
+
+    // Скрываем текущий
+    slides[currentSlide].style.opacity = '0';
+    slides[currentSlide].style.pointerEvents = 'none';
+    slides[currentSlide].classList.remove('active');
+
+    // Считаем новый индекс
+    currentSlide = (currentSlide + direction + slides.length) % slides.length;
+
+    // Показываем новый
+    slides[currentSlide].style.opacity = '1';
+    slides[currentSlide].style.pointerEvents = 'auto';
+    slides[currentSlide].classList.add('active');
+
+    // Обновляем цифры
+    if (numIndicator) {
+        numIndicator.textContent = currentSlide + 1;
+    }
+}
+
+function scrollGallery(offset) {
     const track = document.getElementById('gallery-track');
-    const slides = document.querySelectorAll('.photo-slide');
-    const numIndicator = document.getElementById('slide-num');
+    if (track) {
+        track.scrollBy({ left: offset, behavior: 'smooth' });
+    }
+}
+
+// --- ЛОГИКА ВНУТРИ ЗАГРУЗКИ СТРАНИЦЫ ---
+document.addEventListener('DOMContentLoaded', () => {
     
-    let currentSlide = 0;
-
-    function scrollGallery(offset) {
-        if (track) {
-            track.scrollBy({ left: offset, behavior: 'smooth' });
-        }
-    }
-
-    function changeSlide(direction) {
-        // ВАЖНО: Если слайдов нет или их 0, сразу выходим, чтобы не было ошибок
-        if (!slides || slides.length === 0) return;
-
-        // Скрываем текущий слайд
-        slides[currentSlide].style.opacity = '0';
-        slides[currentSlide].style.pointerEvents = 'none';
-        slides[currentSlide].classList.remove('active');
-
-        // Вычисляем индекс следующего слайда (циклично)
-        currentSlide = (currentSlide + direction + slides.length) % slides.length;
-
-        // Показываем новый слайд
-        slides[currentSlide].style.opacity = '1';
-        slides[currentSlide].style.pointerEvents = 'auto';
-        slides[currentSlide].classList.add('active');
-
-        // Обновляем счетчик
-        if (numIndicator) {
-            numIndicator.textContent = currentSlide + 1;
-        }
-    }
-
-    // Обработка свайпов
+    // 1. Логика свайпов (работает только после загрузки)
     const touchArea = document.getElementById('slider-touch-area');
     if (touchArea) {
         let startX = 0;
@@ -50,21 +52,18 @@ document.addEventListener('DOMContentLoaded', () => {
             endX = e.changedTouches.screenX;
             
             if (endX < startX - threshold) {
-                changeSlide(1); // Свайп влево -> следующий
+                changeSlide(1); // Вправо свайп -> следующий слайд
             } else if (endX > startX + threshold) {
-                changeSlide(-1); // Свайп вправо -> предыдущий
+                changeSlide(-1); // Влево свайп -> предыдущий слайд
             }
         }, { passive: true });
     }
 
-    // --- 2. УНИВЕРСАЛЬНАЯ ФУНКЦИЯ ДЛЯ МОДАЛЬНЫХ ОКОН ---
-    // Эта функция позволяет инициализировать ЛЮБОЕ модальное окно, 
-    // не создавая каждый раз новые функции openModal/closeModal.
+    // 2. Универсальная функция для модальных окон
     function initModal(modalId, triggerId, closeSelector = '.modal-close') {
         const modal = document.getElementById(modalId);
         const trigger = document.getElementById(triggerId);
         
-        // Если самого окна нет в HTML, ничего не делаем (защита от ошибок)
         if (!modal) return;
 
         const closeBtn = modal.querySelector(closeSelector);
@@ -72,19 +71,16 @@ document.addEventListener('DOMContentLoaded', () => {
         function open() {
             modal.classList.add('active');
             modal.setAttribute('aria-hidden', 'false');
-            document.body.style.overflow = 'hidden'; // Блокируем скролл фона
-            
-            // Фокус на кнопке закрытия для доступности
+            document.body.style.overflow = 'hidden';
             if (closeBtn) closeBtn.focus();
         }
 
         function close() {
             modal.classList.remove('active');
             modal.setAttribute('aria-hidden', 'true');
-            document.body.style.overflow = ''; // Возвращаем скролл
+            document.body.style.overflow = '';
         }
 
-        // Навешиваем событие на кнопку открытия
         if (trigger) {
             trigger.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -92,17 +88,14 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Навешиваем событие на кнопку закрытия (крестик)
         if (closeBtn) {
             closeBtn.addEventListener('click', close);
         }
 
-        // Закрытие по клику на затемненный фон
         modal.addEventListener('click', (e) => {
             if (e.target === modal) close();
         });
 
-        // Закрытие по клавише Escape
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && modal.classList.contains('active')) {
                 close();
@@ -110,17 +103,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 3. ИНИЦИАЛИЗАЦИЯ КОНКРЕТНЫХ ОКОН ---
+    // Инициализация окон (проверь ID в своем HTML!)
+    // Если у тебя окно меню имеет id="menu", раскомментируй строку ниже:
+    // initModal('menu', 'btnmenu', '.modal-close');
     
-    // 1. Окно меню (то, что ты просил дописать/починить)
-    // Ожидаемые ID в HTML: modal-menu (окно), btn-open-menu (кнопка)
-    // Убедись, что в твоем HTML у окна стоит id="modal-menu", а у кнопки id="btn-open-menu"
-    initModal('modal-menu', 'btn-open-menu', '.modal-close');
-
-    // 2. Окно старого типа (если у тебя осталось окно с id="menu" и кнопкой "btnmenu")
-    // Мы используем ту же функцию, просто передаем другие ID.
-    initModal('menu', 'btnmenu', '.modal-close');
-
-    // 3. Окно для курланчиков (если есть)
-    // initModal('modal-kurlan', 'btn-kurlan', '.modal-close');
+    // Если у тебя новое окно имеет id="modal-menu", раскомментируй эту:
+    // initModal('modal-menu', 'btn-open-menu', '.modal-close');
 });

@@ -723,3 +723,259 @@ footer {
     display: block; /* показываем мобильную версию условий */
   }
 }
+/* Общие стили */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Кнопка открытия */
+.open-btn {
+    padding: 12px 24px;
+    font-size: 16px;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.open-btn:hover {
+    background-color: #357abd;
+}
+
+/* Модальное окно (фон) */
+.modal-overlay {
+    display: none; /* Скрыто по умолчанию */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    justify-content: center;
+    align-items: center;
+}
+
+/* Контент модального окна */
+.modal-content {
+    background-color: white;
+    width: 90%;
+    max-width: 1000px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+    max-height: 90vh;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Шапка модального окна */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.modal-header h2 {
+    margin: 0;
+    color: #333;
+    font-size: 28px;
+}
+
+.close-btn {
+    font-size: 30px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.close-btn:hover {
+    color: #333;
+}
+
+.modal-subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 25px;
+    font-size: 14px;
+}
+
+/* Сетка карточек */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+/* Карточки */
+.card {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border: 1px solid #eee;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.card-header .icon {
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.card-header h3 {
+    margin: 0;
+    color: #2c3e50;
+    font-size: 18px;
+}
+
+/* Список товаров */
+.list-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.list-items li {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px dashed #eee;
+}
+
+.list-items li:last-child {
+    border-bottom: none;
+}
+
+.price {
+    background-color: #eef2f7;
+    color: #2c3e50;
+    padding: 4px 8px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+/* Двойная карточка (Развлечения + Допы) */
+.double-card {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+@media (min-width: 768px) {
+    .double-card {
+        flex-direction: row;
+    }
+}
+
+.sub-card {
+    flex: 1;
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border: 1px solid #eee;
+}
+
+/* Карточка бонусов */
+.bonuses-card {
+    background-color: #3498db;
+    color: white;
+    border-radius: 12px;
+    padding: 20px;
+    grid-column: 1 / -1; /* На всю ширину на мобильных */
+}
+
+@media (min-width: 768px) {
+    .bonuses-card {
+        grid-column: auto;
+    }
+}
+
+.bonuses-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.badge {
+    background-color: #f1c40f;
+    color: #3498db;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 12px;
+    margin-right: 10px;
+    text-transform: uppercase;
+}
+
+.bonuses-header h3 {
+    margin: 0;
+    color: white;
+    font-size: 18px;
+}
+
+.bonuses-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.bonus-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(255,255,255,0.2);
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.bonus-val {
+    font-weight: bold;
+    font-size: 16px;
+    color: #fff;
+}
+
+.bonus-desc {
+    color: #ecf0f1;
+    font-size: 14px;
+}
+
+/* Подвал */
+.footer-note {
+    text-align: center;
+    color: #999;
+    font-size: 12px;
+    margin-top: auto;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+/* Адаптивность для очень маленьких экранов */
+@media (max-width: 480px) {
+    .modal-content {
+        padding: 15px;
+    }
+    
+    .modal-header h2 {
+        font-size: 22px;
+    }
+}

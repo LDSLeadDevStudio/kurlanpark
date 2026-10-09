@@ -1242,3 +1242,45 @@ footer {
         height: 44px;
     }
 }
+#scrollTopBtn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: #ffffff; /* Белый фон */
+    color: #000000;              /* ЧЁРНАЯ стрелка (было #1a1a1a) */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s ease-in-out;
+    z-index: 9999;
+    cursor: pointer;
+}
+
+#scrollTopBtn.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+#scrollTopBtn:hover {
+    background-color: #000000;  /* Чёрный фон при наведении */
+    color: #ffffff;             /* Белая стрелка при наведении */
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    #scrollTopBtn {
+        bottom: 20px;
+        right: 20px;
+        width: 44px;
+        height: 44px;
+    }
+}

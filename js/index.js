@@ -44,37 +44,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+
 document.addEventListener('DOMContentLoaded', () => {
   const slides = document.querySelectorAll('.photo-slide');
-  const slideNumEl = document.getElementById('slide-num');
   let currentSlide = 0;
 
   function updateSlide(direction) {
     const totalSlides = slides.length;
 
-    // Вычисляем новый индекс с зацикливанием (если дошли до конца — начинаем сначала)
+    // Вычисляем новый индекс с зацикливанием
     currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
 
-    // Сбрасываем все слайды
+    // Обновляем классы и стили только для слайдов
     slides.forEach((slide, index) => {
       slide.classList.toggle('active', index === currentSlide);
       slide.style.opacity = index === currentSlide ? '1' : '0';
-      // Убираем pointer-events у неактивных, чтобы не мешали кликам
       slide.style.pointerEvents = index === currentSlide ? 'auto' : 'none';
     });
-
-    // Обновляем счётчик
-    if (slideNumEl) {
-      slideNumEl.textContent = `\${currentSlide + 1}`;
-    }
   }
 
-  // Функция, которую вызывают кнопки в HTML
+  // Функция для кнопок
   window.changeSlide = function(direction) {
     updateSlide(direction);
   };
 
-  // (Опционально) Поддержка свайпов на мобильных
+  // Логика свайпов (можно оставить, она не зависит от счётчика)
   const sliderArea = document.getElementById('slider-touch-area');
   if (sliderArea) {
     let touchStartX = 0;
@@ -90,12 +85,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
 
     function handleSwipe() {
-      const swipeThreshold = 50; // минимальная дистанция свайпа в пикселях
+      const swipeThreshold = 50;
       if (touchEndX < touchStartX - swipeThreshold) {
-        updateSlide(1); // свайп влево = следующий слайд
+        updateSlide(1);
       }
       if (touchEndX > touchStartX + swipeThreshold) {
-        updateSlide(-1); // свайп вправо = предыдущий слайд
+        updateSlide(-1);
       }
     }
   }

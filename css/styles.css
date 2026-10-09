@@ -1198,3 +1198,58 @@ footer {
 .close-btn:hover {
     color: #333;
 }
+#scrollTopBtn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: #ffffff;          /* Белый фон — виден на тёмном */
+    color: #000000;                      /* Чёрная стрелка — видна на белом */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Тень отделяет от фона */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s ease-in-out;
+    z-index: 9999;
+    cursor: pointer;
+}
+
+#scrollTopBtn svg {
+    width: 28px;
+    height: 28px;
+    display: block;
+}
+
+/* Показываем кнопку, когда прокрутили вниз */
+#scrollTopBtn.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Инверсия при наведении — одинаково заметно на любом фоне */
+#scrollTopBtn:hover {
+    background-color: #000000;
+    color: #ffffff;
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 768px) {
+    #scrollTopBtn {
+        bottom: 20px;
+        right: 20px;
+        width: 52px;
+        height: 52px;
+    }
+    #scrollTopBtn svg {
+        width: 24px;
+        height: 24px;
+    }
+}

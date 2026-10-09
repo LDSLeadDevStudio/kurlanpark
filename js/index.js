@@ -45,22 +45,22 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-  const slides = document.querySelectorAll('.photo-slide');
-  let currentSlide = 0;
+// document.addEventListener('DOMContentLoaded', () => {
+//   const slides = document.querySelectorAll('.photo-slide');
+//   let currentSlide = 0;
 
-  function updateSlide(direction) {
-    const totalSlides = slides.length;
+//   function updateSlide(direction) {
+//     const totalSlides = slides.length;
 
-    // Вычисляем новый индекс с зацикливанием
-    currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+//     // Вычисляем новый индекс с зацикливанием
+//     currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
 
-    slides.forEach((slide, index) => {
-      slide.classList.toggle('active', index === currentSlide);
-      slide.style.opacity = index === currentSlide ? '1' : '0';
-      slide.style.pointerEvents = index === currentSlide ? 'auto' : 'none';
-    });
-  }
+//     slides.forEach((slide, index) => {
+//       slide.classList.toggle('active', index === currentSlide);
+//       slide.style.opacity = index === currentSlide ? '1' : '0';
+//       slide.style.pointerEvents = index === currentSlide ? 'auto' : 'none';
+//     });
+//   }
 
   // Функция для кнопок в HTML
   window.changeSlide = function(direction) {

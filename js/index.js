@@ -1,237 +1,126 @@
-function scrollGallery(offset) {
+document.addEventListener('DOMContentLoaded', () => {
+    // --- 1. СЛАЙДЕР (ИСПРАВЛЕННАЯ ЛОГИКА) ---
     const track = document.getElementById('gallery-track');
-    if (track) {
-        track.scrollBy({ left: offset, behavior: 'smooth' });
+    const slides = document.querySelectorAll('.photo-slide');
+    const numIndicator = document.getElementById('slide-num');
+    
+    let currentSlide = 0;
+
+    function scrollGallery(offset) {
+        if (track) {
+            track.scrollBy({ left: offset, behavior: 'smooth' });
+        }
     }
-}
-let currentSlide = 0;
-const slides = document.querySelectorAll('.photo-slide');
-const numIndicator = document.getElementById('slide-num');
-function changeSlide(direction) {
-    if (!slides || slides.length === 0)
+
+    function changeSlide(direction) {
+        // ВАЖНО: Если слайдов нет или их 0, сразу выходим, чтобы не было ошибок
+        if (!slides || slides.length === 0) return;
+
+        // Скрываем текущий слайд
         slides[currentSlide].style.opacity = '0';
         slides[currentSlide].style.pointerEvents = 'none';
         slides[currentSlide].classList.remove('active');
+
+        // Вычисляем индекс следующего слайда (циклично)
         currentSlide = (currentSlide + direction + slides.length) % slides.length;
+
+        // Показываем новый слайд
         slides[currentSlide].style.opacity = '1';
         slides[currentSlide].style.pointerEvents = 'auto';
         slides[currentSlide].classList.add('active');
-    if (numIndicator) {
-        numIndicator.textContent = currentSlide + 1;
+
+        // Обновляем счетчик
+        if (numIndicator) {
+            numIndicator.textContent = currentSlide + 1;
+        }
     }
-}
-function changeSlide(direction) {
-    if (!slides || slides.length === 0) return;
-    slides[currentSlide].style.opacity = '0';
-    slides[currentSlide].style.pointerEvents = 'none';
-    slides[currentSlide].classList.remove('active');
-    currentSlide = (currentSlide + direction + slides.length) % slides.length;
-    slides[currentSlide].style.opacity = '1';
-    slides[currentSlide].style.pointerEvents = 'auto';
-    slides[currentSlide].classList.add('active');
-    if (numIndicator) {
-        numIndicator.textContent = currentSlide + 1;
+
+    // Обработка свайпов
+    const touchArea = document.getElementById('slider-touch-area');
+    if (touchArea) {
+        let startX = 0;
+        let endX = 0;
+        const threshold = 40;
+
+        touchArea.addEventListener('touchstart', (e) => {
+            startX = e.changedTouches.screenX;
+        }, { passive: true });
+
+        touchArea.addEventListener('touchend', (e) => {
+            endX = e.changedTouches.screenX;
+            
+            if (endX < startX - threshold) {
+                changeSlide(1); // Свайп влево -> следующий
+            } else if (endX > startX + threshold) {
+                changeSlide(-1); // Свайп вправо -> предыдущий
+            }
+        }, { passive: true });
     }
-}
-function openMenuModal(e) {
-    if (e) e.preventDefault();
-    const modal = document.getElementById('menu-modal');
-    if (modal) modal.style.display = 'flex';
-}
-function closeMenuModal() {
-    const modal = document.getElementById('menu-modal');
-    if (modal) modal.style.display = 'none';
-}
-window.addEventListener('click', (e) => {
-    const modal = document.getElementById('menu-modal');
-    if (e.target === modal) closeMenuModal();
+
+    // --- 2. УНИВЕРСАЛЬНАЯ ФУНКЦИЯ ДЛЯ МОДАЛЬНЫХ ОКОН ---
+    // Эта функция позволяет инициализировать ЛЮБОЕ модальное окно, 
+    // не создавая каждый раз новые функции openModal/closeModal.
+    function initModal(modalId, triggerId, closeSelector = '.modal-close') {
+        const modal = document.getElementById(modalId);
+        const trigger = document.getElementById(triggerId);
+        
+        // Если самого окна нет в HTML, ничего не делаем (защита от ошибок)
+        if (!modal) return;
+
+        const closeBtn = modal.querySelector(closeSelector);
+
+        function open() {
+            modal.classList.add('active');
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden'; // Блокируем скролл фона
+            
+            // Фокус на кнопке закрытия для доступности
+            if (closeBtn) closeBtn.focus();
+        }
+
+        function close() {
+            modal.classList.remove('active');
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = ''; // Возвращаем скролл
+        }
+
+        // Навешиваем событие на кнопку открытия
+        if (trigger) {
+            trigger.addEventListener('click', (e) => {
+                e.preventDefault();
+                open();
+            });
+        }
+
+        // Навешиваем событие на кнопку закрытия (крестик)
+        if (closeBtn) {
+            closeBtn.addEventListener('click', close);
+        }
+
+        // Закрытие по клику на затемненный фон
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) close();
+        });
+
+        // Закрытие по клавише Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                close();
+            }
+        });
+    }
+
+    // --- 3. ИНИЦИАЛИЗАЦИЯ КОНКРЕТНЫХ ОКОН ---
+    
+    // 1. Окно меню (то, что ты просил дописать/починить)
+    // Ожидаемые ID в HTML: modal-menu (окно), btn-open-menu (кнопка)
+    // Убедись, что в твоем HTML у окна стоит id="modal-menu", а у кнопки id="btn-open-menu"
+    initModal('modal-menu', 'btn-open-menu', '.modal-close');
+
+    // 2. Окно старого типа (если у тебя осталось окно с id="menu" и кнопкой "btnmenu")
+    // Мы используем ту же функцию, просто передаем другие ID.
+    initModal('menu', 'btnmenu', '.modal-close');
+
+    // 3. Окно для курланчиков (если есть)
+    // initModal('modal-kurlan', 'btn-kurlan', '.modal-close');
 });
-const touchArea = document.getElementById('slider-touch-area');
-if (touchArea) {
-    let startX = 0;
-    let endX = 0;
-
-    touchArea.addEventListener('touchstart', (e) => {
-        startX = e.changedTouches[0].screenX;
-    }, { passive: true });
-
-    touchArea.addEventListener('touchend', (e) => {
-        endX = e.changedTouches[0].screenX;
-        handleSwipe();
-    }, { passive: true });
-
-    function handleSwipe() {
-        const threshold = 40; // minimum swipe distance
-        if (endX < startX - threshold) {
-            changeSlide(1); // swipe left -> next slide
-        }
-        if (endX > startX + threshold) {
-            changeSlide(-1); // swipe right -> previous slide
-        }
-    }
-}
-const btnMenu = document.getElementById('btnmenu');
-const menu = document.getElementById('menu');
-const closeBtn = menu ? menu.querySelector('.modal-close') : null;
-
-if (btnMenu && menu) {
-  btnMenu.addEventListener('click', (event) => {
-    event.preventDefault();
-    openModal();
-  });
-}
-
-if (closeBtn && menu) {
-  closeBtn.addEventListener('click', () => {
-    closeModal();
-  });
-}
-
-// Закрытие по клику вне окна
-if (menu) {
-  menu.addEventListener('click', (e) => {
-    if (e.target === menu) {
-      closeModal();
-    }
-  });
-
-  // Закрытие по Esc
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && menu.classList.contains('active')) {
-      closeModal();
-    }
-  });
-}
-
-function openModal() {
-  if (!menu) return;
-  menu.classList.add('active');
-  menu.setAttribute('aria-hidden', 'false');
-  document.body.style.overflow = 'hidden'; // Блокируем скролл страницы
-
-  // Для доступности: фокус на кнопке закрытия при открытии
-  const focusEl = menu.querySelector('.modal-close');
-  if (focusEl) focusEl.focus();
-}
-
-function closeModal() {
-  if (!menu) return;
-  menu.classList.remove('active');
-  menu.setAttribute('aria-hidden', 'true');
-  document.body.style.overflow = ''; // Возвращаем скролл
-}
-
-
-
-// const btnKurlan = document.getElementById('btn-kurlan');
-// const modalKurlan = document.getElementById('modal-kurlan');
-// const closeBtnKurlan = modalKurlan ? modalKurlan.querySelector('.modal-close') : null;
-
-// if (btnKurlan && modalKurlan) {
-//   btnKurlan.addEventListener('click', (event) => {
-//     event.preventDefault();
-//     openModalKurlan();
-//   });
-// }
-
-// if (closeBtnKurlan && modalKurlan) {
-//   closeBtnKurlan.addEventListener('click', () => {
-//     closeModalKurlan();
-//   });
-// }
-
-// if (modalKurlan) {
-//   modalKurlan.addEventListener('click', (e) => {
-//     if (e.target === modalKurlan) {
-//       closeModalKurlan();
-//     }
-//   });
-
-//   document.addEventListener('keydown', (e) => {
-//     if (e.key === 'Escape' && modalKurlan.classList.contains('active')) {
-//       closeModalKurlan();
-//     }
-//   });
-// }
-
-// function openModalKurlan() {
-//   if (!modalKurlan) return;
-//   modalKurlan.classList.add('active');
-//   modalKurlan.setAttribute('aria-hidden', 'false');
-//   document.body.style.overflow = 'hidden';
-
-//   const focusEl = modalKurlan.querySelector('.modal-close');
-//   if (focusEl) focusEl.focus();
-// }
-
-// function closeModalKurlan() {
-//   if (!modalKurlan) return;
-//   modalKurlan.classList.remove('active');
-//   modalKurlan.setAttribute('aria-hidden', 'true');
-//   document.body.style.overflow = '';
-// }
-
-// const btnKurlans = document.getElementById('btnkurlans');
-// const modalKurlans = document.getElementById('modal-kurlan');
-// const closeBtnKurlans = modalKurlan ? modalKurlan.querySelector('.modal-close') : null;
-
-// if (btnKurlans && modalKurlans) {
-//   btnKurlan.addEventListener('click', (event) => {
-//     event.preventDefault();
-//     openModalKurlan();
-//   });
-// }
-
-// if (closeBtnKurlan && modalKurlans) {
-//   closeBtnKurlan.addEventListener('click', () => {
-//     closeModalKurlan();
-//   });
-// }
-
-// if (modalKurlans) {
-//   modalKurlan.addEventListener('click', (e) => {
-//     if (e.target === modalKurlans) {
-//       closeModalKurlans();
-//     }
-//   });
-
-//   document.addEventListener('keydown', (e) => {
-//     if (e.key === 'Escape' && modalKurlans.classList.contains('active')) {
-//       closeModalKurlan();
-//     }
-//   });
-// }
-
-// function openModalKurlan() {
-//   if (!modalKurlan) return;
-//   modalKurlan.classList.add('active');
-//   modalKurlan.setAttribute('aria-hidden', 'false');
-//   document.body.style.overflow = 'hidden';
-
-//   const focusEl = modalKurlan.querySelector('.modal-close');
-//   if (focusEl) focusEl.focus();
-// }
-
-// function closeModalKurlan() {
-//   if (!modalKurlan) return;
-//   modalKurlan.classList.remove('active');
-//   modalKurlan.setAttribute('aria-hidden', 'true');
-//   document.body.style.overflow = '';
-// }
-//         const modal = document.getElementById('modal');
-//         const btn = document.getElementById('openModalBtn');
-//         const closeBtn = document.getElementById('closeModalBtn');
-
-//         btn.onclick = function() {
-//             modal.style.display = 'flex';
-//         }
-
-//         closeBtn.onclick = function() {
-//             modal.style.display = 'none';
-//         }
-
-//         window.onclick = function(event) {
-//             if (event.target == modal) {
-//                 modal.style.display = 'none';
-//             }
-//         }

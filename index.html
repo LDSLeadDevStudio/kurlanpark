@@ -894,11 +894,16 @@
 <!-- МОДАЛЬНОЕ ОКНО -->
 <div id="modal" class="modal">
     <div class="modal-content">
-        <div class="modal-header">
-			<span style="display: inline-block; padding: 4px 12px; background-color: #e0f2fe; color: #1e40af; border-radius: 50px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px;">ПРАЙС-ЛИСТ</span>
-            <h2>Меню за курланчики</h2>
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-        </div>
+	<div class="modal-header">
+	    <!-- Ярлык (теперь без margin-bottom) -->
+	    <span class="price-label">ПРАЙС-ЛИСТ</span>
+	    
+	    <!-- Заголовок -->
+	    <h2>Меню за курланчики</h2>
+	    
+	    <!-- Крестик (вынесен отдельно, чтобы не ломать сетку) -->
+	    <span class="close-btn" onclick="closeModal()">&times;</span>
+	</div>
         <p class="modal-subtitle">Оплачивайте курланчиками угощения, развлечения, сувениры и услуги парка</p>
 
         <!-- ГЛАВНАЯ СЕТКА: Левая часть (контент) + Правая часть (Бонусы) -->

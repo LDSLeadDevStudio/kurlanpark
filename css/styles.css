@@ -1284,3 +1284,57 @@ footer {
         height: 44px;
     }
 }
+#scrollTopBtn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;          /* Увеличили кнопку, чтобы стрелке было где быть крупной */
+    height: 60px;
+    background-color: #ffffff;
+    color: #000000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s ease-in-out;
+    z-index: 9999;
+    cursor: pointer;
+}
+
+/* Увеличиваем саму стрелку */
+#scrollTopBtn svg {
+    width: 28px;          /* Размер стрелки (было ~20–24px по умолчанию) */
+    height: 28px;
+    display: block;       /* Убирает лишние отступы снизу у inline-элемента */
+}
+
+#scrollTopBtn.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+#scrollTopBtn:hover {
+    background-color: #000000;
+    color: #ffffff;
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    #scrollTopBtn {
+        bottom: 20px;
+        right: 20px;
+        width: 52px;
+        height: 52px;
+    }
+
+    #scrollTopBtn svg {
+        width: 24px;
+        height: 24px;
+    }
+}

@@ -1198,3 +1198,47 @@ footer {
 .close-btn:hover {
     color: #333;
 }
+#scrollTopBtn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: #ffffff; /* Белый фон кнопки */
+    color: #1a1a1a;              /* Тёмный цвет стрелки (под твой тёмный фон) */
+    border-radius: 50%;         /* Делает кнопку круглой */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    opacity: 0;                  /* Скрыта по умолчанию */
+    visibility: hidden;          /* Скрыта по умолчанию */
+    transform: translateY(20px); /* Лёгкий сдвиг вниз для анимации появления */
+    transition: all 0.3s ease-in-out;
+    z-index: 9999;               /* Чтобы была поверх всего */
+    cursor: pointer;
+}
+
+/* Класс, который JS будет добавлять при прокрутке */
+#scrollTopBtn.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+#scrollTopBtn:hover {
+    background-color: #000000;  /* При наведении становится чёрной */
+    color: #ffffff;             /* Стрелка становится белой */
+    transform: scale(1.1);      /* Лёгкое увеличение */
+}
+
+/* Адаптив: на мобильных чуть меньше отступы */
+@media (max-width: 768px) {
+    #scrollTopBtn {
+        bottom: 20px;
+        right: 20px;
+        width: 44px;
+        height: 44px;
+    }
+}

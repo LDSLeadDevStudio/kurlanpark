@@ -1,3 +1,12 @@
+function openMenuModal() {
+  const modal = document.getElementById('modal');
+  if (modal) {
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Блокируем скролл фона
+  } else {
+    console.error('Модальное окно с id="modal" не найдено!');
+  }
+}
 document.addEventListener('DOMContentLoaded', () => {
   const modal = document.getElementById('modal');
   const openBtn = document.getElementById('openModalBtn');

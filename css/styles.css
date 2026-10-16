@@ -493,6 +493,9 @@ footer {
   content: "↗";
   font-size: 0.8em;
 }
+a{
+    text-decoration:none;
+}
 /* Mobile Adjustments */
 @media (max-width: 768px) {
     nav { display: none; }
@@ -500,7 +503,9 @@ footer {
     .kurlan-grid { grid-template-columns: 1fr; }
     .discounts-banner { padding: 30px 20px; margin: 20px 16px 60px 16px; }
 }
-
+a{
+    text-decoration:none;
+}
 /* Floating Back-to-Top Button */
 .back-to-top {
     position: fixed;
@@ -702,7 +707,9 @@ footer {
   .rozigrish {
     padding: 40px 15px;
   }
-
+  a{
+    text-decoration:none;
+}
   .rozigrish__title {
     display: none; /* скрываем десктоп‑заголовок */
   }
@@ -882,7 +889,9 @@ footer {
         flex-direction: row;
     }
 }
-
+a{
+    text-decoration:none;
+}
 .sub-card {
     flex: 1;
     background-color: #fff;
@@ -906,7 +915,9 @@ footer {
         grid-column: auto;
     }
 }
-
+a{
+    text-decoration:none;
+}
 .bonuses-header {
     display: flex;
     align-items: center;
@@ -989,7 +1000,9 @@ footer {
     opacity: 0;
     transition: opacity 0.3s ease;
 }
-
+a{
+    text-decoration:none;
+}
 .modal-overlay.active {
     display: flex;
     justify-content: center;
@@ -1024,7 +1037,9 @@ footer {
 }
 
 
-
+a{
+    text-decoration:none;
+}
 /* Настройка сетки */
 .grid-container {
     display: grid;
@@ -1133,7 +1148,9 @@ footer {
     .grid-container {
         grid-template-columns: repeat(2, 1fr);
     }
-    
+    a{
+    text-decoration:none;
+}
     .bonuses-card {
         grid-row: 1 / span 3; /* Тянется по высоте */
         text-align: left;
@@ -1160,7 +1177,9 @@ footer {
     border-bottom: 1px solid #eee;
     position: relative;              /* Чтобы крестик позиционировать относительно хедера */
 }
-
+a{
+    text-decoration:none;
+}
 .price-label {
     display: inline-block;
     padding: 4px 12px;
@@ -1252,4 +1271,7 @@ footer {
         width: 24px;
         height: 24px;
     }
+    a{
+    text-decoration:none;
+}
 }

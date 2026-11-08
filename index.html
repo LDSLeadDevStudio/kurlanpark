@@ -10,7 +10,36 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/reset.css">
     <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
-	<style>
+    <!-- calltouch -->
+    <script>
+    (function(w,d,n,c){w.CalltouchDataObject=n;w[n]=function(){w[n]["callbacks"].push(arguments)};if(!w[n]["callbacks"]){w[n]["callbacks"]=[]}w[n]["loaded"]=false;if(typeof c!=="object"){c=[c]}w[n]["counters"]=c;for(var i=0;i<c.length;i+=1){p(c[i])}function p(cId){var a=d.getElementsByTagName("script")[0],s=d.createElement("script"),i=function(){a.parentNode.insertBefore(s,a)},m=typeof Array.prototype.find === 'function',n=m?"init-min.js":"init.js";s.async=true;s.src="https://mod.calltouch.ru/"+n+"?id="+cId;if(w.opera=="[object Opera]"){d.addEventListener("DOMContentLoaded",i,false)}else{i()}}})(window,document,"ct","0a1vw46q");
+    </script>
+    <!-- calltouch -->
+    	<!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();
+       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+    
+       ym(91260205, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true
+       });
+    </script>
+    <meta name="google-site-verification" content="rcEy90Kcfn01fF-kTyENrK8pu2EGRlW7-bGxa9gEFmY">
+	<meta name="yandex-verification" content="8fed8c33d2ee7368">
+	<meta name="keywords" content="курланпарк, тюбинг-парк, тюбинг, горки, катание на ватрушках, катание на хаски, тир, квадроциклы">
+	<meta name="description" content="Курланпарк -Тюбинг парк в 10 минутах от Димитровграда">
+	<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+	<link rel="shortcut icon" href="favicon/favicon.ico" type="image/x-icon">
+	<link rel="manifest" href="favicon/site.webmanifest">
+	<!-- <style>
     /* --- БАЗОВЫЕ СТИЛИ МОДАЛЬНОГО ОКНА --- */
     #modal {
         display: none;
@@ -224,7 +253,7 @@
             padding: 20px;
         }
     }
-</style>
+    </style> -->
 </head>
 <body>
     <div class="top-bar">
@@ -836,7 +865,7 @@
                 <p style="margin-bottom: 18px;">За каждые 100 рублей в чеке вы получаете 1 kурланчик в качестве бонуса-кэшбэка при покупке входного билета (в билет за 3 900 ₽ уже включено 39 курланчиков!).</p>
                 
                 <!-- Кнопка "Как потратить курланчики" -->
-                <a href="#menu-modal" onclick="openMenuModal(event)" style="display: inline-flex; align-items: center; gap: 8px; background: #0083ca; color: #ffffff; text-decoration: none; padding: 12px 24px; border-radius: 12px; font-weight: 800; font-size: 14px; box-shadow: 0 4px 15px rgba(0, 131, 202, 0.25); transition: all 0.2s;">
+                <a href="#menu-modal" id="btnkurlans" style="display: inline-flex; align-items: center; gap: 8px; background: #0083ca; color: #ffffff; text-decoration: none; padding: 12px 24px; border-radius: 12px; font-weight: 800; font-size: 14px; box-shadow: 0 4px 15px rgba(0, 131, 202, 0.25); transition: all 0.2s;">
                     <span id="btnkurlans">Как потратить курланчики</span>
                     <span>→</span>
                 </a>
@@ -860,37 +889,577 @@
             </div>
         </div>
     </section>
-    <div id="menu-modal" style="display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(8px); z-index: 9999; align-items: center; justify-content: center; padding: 20px;">
-        <div style="background: #ffffff; border-radius: 24px; max-width: 600px; width: 100%; padding: 30px; position: relative; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); text-align: center;">
-            <button type="button" onclick="closeMenuModal()" style="position: absolute; top: 18px; right: 18px; background: #f1f5f9; border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 18px; font-weight: bold; cursor: pointer; color: #475569; display: flex; align-items: center; justify-content: center;">✕</button>
-            
-            <h3 style="font-size: 22px; font-weight: 900; color: #0f172a; margin-bottom: 6px;">Прайс-лист: за курланчики</h3>
-            <p style="font-size: 13.5px; color: #64748b; margin-bottom: 20px;">Оплачивайте позиции из меню бонусными курланчиками</p>
-            
-            <!-- Заглушка фотографии меню -->
-            <div style="border-radius: 18px; overflow: hidden; background: linear-gradient(135deg, #0284c7, #0f172a); aspect-ratio: 4/3; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #ffffff; padding: 24px; border: 2px dashed rgba(255,255,255,0.4);">
-                <div style="font-size: 48px; margin-bottom: 12px;">📋</div>
-                <!-- <div style="font-size: 18px; font-weight: 800; margin-bottom: 6px;">[Заглушка фото: Меню кафе и расценки]</div> -->
-                <p style="font-size: 13px; opacity: 0.85; max-width: 360px;">Здесь будет размещена актуальная фотография меню со стоимостью блюд и напитков в рублях и курланчиках</p>
+    <!-- ===== МОДАЛЬНОЕ ОКНО: ЗИМНЕЕ МЕНЮ ===== -->
+<div class="modal-overlay" id="modal">
+    <div class="modal-window modal-content">
+
+        <!-- Шапка модального окна -->
+        <header class="modal-header">
+            <button type="button" id="close-btn" class="close-btn" aria-label="Закрыть">&times;</button>
+
+            <!-- Переключатель страниц -->
+            <div class="page-switch" role="tablist">
+                <button type="button" class="tab-btn active" data-tab="tab-kurlan" role="tab" aria-selected="true">За курланчики</button>
+                <button type="button" class="tab-btn" data-tab="page-1" role="tab" aria-selected="false">МЕНЮ КАФЕ · 1/2</button>
+                <button type="button" class="tab-btn" data-tab="page-2" role="tab" aria-selected="false">2/2</button>
             </div>
-            
-            <button type="button" onclick="closeMenuModal()" style="margin-top: 20px; background: #0083ca; color: #ffffff; border: none; padding: 12px 32px; border-radius: 12px; font-weight: 800; font-size: 14px; cursor: pointer;">Понятно</button>
+            <h1 class="modal-title">Зимнее меню</h1>
+        </header>
+        <div class="tab-page active" id="tab-kurlan">
+            <p class="modal-subtitle">Оплачивайте курланчиками угощения, развлечения, сувениры и услуги парка</p>
+            <!-- ГЛАВНАЯ СЕТКА: контент + бонусы -->
+            <div class="main-grid">
+                <!-- ЛЕВАЯ КОЛОНКА -->
+                <div class="left-side">
+                    <div class="category-card">
+                        <div class="card-header">
+                            <div class="icon-circle" style="background: #fff8e1; color: #d97706;">🍵</div>
+                            <h3>Меню кафе</h3>
+                        </div>
+                        <ul class="item-list">
+                            <li><span>Горячий чай</span> <span class="price-tag">1 ку</span></li>
+                            <li><span>Ягодный морс</span> <span class="price-tag">2 ку</span></li>
+                            <li><span>Бутылка воды</span> <span class="price-tag">2 ку</span></li>
+                            <li><span>Томатный напиток</span> <span class="price-tag">2 ку</span></li>
+                            <li><span>Отвар шиповника</span> <span class="price-tag">3 ку</span></li>
+                            <li><span>Глинтвейн б/а</span> <span class="price-tag">5 ку</span></li>
+                            <li><span>Два пончика</span> <span class="price-tag">2 ку</span></li>
+                            <li><span>Чебурек с мясом</span> <span class="price-tag">5 ку</span></li>
+                            <li><span>Горячий суп</span> <span class="price-tag">5 ку</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="category-card">
+                        <div class="card-header">
+                            <div class="icon-circle" style="background: #e0f2fe; color: #3b82f6;">🎁</div>
+                            <h3>Сувениры</h3>
+                        </div>
+                        <ul class="item-list">
+                            <li><span>Магнитик-фоторамка</span> <span class="price-tag">5 ку</span></li>
+                            <li><span>Силиконовый браслет</span> <span class="price-tag">5 ку</span></li>
+                            <li><span>Авторучка kurlanparker</span> <span class="price-tag">5 ку</span></li>
+                            <li><span>Брелок-подставка</span> <span class="price-tag">15 ку</span></li>
+                            <li><span>Подарочный пакет чая</span> <span class="price-tag">20 ку</span></li>
+                            <li><span>Мёд курланских пчёл</span> <span class="price-tag">25 ку</span></li>
+                            <li><span>Банка варенья</span> <span class="price-tag">25 ку</span></li>
+                            <li><span>Фирменная термокружка</span> <span class="price-tag">50 ку</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="category-card">
+                        <div class="card-header">
+                            <div class="icon-circle" style="background: #fef3c7; color: #d97706;">🎪</div>
+                            <h3>Развлечения</h3>
+                        </div>
+                        <ul class="item-list">
+                            <li><span>Поездка на банане</span> <span class="price-tag">5 ку</span></li>
+                            <li><span>Стрельба в тире</span> <span class="price-tag">5 ку</span></li>
+                            <li><span>Фото с хаски</span> <span class="price-tag">1 ку</span></li>
+                            <li><span>Фото с оленем</span> <span class="price-tag">1 ку</span></li>
+                            <li><span>Покормить оленя</span> <span class="price-tag">2 ку</span></li>
+                            <li><span>Покататься на оленях</span> <span class="price-tag">10 ку</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="category-card">
+                        <div class="card-header">
+                            <div class="icon-circle" style="background: #ecfdf5; color: #10b981;">✨</div>
+                            <h3>Допы</h3>
+                        </div>
+                        <ul class="item-list">
+                            <li><span>Предсказание</span> <span class="price-tag">1 ку</span></li>
+                            <li><span>Погреть еду</span> <span class="price-tag">1 ку</span></li>
+                            <li><span>Камера хранения</span> <span class="price-tag">1 ку</span></li>
+                            <li><span>Лотерея</span> <span class="price-tag">5 ку</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- ПРАВАЯ КОЛОНКА: Бонусы -->
+                <div class="right-side">
+                    <div class="bonuses-card">
+                        <div class="bonuses-header">
+                            <span class="badge">БОНУСЫ</span>
+                            <h3>Как заработать курланчики</h3>
+                        </div>
+                        <div class="bonuses-list">
+                            <div class="bonus-item">
+                                <span class="bonus-amount">+2 ку</span>
+                                <span class="bonus-desc">Отзыв в Яндекс</span>
+                            </div>
+                            <div class="bonus-item">
+                                <span class="bonus-amount">+2 ку</span>
+                                <span class="bonus-desc">Отзыв в Гугл</span>
+                            </div>
+                            <div class="bonus-item">
+                                <span class="bonus-amount">+3 ку</span>
+                                <span class="bonus-desc">Сторис с отметкой @kurlanpark</span>
+                            </div>
+                            <div class="bonus-item">
+                                <span class="bonus-amount">+5 ку</span>
+                                <span class="bonus-desc">Пост в ВК</span>
+                            </div>
+                            <div class="bonus-item">
+                                <span class="bonus-amount">+5 ку</span>
+                                <span class="bonus-desc">Пост в Инстаграм</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ===== СТРАНИЦА 1/2 ===== -->
+        <div class="tab-page" id="page-1">
+            <div class="menu-grid">
+                <!-- Колонка 1 -->
+                <div class="menu-column">
+
+                    <!-- Карточка: Завтраки -->
+                    <article class="menu-category">
+                        <div class="category-header">
+                            <span class="icon-search"></span>
+                            <h2 class="category-title">Завтраки</h2>
+                        </div>
+                        <ul class="category-items">
+                            <li class="menu-item">
+                                <span class="item-name">Омлет</span>
+                                <span class="item-weight">120 г</span>
+                                <span class="item-price">100 ₽</span>
+                            </li>
+                            <li class="menu-item">
+                                <span class="item-name">Сосиска отварная</span>
+                                <span class="item-weight">1 шт</span>
+                                <span class="item-price">100 ₽</span>
+                            </li>
+                            <li class="menu-item">
+                                <span class="item-name">Творожная запеканка со сметаной/сгущенкой</span>
+                                <span class="item-weight">100/20 г</span>
+                                <span class="item-price">150 ₽</span>
+                            </li>
+                            <li class="menu-item">
+                                <span class="item-name">Сырники со сметаной/сгущенкой</span>
+                                <span class="item-weight">2 шт</span>
+                                <span class="item-price">150 ₽</span>
+                            </li>
+                        </ul>
+                    </article>
+
+                    <!-- Карточка: Салаты -->
+                    <article class="menu-category">
+                        <div class="category-header">
+                            <span class="icon-salad"></span>
+                            <h2 class="category-title">Салаты</h2>
+                        </div>
+                        <ul class="category-items">
+                            <li class="menu-item">
+                                <span class="item-name">Капустный</span>
+                                <span class="item-weight">100 г</span>
+                                <span class="item-price">70 ₽</span>
+                            </li>
+                            <li class="menu-item">
+                                <span class="item-name">Оливье</span>
+                                <span class="item-weight">100 г</span>
+                                <span class="item-price">100 ₽</span>
+                            </li>
+                            <li class="menu-item">
+                                <span class="item-name">Салат «Цезарь с курицей»</span>
+                                <span class="item-weight">100 г</span>
+                                <span class="item-price">250 ₽</span>
+                            </li>
+                            <li class="menu-item">
+                                <span class="item-name">Копченая курочка</span>
+                                <span class="item-weight">100 г</span>
+                                <span class="item-price">120 ₽</span>
+                            </li>
+                            <li class="menu-item">
+                                <span class="item-name">Свекла с майонезом/маслом</span>
+                                <span class="item-weight">100 г</span>
+                                <span class="item-price">70 ₽</span>
+                            </li>
+                        </ul>
+                    </article>
+
+                </div>
+
+                <!-- Колонка 2 -->
+                <div class="menu-column">
+
+                    <!-- Карточка: Супы -->
+                    <article class="menu-category">
+                        <div class="category-header">
+                            <span class="icon-bowl"></span>
+                            <h2 class="category-title">Супы</h2>
+                        </div>
+                        <ul class="category-items">
+                            <li class="menu-item">
+                                <span class="item-name">Солянка по-домашнему</span>
+                                <span class="item-weight">300 г</span>
+                                <span class="item-price">300 ₽</span>
+                            </li>
+                            <li class="menu-item">
+                                <span class="item-name">Куриный суп с вермишелью</span>
+                                <span class="item-weight">300 г</span>
+                                <span class="item-price">150 ₽</span>
+                            </li>
+                            <li class="menu-item">
+                                <span class="item-name">Борщ</span>
+                                <span class="item-weight">300 г</span>
+                                <span class="item-price">250 ₽</span>
+                            </li>
+                        </ul>
+                    </article>
+
+                    <!-- Карточка: Гарниры -->
+                    <article class="menu-category">
+                        <div class="category-header">
+                            <span class="icon-potato"></span>
+                            <h2 class="category-title">Гарниры</h2>
+                        </div>
+                        <ul class="category-items">
+                            <li class="menu-item">
+                                <span class="item-name">Макароны</span>
+                                <span class="item-weight">150 г</span>
+                                <span class="item-price">100 ₽</span>
+                            </li>
+                            <li class="menu-item">
+                                <span class="item-name">Картофельное пюре</span>
+                                <span class="item-weight">180 г</span>
+                                <span class="item-price">150 ₽</span>
+                            </li>
+                            <li class="menu-item">
+                                <span class="item-name">Гречка</span>
+                                <span class="item-weight">150 г</span>
+                                <span class="item-price">100 ₽</span>
+                            </li>
+                            <li class="menu-item">
+                                <span class="item-name">Картофель фри</span>
+                                <span class="item-weight">150 г</span>
+                                <span class="item-price">220 ₽</span>
+                            </li>
+                            <li class="menu-item">
+                                <span class="item-name">Фасоль стручковая</span>
+                                <span class="item-weight">120 г</span>
+                                <span class="item-price">170 ₽</span>
+                            </li>
+                        </ul>
+                    </article>
+
+                </div>
+
+                <!-- Колонка 3 -->
+                <div class="menu-column">
+
+                    <!-- Карточка: Горячее -->
+                    <article class="menu-category">
+                        <div class="category-header">
+                            <span class="icon-meat"></span>
+                            <h2 class="category-title">Горячее</h2>
+                        </div>
+                        <ul class="category-items">
+                            <li class="menu-item">
+                                <span class="item-name">Бифштекс из говядины с глазуньей</span>
+                                <span class="item-weight">1 шт</span>
+                                <span class="item-price">250 ₽</span>
+                            </li>
+                            <li class="menu-item">
+                                <span class="item-name">Куриный биточек</span>
+                                <span class="item-weight">1 шт</span>
+                                <span class="item-price">150 ₽</span>
+                            </li>
+                            <li class="menu-item">
+                                <span class="item-name">Тефтели</span>
+                                <span class="item-weight">2 шт</span>
+                                <span class="item-price">150 ₽</span>
+                            </li>
+                            <li class="menu-item">
+                                <span class="item-name">Куриная отбивная</span>
+                                <span class="item-weight">1 шт</span>
+                                <span class="item-price">170 ₽</span>
+                            </li>
+                            <li class="menu-item">
+                                <span class="item-name">Рыбные котлеты из лососевых</span>
+                                <span class="item-weight">1 шт</span>
+                                <span class="item-price">150 ₽</span>
+                            </li>
+                            <li class="menu-item">
+                                <span class="item-name">Куриное филе с ананасом</span>
+                                <span class="item-weight">1 шт</span>
+                                <span class="item-price">250 ₽</span>
+                            </li>
+                            <li class="menu-item">
+                                <span class="item-name">Куриное филе в сливочном соусе</span>
+                                <span class="item-weight">100 г</span>
+                                <span class="item-price">160 ₽</span>
+                            </li>
+                        </ul>
+                    </article>
+
+                    <!-- Синий блок-дисклеймер -->
+                    <article class="menu-category disclaimer-card">
+                        <div class="disclaimer-icon">❄</div>
+                        <p class="disclaimer-text">Цены и ассортимент действительны на момент публикации</p>
+                    </article>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== СТРАНИЦА 2/2 ===== -->
+        <div class="tab-page" id="page-2">
+            <div class="menu-grid">
+                <!-- Колонка 1 -->
+                <div class="menu-column">
+
+                    <!-- Карточка: Мангал -->
+                    <article class="menu-category">
+                        <div class="category-header">
+                            <span class="icon-mangal"></span>
+                            <h2 class="category-title">Мангал</h2>
+                        </div>
+                        <ul class="category-items">
+                            <li class="menu-item">
+                                <span class="item-name">Шашлык из свиной шеи/карбоната</span>
+                                <span class="item-weight">100 г</span>
+                                <span class="item-price">250 ₽</span>
+                            </li>
+                            <li class="menu-item">
+                                <span class="item-name">Куриное филе гриль</span>
+                                <span class="item-weight">1 шт</span>
+                                <span class="item-price">220 ₽</span>
+                            </li>
+                            <li class="menu-item">
+                                <span class="item-name">Плов со свининой</span>
+                                <span class="item-weight">250 г</span>
+                                <span class="item-price">270 ₽</span>
+                            </li>
+                            <li class="menu-item">
+                                <span class="item-name">Люля-кебаб</span>
+                                <span class="item-weight">1 шт</span>
+                                <span class="item-price">180 ₽</span>
+                            </li>
+                            <li class="menu-item">
+                                <span class="item-name">Кукуруза</span>
+                                <span class="item-weight">1 шт</span>
+                                <span class="item-price">150 ₽</span>
+                            </li>
+                        </ul>
+                    </article>
+
+                    <!-- Карточка: Фаст-фуд -->
+                    <article class="menu-category">
+                        <div class="category-header">
+                            <span class="icon-burger"></span>
+                            <h2 class="category-title">Фаст-фуд</h2>
+                        </div>
+                        <ul class="category-items">
+                            <li class="menu-item">
+                                <span class="item-name">Чикен бургер</span>
+                                <span class="item-weight">1 шт</span>
+                                <span class="item-price">250 ₽</span>
+                            </li>
+                            <li class="menu-item">
+                                <span class="item-name">Чизбургер</span>
+                                <span class="item-weight">1 шт</span>
+                                <span class="item-price">250 ₽</span>
+                            </li>
+                            <li class="menu-item">
+                                <span class="item-name">Наггетсы</span>
+                                <span class="item-weight">7 шт</span>
+                                <span class="item-price">270 ₽</span>
+                            </li>
+                        </ul>
+                    </article>
+
+                </div>
+
+                <!-- Колонка 2 -->
+                <div class="menu-column">
+
+                    <!-- Карточка: Выпечка -->
+                    <article class="menu-category">
+                        <div class="category-header">
+                            <span class="icon-bakery"></span>
+                            <h2 class="category-title">Выпечка</h2>
+                        </div>
+                        <ul class="category-items">
+                            <li class="menu-item">
+                                <span class="item-name">Чебурек с мясом</span>
+                                <span class="item-weight">1 шт</span>
+                                <span class="item-price">100 ₽</span>
+                            </li>
+                            <li class="menu-item">
+                                <span class="item-name">Чебурек с курицей</span>
+                                <span class="item-weight">1 шт</span>
+                                <span class="item-price">100 ₽</span>
+                            </li>
+                            <li class="menu-item">
+                                <span class="item-name">Чебурек с сыром</span>
+                                <span class="item-weight">1 шт</span>
+                                <span class="item-price">100 ₽</span>
+                            </li>
+                            <li class="menu-item">
+                                <span class="item-name">Пончики</span>
+                                <span class="item-weight">3 шт</span>
+                                <span class="item-price">100 ₽</span>
+                            </li>
+                        </ul>
+                    </article>
+
+                    <!-- Карточка: Десерты -->
+                    <article class="menu-category">
+                        <div class="category-header">
+                            <span class="icon-dessert"></span>
+                            <h2 class="category-title">Десерты</h2>
+                        </div>
+                        <ul class="category-items">
+                            <li class="menu-item">
+                                <span class="item-name">Чизкейк в ассортименте</span>
+                                <span class="item-weight">1 шт</span>
+                                <span class="item-price">300 ₽</span>
+                            </li>
+                            <li class="menu-item">
+                                <span class="item-name">Медовик</span>
+                                <span class="item-weight">1 шт</span>
+                                <span class="item-price">150 ₽</span>
+                            </li>
+                            <li class="menu-item">
+                                <span class="item-name">Пирожное «Картошка»</span>
+                                <span class="item-weight">1 шт</span>
+                                <span class="item-price">180 ₽</span>
+                            </li>
+                            <li class="menu-item">
+                                <span class="item-name">Вафельные трубочки с кремом</span>
+                                <span class="item-weight">1 шт</span>
+                                <span class="item-price">200 ₽</span>
+                            </li>
+                        </ul>
+                    </article>
+
+                </div>
+
+                <!-- Колонка 3 -->
+                <div class="menu-column">
+
+                    <!-- Карточка: Чай/кофе -->
+                    <article class="menu-category">
+                        <div class="category-header">
+                            <span class="icon-coffee"></span>
+                            <h2 class="category-title">Чай/кофе</h2>
+                        </div>
+                        <ul class="category-items">
+                            <li class="menu-item">
+                                <span class="item-name">Эспрессо</span>
+                                <span class="item-weight">70 мл</span>
+                                <span class="item-price">100 ₽</span>
+                            </li>
+                            <li class="menu-item">
+                                <span class="item-name">Американо</span>
+                                <span class="item-weight">200 мл</span>
+                                <span class="item-price">100 ₽</span>
+                            </li>
+                            <li class="menu-item">
+                                <span class="item-name">Капучино</span>
+                                <span class="item-weight">200 мл</span>
+                                <span class="item-price">250 ₽</span>
+                            </li>
+                            <li class="menu-item">
+                                <span class="item-name">Латте</span>
+                                <span class="item-weight">200 мл</span>
+                                <span class="item-price">250 ₽</span>
+                            </li>
+                            <li class="menu-item">
+                                <span class="item-name">Мокачино</span>
+                                <span class="item-weight">200 мл</span>
+                                <span class="item-price">250 ₽</span>
+                            </li>
+                            <li class="menu-item">
+                                <span class="item-name">Горячий шоколад</span>
+                                <span class="item-weight">200 мл</span>
+                                <span class="item-price">250 ₽</span>
+                            </li>
+                            <li class="menu-item">
+                                <span class="item-name">Молочный шоколад</span>
+                                <span class="item-weight">200 мл</span>
+                                <span class="item-price">250 ₽</span>
+                            </li>
+                            <li class="menu-item">
+                                <span class="item-name">Чай в стакане</span>
+                                <span class="item-weight">200 мл</span>
+                                <span class="item-price">70 ₽</span>
+                            </li>
+                            <li class="menu-item">
+                                <span class="item-name">Чай в чайнике в ассортименте</span>
+                                <span class="item-weight">800 мл</span>
+                                <span class="item-price">350 ₽</span>
+                            </li>
+                        </ul>
+                    </article>
+
+                </div>
+
+                <!-- Колонка 4 -->
+                <div class="menu-column">
+
+                    <!-- Карточка: Напитки -->
+                    <article class="menu-category">
+                        <div class="category-header">
+                            <span class="icon-drink"></span>
+                            <h2 class="category-title">Напитки</h2>
+                        </div>
+                        <ul class="category-items">
+                            <li class="menu-item">
+                                <span class="item-name">Компот</span>
+                                <span class="item-weight">0,3 л</span>
+                                <span class="item-price">100 ₽</span>
+                            </li>
+                            <li class="menu-item">
+                                <span class="item-name">Морс из облепихи</span>
+                                <span class="item-weight">0,3 л</span>
+                                <span class="item-price">150 ₽</span>
+                            </li>
+                            <li class="menu-item">
+                                <span class="item-name">Лимонад в ассортименте</span>
+                                <span class="item-weight">0,3 л</span>
+                                <span class="item-price">170 ₽</span>
+                            </li>
+                        </ul>
+                    </article>
+
+                    <!-- Синий блок-дисклеймер -->
+                    <article class="menu-category disclaimer-card">
+                        <div class="disclaimer-icon">❄</div>
+                        <p class="disclaimer-text">Цены и ассортимент действительны на момент публикации</p>
+                    </article>
+
+                </div>
+
+            </div>
+        </div>
+        <!-- Подвал с контактами -->
+        <footer class="modal-footer">
+            <span>КурланПарк · 10 минут от Димитровграда · 8 (902) 215-11-90</span>
+        </footer>
+
+    </div>
+</div>
+
+<!-- ===== МОДАЛЬНОЕ ОКНО: ПРАЙС-ЛИСТ ЗА КУРЛАНЧИКИ ===== -->
+<div class="modal-overlay" id="menu-modal">
+    <div class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!-- Ярлык -->
+                <span class="price-label">ПРАЙС-ЛИСТ</span>
+
+                <!-- Заголовок -->
+                <h2>Меню за курланчики</h2>
+
+                <!-- Крестик -->
+                <span class="close-btn" id="closeBtn">&times;</span>
+            </div>
         </div>
     </div>
-    <div id="menu-modal" style="display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(8px); z-index: 9999; align-items: center; justify-content: center; padding: 20px;">
-        <div style="background: #ffffff; border-radius: 24px; max-width: 600px; width: 100%; padding: 30px; position: relative; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); text-align: center;">
-            <button type="button" onclick="closeMenuModal()" style="position: absolute; top: 18px; right: 18px; background: #f1f5f9; border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 18px; font-weight: bold; cursor: pointer; color: #475569; display: flex; align-items: center; justify-content: center;">✕</button>
-            <h3 style="font-size: 22px; font-weight: 900; color: #0f172a; margin-bottom: 6px;">Прайс-лист и меню кафе</h3>
-            <p style="font-size: 13.5px; color: #64748b; margin-bottom: 20px;">Оплачивайте позиции из меню бонусными курланчиками</p>
-            <!-- Заглушка фотографии меню -->
-            <div style="border-radius: 18px; overflow: hidden; background: linear-gradient(135deg, #0284c7, #0f172a); aspect-ratio: 4/3; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #ffffff; padding: 24px; border: 2px dashed rgba(255,255,255,0.4);">
-                <div style="font-size: 48px; margin-bottom: 12px;">📋</div>
-                <div style="font-size: 18px; font-weight: 800; margin-bottom: 6px;">[Заглушка фото: Меню кафе и расценки]</div>
-                <p style="font-size: 13px; opacity: 0.85; max-width: 360px;">Здесь будет размещена актуальная фотография меню со стоимостью блюд и напитков в рублях и курланчиках</p>
-            </div>
-            <button type="button" onclick="closeMenuModal()" style="margin-top: 20px; background: #0083ca; color: #ffffff; border: none; padding: 12px 32px; border-radius: 12px; font-weight: 800; font-size: 14px; cursor: pointer;">Понятно</button>
-        </div>
-    </div>
+</div>
     <div id="discounts" style="padding: 0 20px;">
         <div class="discounts-banner">
             <span class="badge-action">Выгодный отдых</span>
@@ -955,125 +1524,6 @@
             © 2026. Парк семейного отдыха "Курланпарк"
         </div>
     </footer>
-<!-- МОДАЛЬНОЕ ОКНО -->
-<div id="modal" class="modal">
-    <div class="modal-content">
-	<div class="modal-header">
-	    <!-- Ярлык (теперь без margin-bottom) -->
-	    <span class="price-label">ПРАЙС-ЛИСТ</span>
-	    
-	    <!-- Заголовок -->
-	    <h2>Меню за курланчики</h2>
-	    
-	    <!-- Крестик (вынесен отдельно, чтобы не ломать сетку) -->
-	    <span class="close-btn" id="closeBtn">&times;</span>
-	</div>
-        <p class="modal-subtitle">Оплачивайте курланчиками угощения, развлечения, сувениры и услуги парка</p>
-
-        <!-- ГЛАВНАЯ СЕТКА: Левая часть (контент) + Правая часть (Бонусы) -->
-        <div class="main-grid">
-            
-            <!-- ЛЕВАЯ КОЛОНКА: Все категории товаров -->
-            <div class="left-side">
-                <div class="category-card">
-                    <div class="card-header">
-                        <div class="icon-circle" style="background: #fff8e1; color: #d97706;">🍵</div>
-                        <h3>Меню кафе</h3>
-                    </div>
-                    <ul class="item-list">
-                        <li><span>Горячий чай</span> <span class="price-tag">1 ку</span></li>
-                        <li><span>Ягодный морс</span> <span class="price-tag">2 ку</span></li>
-                        <li><span>Бутылка воды</span> <span class="price-tag">2 ку</span></li>
-                        <li><span>Томатный напиток</span> <span class="price-tag">2 ку</span></li>
-                        <li><span>Отвар шиповника</span> <span class="price-tag">3 ку</span></li>
-                        <li><span>Глинтвейн б/а</span> <span class="price-tag">5 ку</span></li>
-                        <li><span>Два пончика</span> <span class="price-tag">2 ку</span></li>
-                        <li><span>Чебурек с мясом</span> <span class="price-tag">5 ку</span></li>
-                        <li><span>Горячий суп</span> <span class="price-tag">5 ку</span></li>
-                    </ul>
-                </div>
-
-                <div class="category-card">
-                    <div class="card-header">
-                        <div class="icon-circle" style="background: #e0f2fe; color: #3b82f6;">🎁</div>
-                        <h3>Сувениры</h3>
-                    </div>
-                    <ul class="item-list">
-                        <li><span>Магнитик-фоторамка</span> <span class="price-tag">5 ку</span></li>
-                        <li><span>Силиконовый браслет</span> <span class="price-tag">5 ку</span></li>
-                        <li><span>Авторучка kurlanparker</span> <span class="price-tag">5 ку</span></li>
-                        <li><span>Брелок-подставка</span> <span class="price-tag">15 ку</span></li>
-                        <li><span>Подарочный пакет чая</span> <span class="price-tag">20 ку</span></li>
-                        <li><span>Мёд курланских пчёл</span> <span class="price-tag">25 ку</span></li>
-                        <li><span>Банка варенья</span> <span class="price-tag">25 ку</span></li>
-                        <li><span>Фирменная термокружка</span> <span class="price-tag">50 ку</span></li>
-                    </ul>
-                </div>
-
-                <div class="category-card">
-                    <div class="card-header">
-                        <div class="icon-circle" style="background: #fef3c7; color: #d97706;">🎪</div>
-                        <h3>Развлечения</h3>
-                    </div>
-                    <ul class="item-list">
-                        <li><span>Поездка на банане</span> <span class="price-tag">5 ку</span></li>
-                        <li><span>Стрельба в тире</span> <span class="price-tag">5 ку</span></li>
-                        <li><span>Фото с хаски</span> <span class="price-tag">1 ку</span></li>
-                        <li><span>Фото с оленем</span> <span class="price-tag">1 ку</span></li>
-                        <li><span>Покормить оленя</span> <span class="price-tag">2 ку</span></li>
-                        <li><span>Покататься на оленях</span> <span class="price-tag">10 ку</span></li>
-                    </ul>
-                </div>
-
-                <div class="category-card">
-                    <div class="card-header">
-                        <div class="icon-circle" style="background: #ecfdf5; color: #10b981;">✨</div>
-                        <h3>Допы</h3>
-                    </div>
-                    <ul class="item-list">
-                        <li><span>Предсказание</span> <span class="price-tag">1 ку</span></li>
-                        <li><span>Погреть еду</span> <span class="price-tag">1 ку</span></li>
-                        <li><span>Камера хранения</span> <span class="price-tag">1 ку</span></li>
-                        <li><span>Лотерея</span> <span class="price-tag">5 ку</span></li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- ПРАВАЯ КОЛОНКА: Блок "Бонусы" (Растянут на всю высоту) -->
-            <div class="right-side">
-                <div class="bonuses-card">
-                    <div class="bonuses-header">
-                        <span class="badge">БОНУСЫ</span>
-                        <h3>Как заработать курланчики</h3>
-                    </div>
-                    <div class="bonuses-list">
-                        <div class="bonus-item">
-                            <span class="bonus-amount">+2 ку</span>
-                            <span class="bonus-desc">Отзыв в Яндекс</span>
-                        </div>
-                        <div class="bonus-item">
-                            <span class="bonus-amount">+2 ку</span>
-                            <span class="bonus-desc">Отзыв в Гугл</span>
-                        </div>
-                        <div class="bonus-item">
-                            <span class="bonus-amount">+3 ку</span>
-                            <span class="bonus-desc">Сторис с отметкой @kurlanpark</span>
-                        </div>
-                        <div class="bonus-item">
-                            <span class="bonus-amount">+5 ку</span>
-                            <span class="bonus-desc">Пост в ВК</span>
-                        </div>
-                        <div class="bonus-item">
-                            <span class="bonus-amount">+5 ку</span>
-                            <span class="bonus-desc">Пост в Инстаграм</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
 <!-- Кнопка "Наверх" -->
 <a href="#" id="scrollTopBtn" title="Наверх">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
@@ -1082,6 +1532,37 @@
     </svg>
 </a>
 <script>
+// Переключение страниц меню
+const pageButtons = document.querySelectorAll('.page-btn');
+const pages = document.querySelectorAll('.page');
+
+pageButtons.forEach(function (button) {
+    button.addEventListener('click', function () {
+    const targetId = button.dataset.page;
+
+    pageButtons.forEach(function (btn) {
+        btn.classList.toggle('active', btn === button);
+        btn.setAttribute('aria-selected', btn === button ? 'true' : 'false');
+    });
+
+    pages.forEach(function (page) {
+        const isActive = page.id === targetId;
+        page.classList.toggle('active', isActive);
+        if (isActive) {
+        page.scrollTop = 0; // возвращаем прокрутку наверх при переключении
+        }
+    });
+    });
+});
+
+// Кнопка закрытия модального окна
+// const closeBtn = document.querySelector('.close-btn');
+// const overlay = document.querySelector('.modal-overlay');
+// closeBtn.addEventListener('click', function () {
+//     overlay.style.display = 'none';
+// });
+// </script>
+<!-- <script>
     const modal = document.getElementById('modal');
     const btn = document.getElementById('openModalBtn');
 	const close = document.getElementById('closeBtn');
@@ -1090,7 +1571,7 @@
     window.onclick = function(event) {
         if (event.target == modal) { modal.classList.remove('active'); }
     }
-</script>
+</script> -->
 <script src="js/index.js"></script>
 </body>
 </html>

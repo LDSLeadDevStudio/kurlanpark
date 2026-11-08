@@ -1275,3 +1275,568 @@ a{
     text-decoration:none;
 }
 }
+/* ===== Базовые стили ===== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  z-index: 1000;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.modal-window {
+  position: relative; /* точка отсчёта для кнопки закрытия */
+  background: #f5f8fc;
+  width: 100%;
+  max-width: 1280px;   /* широкое «альбомное» окно */
+  max-height: 90vh;    /* высота ограничена — всё, что не влезло, уходит вниз */
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;    /* только окно управляет переполнением */
+  min-width: 0;
+}
+
+/* ===== Шапка ===== */
+.modal-header {
+  padding: 24px 32px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-shrink: 0;      /* шапка не сжимается при прокрутке */
+}
+
+/* Переключатель страниц */
+.page-switch {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.page-btn {
+  border: none;
+  background: #d6ebfb;
+  color: #2c8fd6;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 18px;
+  border-radius: 20px;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  font-family: inherit;
+  transition: background 0.2s;
+}
+
+.page-btn:hover {
+  background: #c2e0f8;
+}
+
+.page-btn.active {
+  background: #2c8fd6;
+  color: #fff;
+}
+
+.modal-title {
+  margin: 0;
+  font-size: 44px;
+  font-weight: 800;
+  color: #17233d;
+  line-height: 1.1;
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: #f0f4fa;
+  color: #444;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* ===== Сетка: колонки внутри вертикальной прокрутки ===== */
+.menu-grid {
+  display: flex;
+  flex-wrap: wrap;          /* колонки переносятся вниз, а не наружу */
+  align-items: flex-start;
+  gap: 24px;
+  padding: 8px 32px;
+  overflow-y: auto;         /* прокрутка всегда вертикальная */
+  overflow-x: hidden;       /* горизонтальная не образуется в принципе */
+  min-height: 0;            /* без этого flex-потомку не даётся высота для скролла */
+}
+
+.menu-column {
+  flex: 1 1 300px;          /* базовая ширина колонки ~300px */
+  min-width: 0;             /* разрешаем сжиматься — никакого горизонтального выдавливания */
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ===== Страницы меню (переключение) ===== */
+.page {
+  display: none;            /* по умолчанию обе страницы скрыты */
+}
+
+.page.active {
+  display: flex;            /* показываем только активную */
+}
+
+/* ===== Карточка категории ===== */
+.menu-category {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 2px 12px rgba(23, 35, 61, 0.06);
+  min-width: 0;
+  overflow: hidden;         /* длинные слова обрезаются, а не растягивают карточку */
+}
+
+.category-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+/* Все иконки — единый размер и кружок */
+.category-header span[class^="icon-"] {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #d6ebfb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+/* Страница 1 */
+.icon-search::before  { content: '🍳'; }
+.icon-bowl::before    { content: '🍲'; }
+.icon-meat::before    { content: '🍖'; }
+.icon-salad::before   { content: '🥗'; }
+.icon-potato::before  { content: '🥔'; }
+
+/* Страница 2 */
+.icon-mangal::before  { content: '🍢'; }
+.icon-bakery::before  { content: '🥮'; }
+.icon-coffee::before  { content: '☕'; }
+.icon-drink::before   { content: '🥤'; }
+.icon-burger::before  { content: '🍔'; }
+.icon-dessert::before { content: '🍰'; }
+
+.category-title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #f58536;
+}
+
+/* ===== Список позиций ===== */
+.category-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 0;
+  border-bottom: 1px dashed #d8dee8;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.item-name {
+  flex: 1;
+  min-width: 0;             /* название может занимать меньше места и переноситься */
+  font-size: 15px;
+  color: #2b2b2b;
+  line-height: 1.35;
+  overflow-wrap: anywhere;  /* даже очень длинные слова переносятся */
+}
+
+.item-weight {
+  font-size: 13px;
+  color: #8a93a2;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.item-price {
+  font-weight: 700;
+  color: #1e88e5;
+  background: #d6ebfb;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 14px;
+  white-space: nowrap;
+  flex-shrink: 0;           /* бейдж цены не сжимается, а строка перераспределяется */
+}
+
+/* ===== Синий блок-дисклеймер ===== */
+.disclaimer-card {
+  background: #1467b3;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 180px;
+  padding: 24px;
+}
+
+.disclaimer-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #fff;
+  color: #1467b3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  margin-bottom: 16px;
+}
+
+.disclaimer-text {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+/* ===== Подвал: контакты ===== */
+.modal-footer {
+  padding: 8px 32px 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #8a93a2;
+  flex-shrink: 0;
+}
+
+/* ===== Адаптив ===== */
+
+/* Планшеты: колонки переносятся по две в ряд */
+@media (max-width: 1024px) {
+  .modal-title {
+    font-size: 36px;
+  }
+}
+
+/* Телефоны: одна колонка, всё скроллится вертикально */
+@media (max-width: 640px) {
+  .modal-overlay {
+    padding: 0;
+    align-items: flex-end;  /* окно прижато к низу — «шторка» */
+  }
+  .modal-window {
+    max-height: 96vh;
+    border-radius: 14px 14px 0 0;
+  }
+  .modal-header {
+    padding: 16px 16px 8px;
+  }
+  .modal-title {
+    font-size: 26px;
+  }
+  .close-btn {
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    font-size: 22px;
+  }
+  .menu-grid {
+    flex-direction: column;  /* колонки строго столбиком */
+    flex-wrap: nowrap;
+    padding: 12px 16px;
+    gap: 16px;
+  }
+  .menu-column {
+    gap: 16px;
+  }
+  .menu-category {
+    padding: 16px;
+  }
+  .category-title {
+    font-size: 20px;
+  }
+  .menu-item {
+    flex-wrap: wrap;
+    row-gap: 4px;
+  }
+  .item-name {
+    flex: 1 1 100%;         /* название на всю строку */
+  }
+  .item-price {
+    padding: 4px 12px;
+    font-size: 13px;
+  }
+  .disclaimer-card {
+    min-height: 140px;
+    padding: 18px;
+  }
+  .disclaimer-text {
+    font-size: 14px;
+  }
+  .modal-footer {
+    padding: 8px 16px 16px;
+    font-size: 12px;
+  }
+  .page-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
+
+/* Совсем маленькие экраны: деликатная типографика */
+@media (max-width: 380px) {
+  .modal-title {
+    font-size: 22px;
+  }
+  .category-title {
+    font-size: 18px;
+  }
+  .item-name {
+    font-size: 14px;
+  }
+}
+/* ===== Список позиций ===== */
+.category-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 0;
+  border-bottom: 1px dashed #d8dee8;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.item-name {
+  flex: 0 1 auto;           /* название занимает столько, сколько нужно тексту, может переноситься */
+  min-width: 0;             /* длинные слова переносятся, а не растягивают строку */
+  font-size: 15px;
+  color: #2b2b2b;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.item-weight {
+  font-size: 13px;
+  color: #8a93a2;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.item-price {
+  margin-left: auto;        /* цена всегда прижата к правому краю */
+  font-weight: 700;
+  color: #1e88e5;
+  background: #d6ebfb;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 14px;
+  white-space: nowrap;
+  flex-shrink: 0;           /* бейдж не сжимается */
+}
+/* Единое правило модалки — удали дубли из styles.css */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(4px);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+.modal-overlay.active { display: flex; }
+
+.modal-content {
+    background: #fff;
+    width: 90%;
+    max-width: 1200px;
+    max-height: 92vh;
+    overflow-y: auto;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    padding: 24px;
+}
+
+/* Вкладки */
+.modal-tabs {
+    display: flex;
+    gap: 6px;
+    background: #f1f5f9;
+    border-radius: 12px;
+    padding: 4px;
+    margin-bottom: 16px;
+}
+.tab-btn {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 10px 12px;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 800;
+    color: #64748b;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s;
+}
+.tab-btn.active {
+    background: #0083ca;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 131, 202, 0.3);
+}
+
+/* Страницы-вкладки */
+.tab-page { display: none; }
+.tab-page.active { display: block; }
+
+.modal-title {
+    margin: 0 0 12px 0;
+    font-size: 24px;
+    font-weight: 800;
+    color: #0f172a;
+    text-align: center;
+}
+
+/* Сетка вкладки курланчиков */
+.main-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+}
+.left-side {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+.category-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 20px;
+}
+.card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.card-header h3 { margin: 0; font-size: 18px; color: #d97706; font-weight: 700; }
+.icon-circle {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+.item-list { list-style: none; margin: 0; padding: 0; }
+.item-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px dashed #e5e7eb;
+    font-size: 14.5px;
+    color: #374151;
+}
+.item-list li:last-child { border-bottom: none; }
+.price-tag {
+    background: #e0f2fe;
+    color: #1e40af;
+    padding: 5px 12px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 12.5px;
+    white-space: nowrap;
+}
+
+/* Блок бонусов */
+.bonuses-card {
+    background: linear-gradient(135deg, #0083ca 0%, #005b8e 100%);
+    color: #fff;
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.badge {
+    background: #fbbf24;
+    color: #1e293b;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 10px;
+    align-self: flex-start;
+}
+.bonuses-card h3 { margin: 0 0 18px 0; font-size: 19px; font-weight: 700; color: #fff; }
+.bonuses-list { display: flex; flex-direction: column; gap: 10px; flex-grow: 1; }
+.bonus-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+}
+.bonus-amount {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 6px 12px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 13px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+.bonus-desc { font-size: 13.5px; line-height: 1.4; }
+
+/* Адаптив */
+@media (max-width: 1023px) {
+    .main-grid { grid-template-columns: 1fr; }
+    .left-side { grid-template-columns: 1fr; }
+}
+@media (max-width: 767px) {
+    .modal-tabs { flex-direction: column; }
+}

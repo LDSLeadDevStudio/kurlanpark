@@ -1,118 +1,69 @@
-function openMenuModal() {
-  const modal = document.getElementById('modal');
-  if (modal) {
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden'; // Блокируем скролл фона
-  } else {
-    console.error('Модальное окно с id="modal" не найдено!');
-  }
-}
+// ============================================================
+// Курланпарк — index.js
+// Слайдер · Кнопка "Наверх" · Модальное окно с вкладками
+// ============================================================
+
+// ===== СЛАЙДЕР ФОТОГАЛЕРЕИ =====
 document.addEventListener('DOMContentLoaded', () => {
-  const modal = document.getElementById('modal');
-  const openBtn = document.getElementById('openModalBtn');
-  const closeBtn = document.getElementById('closeBtn');
+    const slides = document.querySelectorAll('.photo-slide');
+    let currentIndex = 0;
 
-  console.log('modal:', modal);
-  console.log('openBtn:', openBtn);
-  console.log('closeBtn:', closeBtn);
+    function switchSlide(direction) {
+        const total = slides.length;
+        if (total === 0) return;
 
-  if (!closeBtn) {
-    console.error('КНОПКА ЗАКРЫТИЯ НЕ НАЙДЕНА! Проверь id="closeBtn" в HTML.');
-  }
+        // Вычисляем новый индекс (зацикливание)
+        currentIndex = (currentIndex + direction + total) % total;
 
-  // 1. Открытие
-  if (openBtn && modal) {
-    openBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      modal.classList.add('active');
-    });
-  }
-
-  // 2. Закрытие по крестику
-  if (closeBtn && modal) {
-    closeBtn.addEventListener('click', () => {
-      modal.classList.remove('active');
-    });
-  } else {
-    console.warn('Не удалось повесить обработчик на крестик.');
-  }
-
-  // 3. Закрытие по фону
-  if (modal) {
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        modal.classList.remove('active');
-      }
-    });
-  }
-
-  // 4. Закрытие по Esc
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
-      modal.classList.remove('active');
+        slides.forEach((slide, index) => {
+            slide.classList.toggle('active', index === currentIndex);
+            slide.style.opacity = index === currentIndex ? '1' : '0';
+            slide.style.pointerEvents = index === currentIndex ? 'auto' : 'none';
+        });
     }
-  });
+
+    // Функция для кнопок в HTML (onclick="changeSlide(-1/1)")
+    window.changeSlide = function (direction) {
+        switchSlide(direction);
+    };
+
+    // Свайпы на мобильных
+    const sliderArea = document.getElementById('slider-touch-area');
+    if (sliderArea) {
+        let startX = 0;
+        let endX = 0;
+
+        sliderArea.addEventListener('touchstart', (e) => {
+            startX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        sliderArea.addEventListener('touchend', (e) => {
+            endX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+
+        function handleSwipe() {
+            const threshold = 50; // минимальная дистанция свайпа
+
+            if (endX < startX - threshold) {
+                switchSlide(1);  // влево → следующий
+            }
+            if (endX > startX + threshold) {
+                switchSlide(-1); // вправо → предыдущий
+            }
+        }
+    }
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-  const slides = document.querySelectorAll('.photo-slide');
-  let currentIndex = 0;
-
-  function switchSlide(direction) {
-    const total = slides.length;
-
-    // Вычисляем новый индекс (зацикливание)
-    currentIndex = (currentIndex + direction + total) % total;
-
-    slides.forEach((slide, index) => {
-      // Просто показываем нужный, остальные скрываем
-      slide.classList.toggle('active', index === currentIndex);
-      slide.style.opacity = index === currentIndex ? '1' : '0';
-      slide.style.pointerEvents = index === currentIndex ? 'auto' : 'none';
-    });
-  }
-
-  // Функция для кнопок в HTML (onclick="changeSlide(-1/1)")
-  window.changeSlide = function(direction) {
-    switchSlide(direction);
-  };
-
-  // Свайпы на мобильных (без номеров, просто переключение)
-  const sliderArea = document.getElementById('slider-touch-area');
-  if (sliderArea) {
-    let startX = 0;
-    let endX = 0;
-
-    sliderArea.addEventListener('touchstart', (e) => {
-      startX = e.changedTouches[0].screenX;
-    }, { passive: true });
-
-    sliderArea.addEventListener('touchend', (e) => {
-      endX = e.changedTouches[0].screenX;
-      handleSwipe();
-    }, { passive: true });
-
-    function handleSwipe() {
-      const threshold = 50; // минимальная дистанция свайпа
-
-      if (endX < startX - threshold) {
-        switchSlide(1); // влево → следующий
-      }
-      if (endX > startX + threshold) {
-        switchSlide(-1); // вправо → предыдущий
-      }
-    }
-  }
-});
-
+// ===== КНОПКА "НАВЕРХ" =====
 document.addEventListener('DOMContentLoaded', () => {
     const scrollTopBtn = document.getElementById('scrollTopBtn');
+    if (!scrollTopBtn) return;
 
     // Показываем/скрываем кнопку при скролле
     window.addEventListener('scroll', () => {
         const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-        
-        // Порог появления: показываем, если прокрутили больше 300px
+
         if (scrollPosition > 300) {
             scrollTopBtn.classList.add('visible');
         } else {
@@ -122,11 +73,77 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Плавная прокрутка наверх при клике
     scrollTopBtn.addEventListener('click', (e) => {
-        e.preventDefault(); // Отменяем стандартный прыжок к якорю #top
-        
+        e.preventDefault();
         window.scrollTo({
             top: 0,
-            behavior: 'smooth' // Плавная анимация
+            behavior: 'smooth'
         });
+    });
+});
+
+// ===== МОДАЛЬНОЕ ОКНО (МЕНЮ + КУРЛАНЧИКИ, ЕДИНОЕ, С ВКЛАДКАМИ) =====
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('modal');
+    if (!modal) return; // защита: если окна нет в разметке, тихо выходим
+
+    // --- Переключение вкладок ---
+    const tabs = modal.querySelectorAll('.tab-btn');
+    const pages = modal.querySelectorAll('.tab-page');
+
+    function activateTab(targetId) {
+        tabs.forEach((t) => {
+            const isTarget = t.dataset.tab === targetId;
+            t.classList.toggle('active', isTarget);
+            t.setAttribute('aria-selected', isTarget ? 'true' : 'false');
+        });
+        pages.forEach((p) => {
+            p.classList.toggle('active', p.id === targetId);
+        });
+        // Сбрасываем прокрутку окна на начало
+        const content = modal.querySelector('.modal-content');
+        if (content) content.scrollTop = 0;
+    }
+
+    tabs.forEach((btn) => {
+        btn.addEventListener('click', () => activateTab(btn.dataset.tab));
+    });
+
+    // --- Открытие ---
+    // Каждая кнопка открывает окно на своей вкладке:
+    //   openModalBtn (Меню →)              → вкладка "МЕНЮ КАФЕ · 1/2"
+    //   btnkurlans (Как потратить курланчики) → вкладка "ЗА КУРЛАНЧИКИ"
+    ['openModalBtn', 'btnkurlans'].forEach((btnId) => {
+        const btn = document.getElementById(btnId);
+        if (btn) {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // блокируем скролл фона
+
+                // Целевая вкладка: из data-tab кнопки или "tab-kurlan" по умолчанию
+                const target = btn.dataset.tab || 'tab-kurlan';
+                activateTab(target);
+            });
+        }
+    });
+
+    // --- Закрытие (крестик, фон, Escape) — всегда со сбросом скролла ---
+    const closeModal = () => {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    };
+
+    const closeBtn = modal.querySelector('.close-btn');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeModal);
+    }
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
     });
 });

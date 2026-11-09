@@ -1336,7 +1336,6 @@
         <footer class="modal-footer">
             <span>КурланПарк · 10 минут от Димитровграда · 8 (902) 215-11-90</span>
         </footer>
-
     </div>
 </div>
     <div id="discounts" style="padding: 0 20px;">
@@ -1403,6 +1402,124 @@
             © 2026. Парк семейного отдыха "Курланпарк"
         </div>
     </footer>
+    <div id="menu-modal" class="modal-overlay">
+    <div class="modal-content">
+	<div class="modal-header">
+	    <!-- Ярлык (теперь без margin-bottom) -->
+	    <span class="price-label">ПРАЙС-ЛИСТ</span>
+	    
+	    <!-- Заголовок -->
+	    <h2>Меню за курланчики</h2>
+	    
+	    <!-- Крестик (вынесен отдельно, чтобы не ломать сетку) -->
+	    <span class="close-btn" id="closeBtn">&times;</span>
+	</div>
+        <p class="modal-subtitle">Оплачивайте курланчиками угощения, развлечения, сувениры и услуги парка</p>
+
+        <!-- ГЛАВНАЯ СЕТКА: Левая часть (контент) + Правая часть (Бонусы) -->
+        <div class="main-grid">
+            
+            <!-- ЛЕВАЯ КОЛОНКА: Все категории товаров -->
+            <div class="left-side">
+                <div class="category-card">
+                    <div class="card-header">
+                        <div class="icon-circle" style="background: #fff8e1; color: #d97706;">🍵</div>
+                        <h3>Меню кафе</h3>
+                    </div>
+                    <ul class="item-list">
+                        <li><span>Горячий чай</span> <span class="price-tag">1 ку</span></li>
+                        <li><span>Ягодный морс</span> <span class="price-tag">2 ку</span></li>
+                        <li><span>Бутылка воды</span> <span class="price-tag">2 ку</span></li>
+                        <li><span>Томатный напиток</span> <span class="price-tag">2 ку</span></li>
+                        <li><span>Отвар шиповника</span> <span class="price-tag">3 ку</span></li>
+                        <li><span>Глинтвейн б/а</span> <span class="price-tag">5 ку</span></li>
+                        <li><span>Два пончика</span> <span class="price-tag">2 ку</span></li>
+                        <li><span>Чебурек с мясом</span> <span class="price-tag">5 ку</span></li>
+                        <li><span>Горячий суп</span> <span class="price-tag">5 ку</span></li>
+                    </ul>
+                </div>
+
+                <div class="category-card">
+                    <div class="card-header">
+                        <div class="icon-circle" style="background: #e0f2fe; color: #3b82f6;">🎁</div>
+                        <h3>Сувениры</h3>
+                    </div>
+                    <ul class="item-list">
+                        <li><span>Магнитик-фоторамка</span> <span class="price-tag">5 ку</span></li>
+                        <li><span>Силиконовый браслет</span> <span class="price-tag">5 ку</span></li>
+                        <li><span>Авторучка kurlanparker</span> <span class="price-tag">5 ку</span></li>
+                        <li><span>Брелок-подставка</span> <span class="price-tag">15 ку</span></li>
+                        <li><span>Подарочный пакет чая</span> <span class="price-tag">20 ку</span></li>
+                        <li><span>Мёд курланских пчёл</span> <span class="price-tag">25 ку</span></li>
+                        <li><span>Банка варенья</span> <span class="price-tag">25 ку</span></li>
+                        <li><span>Фирменная термокружка</span> <span class="price-tag">50 ку</span></li>
+                    </ul>
+                </div>
+
+                <div class="category-card">
+                    <div class="card-header">
+                        <div class="icon-circle" style="background: #fef3c7; color: #d97706;">🎪</div>
+                        <h3>Развлечения</h3>
+                    </div>
+                    <ul class="item-list">
+                        <li><span>Поездка на банане</span> <span class="price-tag">5 ку</span></li>
+                        <li><span>Стрельба в тире</span> <span class="price-tag">5 ку</span></li>
+                        <li><span>Фото с хаски</span> <span class="price-tag">1 ку</span></li>
+                        <li><span>Фото с оленем</span> <span class="price-tag">1 ку</span></li>
+                        <li><span>Покормить оленя</span> <span class="price-tag">2 ку</span></li>
+                        <li><span>Покататься на оленях</span> <span class="price-tag">10 ку</span></li>
+                    </ul>
+                </div>
+
+                <div class="category-card">
+                    <div class="card-header">
+                        <div class="icon-circle" style="background: #ecfdf5; color: #10b981;">✨</div>
+                        <h3>Допы</h3>
+                    </div>
+                    <ul class="item-list">
+                        <li><span>Предсказание</span> <span class="price-tag">1 ку</span></li>
+                        <li><span>Погреть еду</span> <span class="price-tag">1 ку</span></li>
+                        <li><span>Камера хранения</span> <span class="price-tag">1 ку</span></li>
+                        <li><span>Лотерея</span> <span class="price-tag">5 ку</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ПРАВАЯ КОЛОНКА: Блок "Бонусы" (Растянут на всю высоту) -->
+            <div class="right-side">
+                <div class="bonuses-card">
+                    <div class="bonuses-header">
+                        <span class="badge">БОНУСЫ</span>
+                        <h3>Как заработать курланчики</h3>
+                    </div>
+                    <div class="bonuses-list">
+                        <div class="bonus-item">
+                            <span class="bonus-amount">+2 ку</span>
+                            <span class="bonus-desc">Отзыв в Яндекс</span>
+                        </div>
+                        <div class="bonus-item">
+                            <span class="bonus-amount">+2 ку</span>
+                            <span class="bonus-desc">Отзыв в Гугл</span>
+                        </div>
+                        <div class="bonus-item">
+                            <span class="bonus-amount">+3 ку</span>
+                            <span class="bonus-desc">Сторис с отметкой @kurlanpark</span>
+                        </div>
+                        <div class="bonus-item">
+                            <span class="bonus-amount">+5 ку</span>
+                            <span class="bonus-desc">Пост в ВК</span>
+                        </div>
+                        <div class="bonus-item">
+                            <span class="bonus-amount">+5 ку</span>
+                            <span class="bonus-desc">Пост в Инстаграм</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
 <!-- Кнопка "Наверх" -->
 <a href="#" id="scrollTopBtn" title="Наверх">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
@@ -1433,24 +1550,7 @@ pageButtons.forEach(function (button) {
     });
     });
 });
-
-// Кнопка закрытия модального окна
-// const closeBtn = document.querySelector('.close-btn');
-// const overlay = document.querySelector('.modal-overlay');
-// closeBtn.addEventListener('click', function () {
-//     overlay.style.display = 'none';
-// });
-// </script>
-<!-- <script>
-    const modal = document.getElementById('modal');
-    const btn = document.getElementById('openModalBtn');
-	const close = document.getElementById('closeBtn');
-    btn.onclick = function() { modal.classList.add('active'); }
-    function closeModal() { modal.classList.remove('active'); }
-    window.onclick = function(event) {
-        if (event.target == modal) { modal.classList.remove('active'); }
-    }
-</script> -->
+</script>
 <script src="js/index.js"></script>
 </body>
 </html>

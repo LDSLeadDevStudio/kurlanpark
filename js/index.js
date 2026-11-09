@@ -117,13 +117,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (btn) {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
-
                 modal.classList.add('active');
                 document.body.style.overflow = 'hidden'; // блокируем скролл фона
-
-                // Целевая вкладка: из data-tab кнопки или "tab-kurlan" по умолчанию
-                const target = btn.dataset.tab || 'tab-kurlan';
-                activateTab(target);
+                activateTab(btn.dataset.tab || 'page-1');
             });
         }
     });

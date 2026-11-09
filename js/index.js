@@ -111,8 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Открытие ---
     // Каждая кнопка открывает окно на своей вкладке:
     //   openModalBtn (Меню →)              → вкладка "МЕНЮ КАФЕ · 1/2"
-    //   btnkurlans (Как потратить курланчики) → вкладка "ЗА КУРЛАНЧИКИ"
-    ['openModalBtn', 'btnkurlans'].forEach((btnId) => {
+    ['openModalBtn'].forEach((btnId) => {
         const btn = document.getElementById(btnId);
         if (btn) {
             btn.addEventListener('click', (e) => {
@@ -141,5 +140,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+    });
+});
+// ===== МОДАЛЬНОЕ ОКНО: ПРАЙС-ЛИСТ ЗА КУРЛАНЧИКИ =====
+document.addEventListener('DOMContentLoaded', () => {
+    const kurlanModal = document.getElementById('menu-modal');
+    const btnkurlans = document.getElementById('btnkurlans');
+    if (!kurlanModal || !btnkurlans) return; // если чего-то нет в разметке — тихо выходим
+
+    const closeKurlan = () => {
+        kurlanModal.classList.remove('active');
+        document.body.style.overflow = '';
+    };
+
+    btnkurlans.addEventListener('click', (e) => {
+        e.preventDefault();
+        kurlanModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+
+    const closeBtn = kurlanModal.querySelector('.close-btn');
+    if (closeBtn) closeBtn.addEventListener('click', closeKurlan);
+
+    kurlanModal.addEventListener('click', (e) => {
+        if (e.target === kurlanModal) closeKurlan();
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && kurlanModal.classList.contains('active')) closeKurlan();
     });
 });
